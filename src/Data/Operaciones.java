@@ -1,0 +1,88 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Data;
+
+import java.sql.SQLException;
+import java.sql.Statement;
+
+/**
+ *
+ * @author danny
+ */
+public class Operaciones {
+    
+     private static Operaciones instance = null;
+    
+    public static Operaciones getInstance() throws SQLException {
+        if (instance == null) {
+            instance = new Operaciones();
+        }
+        return instance;
+    }
+    public void insertarRegistro(Object o) throws Exception {
+        
+        Statement stmt = null;
+        try {
+            System.out.println("familia");
+            String consulta = OperacionesSQL.insertarRegistro(o);    
+             System.out.println(""+consulta);
+            stmt = Conexion.getConnection().createStatement();
+            stmt.executeUpdate(consulta);
+        } catch (SQLException ex) {
+            throw new Exception(ex.getMessage());
+        } finally {
+            Conexion.getInstance().desconexion();
+        }
+    }
+    
+     public void ModificarRegistro(Object o) throws Exception {
+        
+        Statement stmt = null;
+        try {
+            String consulta = OperacionesSQL.insertarRegistro(o);    
+           
+            stmt = Conexion.getConnection().createStatement();
+            stmt.executeUpdate(consulta);
+        } catch (SQLException ex) {
+            throw new Exception(ex.getMessage());
+        } finally {
+            Conexion.getInstance().desconexion();
+        }
+    }
+    
+    /*Se establece la conexion a la BD para luego modificar un registro segun el 
+    objeto sin modificar y el nuevo objeto modificado, luego se finaliza la conexion*/
+    /*public void modificarRegistro(Object oA, Object o) throws Exception{
+        Statement stmt = null;
+        try {
+            String consulta = Sentencia.modificarRegistro(oA,o);
+            System.out.println(consulta);
+            ConexionBD.getInstance().establecerConexion();
+            stmt = ConexionBD.getInstance().getConexion().createStatement();
+            stmt.executeUpdate(consulta);
+        } catch (SQLException ex) {
+            throw new Exception(ex.getMessage());
+        } finally {
+            ConexionBD.getInstance().finalizarConexion(stmt);
+        }
+    }*/
+    
+    /*Se establece la conexion a la BD para luego eliminar un registro segun el 
+    objeto recibido, luego se finaliza la conexion*/
+   /* public void elimiarRegistro(Object o) throws Exception{
+        Statement stmt = null;
+        try {
+            ConexionBD.getInstance().establecerConexion();
+            String consulta = Sentencia.eliminarRegistro(o);
+            stmt = ConexionBD.getInstance().getConexion().createStatement();
+            stmt.executeUpdate(consulta);
+        } catch (SQLException ex) {
+            throw new Exception(ex.getMessage());
+        } finally {
+            ConexionBD.getInstance().finalizarConexion(stmt);
+        }
+    }*/
+}
