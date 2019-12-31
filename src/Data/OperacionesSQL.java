@@ -6,6 +6,7 @@
 package Data;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 /**
  *
@@ -109,4 +110,40 @@ public class OperacionesSQL {
         System.out.println(args.toString());
         return args;
     }
+    
+     static String getRegistrosConsulta(String o , ArrayList<String> atributos, ArrayList<String> condiciones) {
+        String consulta;
+        consulta = "SELECT ";
+         ArrayList<String> columnas = atributos;
+        String nombreTabla = o;
+           System.out.println("SQL"+columnas.toString());
+        if(columnas != null && !columnas.isEmpty()){
+            for(int i = 0; i<columnas.size(); i++){
+                if(i+1 != columnas.size())
+                    consulta = consulta + columnas.get(i) + ",";
+                else
+                    consulta = consulta + columnas.get(i);
+            }
+        }else{
+            consulta = consulta + "*";
+        }
+       
+         consulta = consulta + " FROM " + nombreTabla;
+        if(condiciones!=null && !condiciones.isEmpty()){
+            consulta = consulta + " WHERE ";
+            for (String condicione : condiciones) {
+                consulta = consulta + condicione;
+            }
+        }
+        
+          
+       
+        //consulta = consulta + " FROM " + nombreTabla;
+        
+        
+       
+        //consulta = consulta + ";";
+        System.out.println(consulta);
+        return consulta;
+    }//fin
 }

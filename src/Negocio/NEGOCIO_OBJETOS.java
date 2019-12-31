@@ -25,8 +25,8 @@ public class NEGOCIO_OBJETOS {
         return instance;
     }
     
-    public Object obtenerRegistros(ArrayList<String> nombreTabla, ArrayList<String> atributos, ArrayList<String> condiciones, ArrayList<String> Funciones, ArrayList<String> orderBy) throws SQLException, Exception{
-        return null;
+    public Object obtenerRegistros(String Tabla) throws SQLException, Exception{
+        return Operaciones.getInstance().realizarConsulta(Tabla);
        
     }
     
@@ -98,5 +98,13 @@ public class NEGOCIO_OBJETOS {
                 break;
         }
     }
-    
+   
+      public Object obtenerRegistros(String nombreTabla, ArrayList<String> atributos, ArrayList<String> condiciones, ArrayList<String> orderBy) throws SQLException, Exception{
+     
+       
+        
+        return Operaciones.getInstance().realizarConsulta(nombreTabla);
+    }
+     
+     
 }

@@ -164,6 +164,20 @@ public class USUARIO extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso En la Creacion De Usuario", JOptionPane.ERROR_MESSAGE);
         }
+        
+         try {
+            String nombreTabla ="USUARIO" ;
+            
+                ArrayList<ArrayList<String>> registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombreTabla);
+                this.mostrarTabla(registros);
+            
+            
+                //this.boxResultado.setVisible(false);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso", JOptionPane.ERROR_MESSAGE);
+            //this.boxResultado.setVisible(false);
+        }//fin try 
       
     }//GEN-LAST:event_btnAceptarActionPerformed
 

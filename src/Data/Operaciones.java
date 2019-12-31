@@ -5,8 +5,10 @@
  */
 package Data;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,6 +23,47 @@ public class Operaciones {
             instance = new Operaciones();
         }
         return instance;
+    }
+    
+    public Object realizarConsulta(String cons) throws Exception {
+        
+        String consulta = OperacionesSQL.getRegistrosConsulta(cons,null,null);
+        ArrayList<ArrayList<String>> datos;
+        datos = (ArrayList<ArrayList<String>>) consultarBD(consulta);
+        return datos;
+    }
+    
+     private Object consultarBD(String consulta) throws Exception {
+        Statement stmt = null;
+        ArrayList<ArrayList<String>> resultado = new ArrayList<>();
+        try{
+            Conexion.getConnection();
+            stmt = Conexion.getConnection().createStatement();
+            ResultSet respuesta = stmt.executeQuery(consulta);
+            //Cabecera
+            
+            ArrayList<String> cabecera = new ArrayList<>();
+            int numeroColumnas = respuesta.getMetaData().getColumnCount();
+            for (int i = 0; i < numeroColumnas; i++)
+                cabecera.add(respuesta.getMetaData().getColumnName(i + 1));
+            resultado.add(cabecera);
+            
+            
+            //Armar el ArrayList con el resultado
+            int numCols = respuesta.getMetaData().getColumnCount();
+            ArrayList<String> columna;
+            while (respuesta.next()) {
+                columna = new ArrayList<>();
+                for (int i = 0; i < numCols; i++)
+                    columna.add(respuesta.getString(i + 1));
+                resultado.add(columna);
+            }
+            return resultado;
+        } catch (SQLException ex) {
+            throw new Exception(ex.getMessage());
+        } finally {
+            Conexion.getInstance().desconexion();
+        }
     }
     public void insertarRegistro(Object o) throws Exception {
         
