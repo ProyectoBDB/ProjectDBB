@@ -5,6 +5,7 @@
  */
 package Data;
 
+import Entidades.CONSULT;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
@@ -111,17 +112,18 @@ public class OperacionesSQL {
         return args;
     }
     
-     static String getRegistrosConsulta(String o , ArrayList<String> atributos, ArrayList<String> condiciones) {
+     static String getRegistrosConsulta(CONSULT o) {
         
-         System.out.println("ingresa en getRegistrosConsulta   pura  "+o+"   varlo de atributos"+atributos);
+        // System.out.println("ingresa en getRegistrosConsulta   pura  "+o+"   varlo de atributos"+atributos);
          String consulta;
-         if(atributos == null){
-              System.out.println("hola");
-         }
+         String nombreTabla = o.getNombreTabla();
+        ArrayList<String> columnas = o.getAtributos();
+        ArrayList<String> condiciones = o.getCondiciones();
+        ArrayList<String> orderBy = o.getOrderBy();
+        
+        
         consulta = "SELECT ";
-         ArrayList<String> columnas = atributos;
-         System.out.println("frontera");
-        String nombreTabla = o;
+       
            //System.out.println("SQL"+columnas.toString());
            System.out.println("frontera 1");
         if(columnas != null && !columnas.isEmpty()){
@@ -146,7 +148,12 @@ public class OperacionesSQL {
           
        
         //consulta = consulta + " FROM " + nombreTabla;
+           if(orderBy!=null && !orderBy.isEmpty()){
+            consulta = consulta + " ORDER BY " + orderBy.get(0) + " " + orderBy.get(1);
+        }
         
+        //consulta = consulta + ";";
+        System.out.println(consulta);
         
        
         

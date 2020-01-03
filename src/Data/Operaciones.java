@@ -5,6 +5,7 @@
  */
 package Data;
 
+import Entidades.CONSULT;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,9 +26,9 @@ public class Operaciones {
         return instance;
     }
     
-    public Object realizarConsulta(String cons) throws Exception {
+    public Object realizarConsulta(CONSULT cons) throws Exception {
         System.out.println("realizar  consulta en Datos Operaciones "+cons);
-        String consulta = OperacionesSQL.getRegistrosConsulta(cons,null,null);
+        String consulta = OperacionesSQL.getRegistrosConsulta(cons);
         ArrayList<ArrayList<String>> datos;
         datos = (ArrayList<ArrayList<String>>) consultarBD(consulta);
         return datos;
@@ -86,7 +87,7 @@ public class Operaciones {
         
         Statement stmt = null;
         try {
-            String consulta = OperacionesSQL.insertarRegistro(o);    
+            String consulta = OperacionesSQL.modificarRegistro(o);    
            
             stmt = Conexion.getConnection().createStatement();
             stmt.executeUpdate(consulta);

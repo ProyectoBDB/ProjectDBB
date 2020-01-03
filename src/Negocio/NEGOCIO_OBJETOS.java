@@ -6,6 +6,7 @@
 package Negocio;
 
 import Data.Operaciones;
+import Entidades.CONSULT;
 import Entidades.USUARIO;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -25,9 +26,17 @@ public class NEGOCIO_OBJETOS {
         return instance;
     }
     
-    public Object obtenerRegistros(String Tabla) throws SQLException, Exception{
+    public Object obtenerRegistros(String Tabla, ArrayList<String> atributos, ArrayList<String> condiciones, ArrayList<String> Funciones, ArrayList<String> orderBy) throws SQLException, Exception{
         System.out.println(" ingresa a nogocio objetos ");
-        return Operaciones.getInstance().realizarConsulta(Tabla);
+        CONSULT o = new CONSULT(Tabla);
+        if(atributos!=null)
+            o.setAtributos(atributos);
+        if(condiciones!=null)
+            o.setCondiciones(condiciones);
+        if(orderBy!=null)
+            o.setOrderBy(orderBy);
+        return Operaciones.getInstance().realizarConsulta(o);
+      
         
         
        
@@ -76,7 +85,7 @@ public class NEGOCIO_OBJETOS {
             case "USUARIO":
                 System.out.println(args);
                 USUARIO objusuario = new USUARIO(Integer.valueOf((String)args[1]), (String)args[2], (String)args[3],(String)args[4]);
-                Operaciones.getInstance().insertarRegistro(objusuario);
+                Operaciones.getInstance().ModificarRegistro(objusuario);
                 break;
             case "AUTOR":
                // Director director = new Director((String)args[1], (String)args[2], (String)args[3]);

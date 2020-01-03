@@ -5,6 +5,10 @@
  */
 package Vista;
 
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Usuario
@@ -13,10 +17,40 @@ public class Select extends javax.swing.JFrame {
 
     /**
      * Creates new form Select
+     * <> Inicialisacion De Arraylist para los Atributos , 
+    *  Las condiciones (en la calusula where), funciones de agregacion
      */
+    
+     ArrayList<String> attSeleccionados;
+    ArrayList<String> condSeleccionados;
+    ArrayList <String> funciones;
+    
     public Select() {
         initComponents();
+         attSeleccionados = new ArrayList();
+        condSeleccionados = new ArrayList();
+        funciones = new ArrayList();
+        this.jButtonAgregarAtributos.setEnabled(false);
+        this.jButtonEliminarAtributos.setEnabled(false);
+        this.jButtonAceptar.setVisible(false);
         this.setLocationRelativeTo(null);
+        try {
+             
+              /**
+                * Se carga los datos con los nombres delas 
+                * tablas de la base de datos en <String> nombres
+                * 
+                */
+            
+             ArrayList<String> nombres  = ManejoDatos.GestionarDatos().getNombresTablas();
+             
+             for(int i = 0; i<nombres.size(); i++){
+                 this.Tabla.addItem(nombres.get(i));
+             }
+         } catch (Exception ex) {
+             Logger.getLogger(EncuestasConsultas.class.getName()).log(Level.SEVERE, null, ex);
+         }// hasta aqui se concluye
+        
     }
 
     /**
