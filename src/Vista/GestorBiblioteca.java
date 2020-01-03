@@ -28,13 +28,6 @@ public class GestorBiblioteca extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonAgregarLibro = new javax.swing.JButton();
-        jButtonEliminarLibro = new javax.swing.JButton();
-        jButtonAutores = new javax.swing.JButton();
-        jButtonEditorial = new javax.swing.JButton();
-        jButtonCategoria = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jButtonUsuario = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButtonMostrarLibros = new javax.swing.JButton();
         jButtonMostrarAutores = new javax.swing.JButton();
@@ -43,8 +36,19 @@ public class GestorBiblioteca extends javax.swing.JFrame {
         jButtonMostrarUsuarios = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
+        jButtonAgregarLibro = new javax.swing.JButton();
+        jButtonEliminarLibro = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jButtonPedir = new javax.swing.JButton();
+        jButtonDevolver = new javax.swing.JButton();
         jButtonAutores1 = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JSeparator();
         jButtonEdicion = new javax.swing.JButton();
+        jButtonAutores = new javax.swing.JButton();
+        jButtonEditorial = new javax.swing.JButton();
+        jButtonCategoria = new javax.swing.JButton();
+        jButtonUsuario = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemAgregarLibro = new javax.swing.JMenuItem();
@@ -64,6 +68,67 @@ public class GestorBiblioteca extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+
+        jButtonMostrarLibros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/libros.png"))); // NOI18N
+
+        jButtonMostrarAutores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/autores.png"))); // NOI18N
+
+        jButtonMostrarEditorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/editorial.png"))); // NOI18N
+
+        jButtonMostrarCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/categoria.png"))); // NOI18N
+
+        jButtonMostrarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/usuario.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonMostrarLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonMostrarAutores, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonMostrarEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonMostrarCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonMostrarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonMostrarAutores, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jButtonMostrarEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonMostrarCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonMostrarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jButtonMostrarLibros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         jButtonAgregarLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/libro principal.png"))); // NOI18N
         jButtonAgregarLibro.setText("<html><p>Agregar</p><center>ejemplar</center></html>");
         jButtonAgregarLibro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -81,6 +146,51 @@ public class GestorBiblioteca extends javax.swing.JFrame {
         jButtonEliminarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEliminarLibroActionPerformed(evt);
+            }
+        });
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jButtonPedir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/pedir libro.png"))); // NOI18N
+        jButtonPedir.setText("<html><p>Peticion</p></html>");
+        jButtonPedir.setActionCommand("<html><p>Pedir l</p></html>");
+        jButtonPedir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonPedir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonPedir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPedirActionPerformed(evt);
+            }
+        });
+
+        jButtonDevolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/devolver libro.png"))); // NOI18N
+        jButtonDevolver.setText("<html><p>Devolucion</p></html>");
+        jButtonDevolver.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonDevolver.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonDevolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDevolverActionPerformed(evt);
+            }
+        });
+
+        jButtonAutores1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/libro original.png"))); // NOI18N
+        jButtonAutores1.setText("<html><p>Libro</p></html>");
+        jButtonAutores1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonAutores1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonAutores1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAutores1ActionPerformed(evt);
+            }
+        });
+
+        jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jButtonEdicion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/edision original.png"))); // NOI18N
+        jButtonEdicion.setText("<html><p>Edición</p></html>");
+        jButtonEdicion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonEdicion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonEdicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEdicionActionPerformed(evt);
             }
         });
 
@@ -117,8 +227,6 @@ public class GestorBiblioteca extends javax.swing.JFrame {
             }
         });
 
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
         jButtonUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/usuario original.png"))); // NOI18N
         jButtonUsuario.setText("<html><p>Usuarios</p></html>");
         jButtonUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -129,84 +237,57 @@ public class GestorBiblioteca extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
-
-        jButtonMostrarLibros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/libros.png"))); // NOI18N
-
-        jButtonMostrarAutores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/autores.png"))); // NOI18N
-
-        jButtonMostrarEditorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/editorial.png"))); // NOI18N
-
-        jButtonMostrarCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/categoria.png"))); // NOI18N
-
-        jButtonMostrarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/usuario.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonMostrarLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonAgregarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonMostrarAutores, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonEliminarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonMostrarEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonMostrarCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonMostrarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonPedir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jButtonAutores1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonAutores, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonMostrarAutores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonMostrarEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonMostrarCategorias)
-                    .addComponent(jButtonMostrarUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonMostrarLibros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jSeparator6)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jButtonCategoria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jButtonEditorial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jButtonAutores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jButtonAgregarLibro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jButtonPedir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jButtonAutores1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jButtonEdicion, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jButtonDevolver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jButtonEliminarLibro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                .addGap(2, 2, 2))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jButtonAutores1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/libro original.png"))); // NOI18N
-        jButtonAutores1.setText("<html><p>Libro</p></html>");
-        jButtonAutores1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonAutores1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonAutores1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAutores1ActionPerformed(evt);
-            }
-        });
-
-        jButtonEdicion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/edision original.png"))); // NOI18N
-        jButtonEdicion.setText("<html><p>Edición</p></html>");
-        jButtonEdicion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonEdicion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonEdicion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEdicionActionPerformed(evt);
-            }
-        });
+        jButtonEditorial.getAccessibleContext().setAccessibleName("<html><p>/n/n</p><p>Editorial</p></html>");
 
         jMenu1.setText("Archivo ");
 
@@ -280,50 +361,21 @@ public class GestorBiblioteca extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonAgregarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonEliminarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonAutores1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonAutores, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButtonEdicion, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonUsuario, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonEliminarLibro, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonAgregarLibro, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonAutores, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonEditorial, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonCategoria, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAutores1))
-                .addGap(11, 11, 11)
+                .addGap(30, 30, 30)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jButtonEditorial.getAccessibleContext().setAccessibleName("<html><p>/n/n</p><p>Editorial</p></html>");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -380,6 +432,14 @@ public class GestorBiblioteca extends javax.swing.JFrame {
         new VentanaDatosUsuario().setVisible(true);
     }//GEN-LAST:event_jMenuItemAgregarUsuarioActionPerformed
 
+    private void jButtonPedirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPedirActionPerformed
+        new PedirEjemplar().setVisible(true);
+    }//GEN-LAST:event_jButtonPedirActionPerformed
+
+    private void jButtonDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevolverActionPerformed
+        new PedirEjemplar().setVisible(true);
+    }//GEN-LAST:event_jButtonDevolverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -421,6 +481,7 @@ public class GestorBiblioteca extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAutores;
     private javax.swing.JButton jButtonAutores1;
     private javax.swing.JButton jButtonCategoria;
+    private javax.swing.JButton jButtonDevolver;
     private javax.swing.JButton jButtonEdicion;
     private javax.swing.JButton jButtonEditorial;
     private javax.swing.JButton jButtonEliminarLibro;
@@ -429,6 +490,7 @@ public class GestorBiblioteca extends javax.swing.JFrame {
     private javax.swing.JButton jButtonMostrarEditorial;
     private javax.swing.JButton jButtonMostrarLibros;
     private javax.swing.JButton jButtonMostrarUsuarios;
+    private javax.swing.JButton jButtonPedir;
     private javax.swing.JButton jButtonUsuario;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -444,11 +506,13 @@ public class GestorBiblioteca extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemEliminarUsuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     // End of variables declaration//GEN-END:variables
 }
