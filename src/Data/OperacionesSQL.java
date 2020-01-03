@@ -112,11 +112,18 @@ public class OperacionesSQL {
     }
     
      static String getRegistrosConsulta(String o , ArrayList<String> atributos, ArrayList<String> condiciones) {
-        String consulta;
+        
+         System.out.println("ingresa en getRegistrosConsulta   pura  "+o+"   varlo de atributos"+atributos);
+         String consulta;
+         if(atributos == null){
+              System.out.println("hola");
+         }
         consulta = "SELECT ";
          ArrayList<String> columnas = atributos;
+         System.out.println("frontera");
         String nombreTabla = o;
-           System.out.println("SQL"+columnas.toString());
+           //System.out.println("SQL"+columnas.toString());
+           System.out.println("frontera 1");
         if(columnas != null && !columnas.isEmpty()){
             for(int i = 0; i<columnas.size(); i++){
                 if(i+1 != columnas.size())
@@ -127,7 +134,7 @@ public class OperacionesSQL {
         }else{
             consulta = consulta + "*";
         }
-       
+        System.out.println(consulta);
          consulta = consulta + " FROM " + nombreTabla;
         if(condiciones!=null && !condiciones.isEmpty()){
             consulta = consulta + " WHERE ";
@@ -142,6 +149,8 @@ public class OperacionesSQL {
         
         
        
+        
+        
         //consulta = consulta + ";";
         System.out.println(consulta);
         return consulta;

@@ -26,7 +26,10 @@ public class NEGOCIO_OBJETOS {
     }
     
     public Object obtenerRegistros(String Tabla) throws SQLException, Exception{
+        System.out.println(" ingresa a nogocio objetos ");
         return Operaciones.getInstance().realizarConsulta(Tabla);
+        
+        
        
     }
     

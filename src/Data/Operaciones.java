@@ -26,7 +26,7 @@ public class Operaciones {
     }
     
     public Object realizarConsulta(String cons) throws Exception {
-        
+        System.out.println("realizar  consulta en Datos Operaciones "+cons);
         String consulta = OperacionesSQL.getRegistrosConsulta(cons,null,null);
         ArrayList<ArrayList<String>> datos;
         datos = (ArrayList<ArrayList<String>>) consultarBD(consulta);
@@ -58,6 +58,7 @@ public class Operaciones {
                     columna.add(respuesta.getString(i + 1));
                 resultado.add(columna);
             }
+            System.out.println(""+resultado);
             return resultado;
         } catch (SQLException ex) {
             throw new Exception(ex.getMessage());
@@ -69,7 +70,7 @@ public class Operaciones {
         
         Statement stmt = null;
         try {
-            System.out.println("familia");
+            System.out.println("llega a data familia");
             String consulta = OperacionesSQL.insertarRegistro(o);    
              System.out.println(""+consulta);
             stmt = Conexion.getConnection().createStatement();
