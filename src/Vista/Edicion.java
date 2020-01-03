@@ -16,6 +16,7 @@ public class Edicion extends javax.swing.JFrame {
      */
     public Edicion() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -36,7 +37,7 @@ public class Edicion extends javax.swing.JFrame {
         jButtonAceptar = new javax.swing.JButton();
         jButtonAgregar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/editorial - copia.png"))); // NOI18N
         jLabel1.setText("<html><p>Categoria</p></html>");

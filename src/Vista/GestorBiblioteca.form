@@ -28,6 +28,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar/Modificar Autores"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemAgregarAutorActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemEliminarAutores">
               <Properties>
@@ -40,6 +43,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar/Modificar Editorial"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemAgregarEditorialActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemEliminarEditorial">
               <Properties>
@@ -52,6 +58,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar/Modificar Categoria"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemAgregarCategoriaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemEliminarCategoria">
               <Properties>
@@ -64,6 +73,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar/Modificar Usuario"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemAgregarUsuarioActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemEliminarUsuario">
               <Properties>
@@ -76,7 +88,7 @@
     </Menu>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -109,15 +121,18 @@
                       <Component id="jButtonEliminarLibro" min="-2" pref="109" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButtonAutores1" min="-2" pref="108" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonEdicion" min="-2" pref="108" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jButtonAutores" min="-2" pref="108" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jButtonEditorial" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButtonCategoria" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonCategoria" min="-2" pref="123" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jButtonUsuario" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="221" max="32767" attributes="0"/>
+                      <Component id="jButtonUsuario" min="-2" pref="125" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -128,22 +143,22 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButtonUsuario" min="-2" max="-2" attributes="0"/>
-                  <Component id="jSeparator1" min="-2" pref="113" max="-2" attributes="0"/>
-                  <Component id="jButtonCategoria" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButtonEliminarLibro" max="32767" attributes="0"/>
-                      <Component id="jButtonAgregarLibro" max="32767" attributes="0"/>
-                      <Component id="jButtonAutores" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jButtonEditorial" max="32767" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="jButtonEdicion" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonUsuario" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonEliminarLibro" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonAgregarLibro" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonAutores" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonEditorial" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonCategoria" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jSeparator1" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                  <Component id="jButtonAutores1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -154,7 +169,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Vista/libro principal.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Agregar&lt;/p&gt;&lt;center&gt;libro&lt;/center&gt;&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Agregar&lt;/p&gt;&lt;center&gt;ejemplar&lt;/center&gt;&lt;/html&gt;"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
@@ -167,7 +182,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Vista/eliminar libro principal.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Eliminar&lt;/p&gt;&lt;center&gt;libro&lt;/center&gt;&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Eliminar&lt;/p&gt;&lt;center&gt;ejemplar&lt;/center&gt;&lt;/html&gt;"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
@@ -178,7 +193,7 @@
     <Component class="javax.swing.JButton" name="jButtonAutores">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/autores.png"/>
+          <Image iconType="3" name="/Vista/autores normal.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Autores&lt;/p&gt;&lt;/html&gt;"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -191,24 +206,34 @@
     <Component class="javax.swing.JButton" name="jButtonEditorial">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/editorial.png"/>
+          <Image iconType="3" name="/Vista/editorial - copia.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Editorial&lt;/p&gt;&lt;/html&gt;"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
+        <Property name="iconTextGap" type="int" value="5"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;/n/n&lt;/p&gt;&lt;p&gt;Editorial&lt;/p&gt;&lt;/html&gt;"/>
+      </AccessibilityProperties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEditorialActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonCategoria">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/categoria.png"/>
+          <Image iconType="3" name="/Vista/categoria original.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Categorias&lt;/p&gt;&lt;/html&gt;"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCategoriaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
       <Properties>
@@ -218,17 +243,20 @@
     <Component class="javax.swing.JButton" name="jButtonUsuario">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/usuario.png"/>
+          <Image iconType="3" name="/Vista/usuario original.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Usuarios&lt;/p&gt;&lt;/html&gt;"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUsuarioActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="cc" red="cc" type="rgb"/>
+          <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
       </Properties>
 
@@ -255,15 +283,10 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButtonMostrarAutores" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jButtonMostrarEditorial" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
-                              <Component id="jButtonMostrarCategorias" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonMostrarUsuarios" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jButtonMostrarAutores" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButtonMostrarEditorial" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
+                      <Component id="jButtonMostrarCategorias" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonMostrarUsuarios" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButtonMostrarLibros" alignment="1" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -338,5 +361,31 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="jButtonAutores1">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Vista/libro original.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Libro&lt;/p&gt;&lt;/html&gt;"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
+        <Property name="verticalTextPosition" type="int" value="3"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAutores1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonEdicion">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Vista/edision original.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Edici&#xf3;n&lt;/p&gt;&lt;/html&gt;"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
+        <Property name="verticalTextPosition" type="int" value="3"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEdicionActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

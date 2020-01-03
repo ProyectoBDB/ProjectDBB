@@ -18,6 +18,7 @@ public class Categoria extends javax.swing.JFrame {
      */
     public Categoria() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -36,7 +37,7 @@ public class Categoria extends javax.swing.JFrame {
         jButtonModificar = new javax.swing.JButton();
         jButtonAceptar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/categoria - copia.png"))); // NOI18N
         jLabel1.setText("<html><p>Categoria</p></html>");

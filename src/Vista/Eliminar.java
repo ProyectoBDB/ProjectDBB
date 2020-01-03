@@ -16,6 +16,7 @@ public class Eliminar extends javax.swing.JFrame {
      */
     public Eliminar() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -31,11 +32,17 @@ public class Eliminar extends javax.swing.JFrame {
         jButtonEliminar = new javax.swing.JButton();
         jButtonCerrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jButtonEliminar.setText("Eliminar");
 
         jButtonCerrar.setText("Cerrar");
+        jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCerrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,6 +73,10 @@ public class Eliminar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButtonCerrarActionPerformed
 
     /**
      * @param args the command line arguments

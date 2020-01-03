@@ -16,6 +16,7 @@ public class Libro extends javax.swing.JFrame {
      */
     public Libro() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -36,7 +37,7 @@ public class Libro extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/libro principal.png"))); // NOI18N
         jLabel1.setText("<html><p>Libro</p></html>");

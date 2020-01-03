@@ -16,6 +16,7 @@ public class Autor extends javax.swing.JFrame {
      */
     public Autor() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -34,7 +35,7 @@ public class Autor extends javax.swing.JFrame {
         jButtonModificar = new javax.swing.JButton();
         jButtonAceptar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/autores - copia.png"))); // NOI18N
         jLabel1.setText("<html><p>Autor</p></html>");
