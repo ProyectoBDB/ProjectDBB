@@ -361,7 +361,7 @@ public class GestorBiblioteca extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCategoriaActionPerformed
 
     private void jButtonUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUsuarioActionPerformed
-        new USUARIO().setVisible(true);
+        new VentanaDatosUsuario().setVisible(true);
     }//GEN-LAST:event_jButtonUsuarioActionPerformed
 
     private void jMenuItemAgregarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAgregarAutorActionPerformed
@@ -377,7 +377,7 @@ public class GestorBiblioteca extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemAgregarCategoriaActionPerformed
 
     private void jMenuItemAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAgregarUsuarioActionPerformed
-        new USUARIO().setVisible(true);
+        new VentanaDatosUsuario().setVisible(true);
     }//GEN-LAST:event_jMenuItemAgregarUsuarioActionPerformed
 
     /**
