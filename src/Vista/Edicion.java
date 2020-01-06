@@ -26,13 +26,7 @@ public class Edicion extends javax.swing.JFrame {
     public Edicion() {
         try {
             initComponents();
-            registros = new ArrayList();
-            nombretablas = new ArrayList();
-            attSeleccionados = new ArrayList();
-            nombretablas.add("USUARIO");
-            //attSeleccionados.add("ID_LIBRO");
-            attSeleccionados.add("NOMBRE");
-            registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablas, this.attSeleccionados,null,null,null);
+            
             this.setLocationRelativeTo(null);
         } catch (Exception ex) {
             Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
