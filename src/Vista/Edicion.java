@@ -5,18 +5,41 @@
  */
 package Vista;
 
+import Negocio.NEGOCIO_OBJETOS;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Usuario
  */
 public class Edicion extends javax.swing.JFrame {
-
+     ArrayList<ArrayList<String>> registros;
+    
+    ArrayList<String> nombretablas;
+     ArrayList<String> attSeleccionados;
     /**
      * Creates new form Edicion
      */
     public Edicion() {
-        initComponents();
-        this.setLocationRelativeTo(null);
+        try {
+            initComponents();
+            this.setLocationRelativeTo(null);
+            registros = new ArrayList();
+            nombretablas = new ArrayList();
+            attSeleccionados = new ArrayList();
+            nombretablas.add("LIBRO");
+            attSeleccionados.add("ID_LIBRO");
+            attSeleccionados.add("NOMBRE");
+            registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablas, this.attSeleccionados,null,null,null);
+            System.out.println(registros.toString());
+           for(int i = 1; i<registros.size(); i++){
+                 this.jComboBoxLibros.addItem(registros.get(i).get(1));
+             }
+        } catch (Exception ex) {
+            Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -31,7 +54,7 @@ public class Edicion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxLibros = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jButtonModificar = new javax.swing.JButton();
         jButtonAceptar = new javax.swing.JButton();
@@ -47,6 +70,12 @@ public class Edicion extends javax.swing.JFrame {
         jLabel2.setText("Libro");
 
         jLabel3.setText("Año de publicacion");
+
+        jComboBoxLibros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxLibrosActionPerformed(evt);
+            }
+        });
 
         jButtonModificar.setText("Modificar");
 
@@ -74,7 +103,7 @@ public class Edicion extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, 151, Short.MAX_VALUE)
+                            .addComponent(jComboBoxLibros, 0, 151, Short.MAX_VALUE)
                             .addComponent(jTextField1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(108, 108, 108)
@@ -96,7 +125,7 @@ public class Edicion extends javax.swing.JFrame {
                         .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBoxLibros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -115,6 +144,10 @@ public class Edicion extends javax.swing.JFrame {
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAgregarActionPerformed
+
+    private void jComboBoxLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLibrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxLibrosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,7 +188,7 @@ public class Edicion extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonAgregar;
     private javax.swing.JButton jButtonModificar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxLibros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

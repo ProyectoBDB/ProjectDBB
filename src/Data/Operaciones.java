@@ -38,9 +38,10 @@ public class Operaciones {
         Statement stmt = null;
         ArrayList<ArrayList<String>> resultado = new ArrayList<>();
         try{
-            Conexion.getConnection();
+            Conexion.getInstance().getConnection();
             stmt = Conexion.getConnection().createStatement();
             ResultSet respuesta = stmt.executeQuery(consulta);
+           // System.out.println("gggggg"+respuesta.getMetaData().getColumnCount());
             //Cabecera
             
             ArrayList<String> cabecera = new ArrayList<>();
@@ -57,9 +58,10 @@ public class Operaciones {
                 columna = new ArrayList<>();
                 for (int i = 0; i < numCols; i++)
                     columna.add(respuesta.getString(i + 1));
+                    //System.out.println("===========");
                 resultado.add(columna);
             }
-            System.out.println(""+resultado);
+            System.out.println("==========="+resultado);
             return resultado;
         } catch (SQLException ex) {
             throw new Exception(ex.getMessage());

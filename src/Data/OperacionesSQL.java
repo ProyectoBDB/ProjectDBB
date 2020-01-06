@@ -140,7 +140,7 @@ public class OperacionesSQL {
             consulta = consulta + "*";
         }
         System.out.println(consulta);
-         consulta = consulta + " FROM " + nombreTabla;
+         consulta = consulta + " FROM " + nombreTabla.get(0);
         if(condiciones!=null && !condiciones.isEmpty()){
             consulta = consulta + " WHERE ";
             for (String condicione : condiciones) {
