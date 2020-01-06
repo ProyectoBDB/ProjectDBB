@@ -18,6 +18,15 @@ public class EJEMPLAR {
     private String UBICACION;
     private String FECHA_COMPRA;
 
+    public EJEMPLAR(int ID_EDISION, int ID_LIBRO, int NUMERO_HOJAS, String ESTADO_CONSERVACION, String UBICACION, String FECHA_COMPRA) {
+        this.ID_EDISION = ID_EDISION;
+        this.ID_LIBRO = ID_LIBRO;
+        this.NUMERO_HOJAS = NUMERO_HOJAS;
+        this.ESTADO_CONSERVACION = ESTADO_CONSERVACION;
+        this.UBICACION = UBICACION;
+        this.FECHA_COMPRA = FECHA_COMPRA;
+    }
+
     public EJEMPLAR(int ID_EJEMPLAR, int ID_EDISION, int ID_LIBRO, int NUMERO_HOJAS, String ESTADO_CONSERVACION, String UBICACION, String FECHA_COMPRA) {
         this.ID_EJEMPLAR = ID_EJEMPLAR;
         this.ID_EDISION = ID_EDISION;

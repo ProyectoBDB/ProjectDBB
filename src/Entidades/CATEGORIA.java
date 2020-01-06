@@ -10,8 +10,12 @@ package Entidades;
  * @author danny
  */
 public class CATEGORIA {
-     private int ID_CATEGORIA;
+    private int ID_CATEGORIA;
     private String NOMBRE;
+
+    public CATEGORIA(String NOMBRE) {
+        this.NOMBRE = NOMBRE;
+    }
 
     public CATEGORIA(int ID_CATEGORIA, String NOMBRE) {
         this.ID_CATEGORIA = ID_CATEGORIA;

@@ -8,6 +8,9 @@ package Negocio;
 import Data.Operaciones;
 import Entidades.CONSULT;
 import Entidades.USUARIO;
+import Entidades.AUTOR;
+import Entidades.CATEGORIA;
+import Entidades.LIBRO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -74,9 +77,15 @@ public class NEGOCIO_OBJETOS {
                 Operaciones.getInstance().insertarRegistro(objusuario);
                 break;
             case "AUTOR":
+                // cambios realizados de autor
+                AUTOR objautor = new AUTOR((String)args[1]);
+                Operaciones.getInstance().insertarRegistro(objautor);
                // Director director = new Director((String)args[1], (String)args[2], (String)args[3]);
                 break;
             case "CATEGORIA":
+                // cambios realizados en categoria
+                CATEGORIA objcategoria = new CATEGORIA((String)args[1]);
+                Operaciones.getInstance().insertarRegistro(objcategoria);
                // Director director = new Director((String)args[1], (String)args[2], (String)args[3]);
                // DataBase.getInstance().insertarRegistro(director);
                 break;
@@ -89,6 +98,9 @@ public class NEGOCIO_OBJETOS {
                 //DataBase.getInstance().insertarRegistro(produccion);
                 break;
             case "LIBRO":
+                // cambios realizados de libro 
+                LIBRO objlibro = new LIBRO((String)args[1],(String)args[2]);
+                Operaciones.getInstance().insertarRegistro(objlibro);
                 //Personaje produccion = new Personaje((String)args[1], (String)args[2], (String)args[3], (String)args[4]);
                 //DataBase.getInstance().insertarRegistro(produccion);
                 break;
