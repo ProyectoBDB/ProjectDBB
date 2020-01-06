@@ -5,6 +5,11 @@
  */
 package Vista;
 
+import Negocio.NEGOCIO_OBJETOS;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Usuario
@@ -14,9 +19,24 @@ public class Edicion extends javax.swing.JFrame {
     /**
      * Creates new form Edicion
      */
+    ArrayList<ArrayList<String>> registros;
+    
+    ArrayList<String> nombretablas;
+     ArrayList<String> attSeleccionados;
     public Edicion() {
-        initComponents();
-        this.setLocationRelativeTo(null);
+        try {
+            initComponents();
+            registros = new ArrayList();
+            nombretablas = new ArrayList();
+            attSeleccionados = new ArrayList();
+            nombretablas.add("USUARIO");
+            //attSeleccionados.add("ID_LIBRO");
+            attSeleccionados.add("NOMBRE");
+            registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablas, this.attSeleccionados,null,null,null);
+            this.setLocationRelativeTo(null);
+        } catch (Exception ex) {
+            Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

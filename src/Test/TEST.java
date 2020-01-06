@@ -21,10 +21,11 @@ public class TEST {
     
     public void modificar (){
         try {
-            String[] args = {"USUARIO","1","carlos","trigales","890"};
-            minegocio.ModificarRegistro(args);
+            String[] args = {"USUARIO","34","carlos","trigales","890"};
+            minegocio.insertarRegistro(args);
+            //minegocio.ModificarRegistro(args);
             System.out.println("------------------------------");
-            minegocio.EliminarRegistro(args);
+           // minegocio.EliminarRegistro(args);
         } catch (Exception ex) {
             Logger.getLogger(TEST.class.getName()).log(Level.SEVERE, null, ex);
         }

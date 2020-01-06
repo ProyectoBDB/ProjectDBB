@@ -38,6 +38,7 @@ public class OperacionesSQL {
     }
      
    private static String nombreClase(Object o){
+       System.out.println(o.getClass().getSimpleName()+"         nombre de la clase    ");
         return o.getClass().getSimpleName();
     }
     
@@ -140,7 +141,7 @@ public class OperacionesSQL {
             consulta = consulta + "*";
         }
         System.out.println(consulta);
-         consulta = consulta + " FROM " + nombreTabla;
+         consulta = consulta + " FROM " + nombreTabla.get(0);
         if(condiciones!=null && !condiciones.isEmpty()){
             consulta = consulta + " WHERE ";
             for (String condicione : condiciones) {
