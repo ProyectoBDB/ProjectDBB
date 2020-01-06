@@ -184,7 +184,7 @@ public class VentanaUsuario extends javax.swing.JFrame {
          try {
             String nombreTabla ="USUARIO" ;
             
-               registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombreTabla);
+               //registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombreTabla);
                // this.mostrarTabla(registros);
               VentanaDatosUsuario objventana = new VentanaDatosUsuario();
               objventana.setVisible(true);

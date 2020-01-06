@@ -8,29 +8,32 @@ package Entidades;
 import java.util.ArrayList;
 /**
  *
- * @author Daniel
+ * @author User
  */
 public class CONSULT {
     
-    private String nombreTabla;
+    private ArrayList<String> NombreTablas;
+    //private String nombreTabla;
     private ArrayList<String> atributos;
     private ArrayList<String> condiciones;
     private ArrayList<String> orderBy;
 
-    public CONSULT(String nombreTabla){
+    public CONSULT(ArrayList<String> Tablas){
         this.atributos = new ArrayList();
         this.condiciones = new ArrayList();
         this.orderBy = new ArrayList();
-        this.nombreTabla = nombreTabla;
+         this.NombreTablas = new ArrayList();
+        this.NombreTablas = Tablas;
     }
     
-    public String getNombreTabla() {
-        return nombreTabla;
+     public ArrayList<String> getNombreTablas() {
+        return NombreTablas;
     }
 
-    public void setNombreTabla(String nombreTabla) {
-        this.nombreTabla = nombreTabla;
+    public void setNombreTablas(ArrayList<String> NombreTablas) {
+        this.NombreTablas = NombreTablas;
     }
+   
 
     public ArrayList<String> getAtributos() {
         return atributos;
@@ -66,7 +69,7 @@ public class CONSULT {
 
     @Override
     public String toString() {
-        return "Consulta{" + "nombreTabla=" + nombreTabla + ", atributos=" + atributos.toString() 
+        return "Consulta{" + "nombreTabla=" + NombreTablas.toString() + ", atributos=" + atributos.toString() 
                 + ", condiciones=" + condiciones.toString() 
                 + ", orderBy=" + orderBy.toString() + '}';
     }

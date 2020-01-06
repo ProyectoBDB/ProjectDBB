@@ -98,6 +98,19 @@ public class Operaciones {
         }
     }
     
+      public void elimiarRegistro(Object o) throws Exception{
+        Statement stmt = null;
+        try {
+            //Conexion.getInstance().establecerConexion();
+            String consulta = OperacionesSQL.eliminarRegistro(o);
+            stmt = Conexion.getConnection().createStatement();
+            stmt.executeUpdate(consulta);
+        } catch (SQLException ex) {
+            throw new Exception(ex.getMessage());
+        } finally {
+            Conexion.getInstance().desconexion();
+        }
+    }
     /*Se establece la conexion a la BD para luego modificar un registro segun el 
     objeto sin modificar y el nuevo objeto modificado, luego se finaliza la conexion*/
     /*public void modificarRegistro(Object oA, Object o) throws Exception{
@@ -130,4 +143,15 @@ public class Operaciones {
             ConexionBD.getInstance().finalizarConexion(stmt);
         }
     }*/
+     
+      public Object getNombreTablas() throws Exception{
+        String consulta = OperacionesSQL.getNombreTablas();
+        return consultarBD(consulta);
+    }
+      
+      public Object getAtributosTablas(Object o) throws Exception{
+        String consulta = OperacionesSQL.getAtributosTabla((String) o);
+        System.out.println(" entra al metodo getAtributos ");
+        return consultarBD(consulta);
+    }
 }

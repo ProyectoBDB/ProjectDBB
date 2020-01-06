@@ -60,6 +60,8 @@ public class Conexion {
         c.getConnection();
     }
     
-    
+    public String getNombreBD() {
+        return nombreBaseDD;
+    }
     
 }

@@ -7,6 +7,7 @@ package Data;
 
 import Entidades.CONSULT;
 import java.lang.reflect.Field;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -24,14 +25,14 @@ public class OperacionesSQL {
     }
       
     public static String modificarRegistro(Object obj) throws Exception {
-        String consulta = "UPDATE "+ nombreClase(obj)+ "SET " + getAtributosValoresModificar(obj) [0] + " " +
-                "WHERE" + getAtributosValores(obj)[1] + ")";
+        String consulta = "UPDATE "+ nombreClase(obj)+ " SET " + getAtributosValoresModificar(obj) [0] + " " +
+                "WHERE " + getAtributosValoresModificar(obj)[1] ;
         System.out.println(consulta);
         return consulta;
     }
     
     public static String eliminarRegistro(Object obj) throws Exception {
-        String consulta = "DELETE FROM "+ nombreClase(obj)+ "WHERE" + getAtributosValores(obj)[1] + ")";
+        String consulta = "DELETE FROM "+ nombreClase(obj)+ " WHERE " + getAtributosValoresModificar(obj)[1] ;
         System.out.println(consulta);
         return consulta;
     }
@@ -93,11 +94,13 @@ public class OperacionesSQL {
                 i++;
                 f.setAccessible(true);
                 if(i != o.getClass().getDeclaredFields().length)
-                    atributos=atributos + f.getName() +"="+f.get(o)+ ",";
+                    atributos=atributos + f.getName() +" = "+"'"+f.get(o)+ "'"+",";
                 else
-                    atributos=atributos + f.getName()+"="+f.get(o) ;
+                    atributos=atributos + f.getName()+" = "+"'"+f.get(o) + "'";
             }
+             System.out.println(" ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ");
             String[] parts = atributos.split(",");
+            System.out.println(parts[0]);
             System.out.println(" attr : "+atributos);
             IDatr = parts[0];
             //Valores del objeto
@@ -116,7 +119,7 @@ public class OperacionesSQL {
         
         // System.out.println("ingresa en getRegistrosConsulta   pura  "+o+"   varlo de atributos"+atributos);
          String consulta;
-         String nombreTabla = o.getNombreTabla();
+        ArrayList<String> nombreTabla = o.getNombreTablas();
         ArrayList<String> columnas = o.getAtributos();
         ArrayList<String> condiciones = o.getCondiciones();
         ArrayList<String> orderBy = o.getOrderBy();
@@ -162,4 +165,19 @@ public class OperacionesSQL {
         System.out.println(consulta);
         return consulta;
     }//fin
+     
+      /*Obtener el nombre de las tablas de la base de datos especificada*/
+    public static String getNombreTablas() throws SQLException{
+        return "select table_name from user_tables order by table_name";
+    }
+    
+    /*Obtiene los atriburos de una tabla*/
+    public static String getAtributosTabla(String nombreTabla) throws SQLException{
+        return "SELECT " +"COLUMN_NAME" + " FROM " + "user_tab_cols "
+                + "WHERE "  + " TABLE_NAME = '"+nombreTabla+"'";
+    }
+   
+    
+     
+       
 }

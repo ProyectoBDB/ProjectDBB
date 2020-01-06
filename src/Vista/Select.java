@@ -1,13 +1,19 @@
-/*
+                        /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Vista;
 
+import Negocio.NEGOCIO_OBJETOS;
+import java.awt.Dimension;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -42,13 +48,13 @@ public class Select extends javax.swing.JFrame {
                 * 
                 */
             
-             ArrayList<String> nombres  = ManejoDatos.GestionarDatos().getNombresTablas();
+             ArrayList<String> nombres  = NEGOCIO_OBJETOS.getInstance().getNombresTablas();
              
              for(int i = 0; i<nombres.size(); i++){
-                 this.Tabla.addItem(nombres.get(i));
+                 this.jComboBoxTabla.addItem(nombres.get(i));
              }
          } catch (Exception ex) {
-             Logger.getLogger(EncuestasConsultas.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(Select.class.getName()).log(Level.SEVERE, null, ex);
          }// hasta aqui se concluye
         
     }
@@ -78,8 +84,8 @@ public class Select extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jLabel6 = new javax.swing.JLabel();
         jButtonAgregarAtributos = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jButtonEliminarAtributos = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
@@ -109,21 +115,23 @@ public class Select extends javax.swing.JFrame {
 
         jLabel1.setText("1. Especifique la operacion");
 
-        jComboBoxOperacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxOperacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select" }));
 
         jLabel2.setText("2. Seleccione la tabla");
 
-        jComboBoxTabla.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTablaActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("4. Atributo condicional");
-
-        jComboBoxAtributo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jLabel4.setText("5. Operador");
 
-        jComboBoxOperador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxOperador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "=", "<", ">", "LIKE" }));
 
         jLabel5.setText("6. Valor");
 
@@ -134,26 +142,26 @@ public class Select extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jList1);
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        jButtonAgregarAtributos.setText("Agregar");
+        jButtonAgregarAtributos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarAtributosActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("Atributos de la tabla");
 
-        jButtonAgregarAtributos.setText("Agregar");
-
         jButtonEliminarAtributos.setText("Eliminar");
-
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jButtonEliminarAtributos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarAtributosActionPerformed(evt);
+            }
         });
+
         jScrollPane2.setViewportView(jList2);
 
         jLabel7.setText("Atributos seleccionados");
@@ -181,12 +189,32 @@ public class Select extends javax.swing.JFrame {
         jLabel11.setText("Orden");
 
         jRadioButtonAsendente.setText("Asendente");
+        jRadioButtonAsendente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonAsendenteActionPerformed(evt);
+            }
+        });
 
         jRadioButtonDesendente.setText("Desendente");
+        jRadioButtonDesendente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonDesendenteActionPerformed(evt);
+            }
+        });
 
         jRadioButtonNinguno.setText("Ninguno");
+        jRadioButtonNinguno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonNingunoActionPerformed(evt);
+            }
+        });
 
         jButtonAceptar.setText("Aceptar");
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarActionPerformed(evt);
+            }
+        });
 
         jButtonSalir.setText("Salir");
 
@@ -281,7 +309,7 @@ public class Select extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel7)
                                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 16, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(237, 237, 237)
                         .addComponent(jButtonAceptar)
@@ -379,6 +407,197 @@ public class Select extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonContarActionPerformed
 
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
+        // TODO add your handling code here:
+         /**
+      * En nombreTabla se guarda la seleccion de las tablas 
+      * mostradas en el comobobox Tabla se recive <>
+      * 
+      * 
+      */
+          ArrayList<String> nombretablas;
+         nombretablas = new ArrayList();
+         nombretablas.add(jComboBoxTabla.getSelectedItem().toString());
+         ArrayList<ArrayList<String>> registros;
+       if(nombretablas.isEmpty() || this.jTextFieldValor.getText().length()==0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado ninguna atributos", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+           
+              /**
+      * Case para la selecion del comobox Operaciones
+      * con dos opciones , SELECT y DELETE 
+      * 
+      * 
+      */
+            
+            switch (this.jComboBoxOperacion.getSelectedItem().toString()) {
+
+                /**
+                 * en ls opcion SELECT se activa el radio Button => ContarRB
+                 *
+                 *
+                 */
+                case "select": {
+                    try {
+                        if (this.jComboBoxAtributosOrdenar.getSelectedItem().equals("Ningún atributo")) {
+
+                            
+                                registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablas, attSeleccionados, this.condSeleccionados, null, null);
+                                funciones.clear();
+                            
+                            
+                            if(registros.isEmpty()){
+                              JOptionPane.showMessageDialog(rootPane, "Lo requerido No existe", "Aviso", JOptionPane.ERROR_MESSAGE);
+                              return;
+                            }
+                            
+
+                        } else {
+
+                            ArrayList<String> order = new ArrayList();
+                            order.add(this.jComboBoxAtributosOrdenar.getSelectedItem().toString());
+                            if (this.jRadioButtonAsendente.isSelected()) {
+                                order.add("ASC");
+                            } else if (this.jRadioButtonDesendente.isSelected()) {
+                                order.add("DESC");
+                            } else {
+                                order.add("");
+                            }
+
+                            registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablas, this.attSeleccionados, this.condSeleccionados, this.funciones, order);
+
+                        }
+
+                        this.mostrarTabla(registros);
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso", JOptionPane.ERROR_MESSAGE);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                }// finaliza  case SELECT 
+
+           
+       }
+                       // this.ContarRB.setVisible(true);
+                        this.jTextFieldValor.setText("");
+                        this.jList1.setEnabled(true);
+                        this.jList2.setEnabled(true); 
+       } 
+        
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jButtonAgregarAtributosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarAtributosActionPerformed
+        // TODO add your handling code here:
+        String nombre = this.jList1.getModel().getElementAt(this.jList1.getSelectedIndex());
+        if(!this.attSeleccionados.contains(nombre) ){
+            this.attSeleccionados.add(nombre);
+            DefaultListModel model = new DefaultListModel();
+            for(int i=0; i<attSeleccionados.size(); i++){
+                model.addElement(attSeleccionados.get(i));
+            }
+            this.jList2.setModel(model);
+        }
+        
+    }//GEN-LAST:event_jButtonAgregarAtributosActionPerformed
+
+    private void jButtonEliminarAtributosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarAtributosActionPerformed
+        // TODO add your handling code here:
+         String nombre = this.jList1.getModel().getElementAt(this.jList1.getSelectedIndex());
+        this.attSeleccionados.remove(nombre);
+        DefaultListModel model = new DefaultListModel();
+        for(int i=0; i<attSeleccionados.size(); i++){
+            model.addElement(attSeleccionados.get(i));
+        }
+        this.jList2.setModel(model);
+        
+    }//GEN-LAST:event_jButtonEliminarAtributosActionPerformed
+
+    private void jComboBoxTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTablaActionPerformed
+        // TODO add your handling code here:
+        this.jComboBoxAtributo.removeAllItems();
+          this.condSeleccionados = new ArrayList();
+          this.attSeleccionados = new ArrayList();
+         this.jList2.setModel(new DefaultListModel());
+         //this.listCondicion.setModel(new DefaultListModel());
+         if(!this.jComboBoxTabla.getSelectedItem().toString().isEmpty()){
+            try {
+                ArrayList<String> atributos = (ArrayList<String>) NEGOCIO_OBJETOS.getInstance().getAtributosTabla(this.jComboBoxTabla.getSelectedItem().toString());
+                DefaultListModel model = new DefaultListModel();
+                this.jComboBoxAtributo.addItem("Ningún atributo");
+                this.jComboBoxAtributosOrdenar.removeAllItems();
+                this.jComboBoxAtributosOrdenar.addItem("Ningún atributo");
+                
+                for(int i=0; i<atributos.size(); i++){
+                    model.addElement(atributos.get(i));
+                    this.jComboBoxAtributo.addItem(atributos.get(i));
+                    this.jComboBoxAtributosOrdenar.addItem(atributos.get(i));
+                    
+                }
+                this.jList1.setModel(model);
+                this.jButtonAgregarAtributos.setEnabled(false);
+                this.jButtonEliminarAtributos.setEnabled(false);
+                //this.btnAgregar1.setEnabled(false);
+                //this.btnQuitar1.setEnabled(false);
+                this.jButtonAceptar.setVisible(true);
+                //this.btnAgregar1.setEnabled(false);
+            } catch (Exception ex) {
+                Logger.getLogger(Select.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         
+            }
+            else{
+               
+            }// fin else
+    }//GEN-LAST:event_jComboBoxTablaActionPerformed
+
+    private void jRadioButtonAsendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAsendenteActionPerformed
+        // TODO add your handling code here:
+         if (jRadioButtonDesendente.isSelected() || jRadioButtonNinguno.isSelected()){
+            jRadioButtonDesendente.setSelected(false);
+            jRadioButtonNinguno.setSelected(false);
+        }
+    }//GEN-LAST:event_jRadioButtonAsendenteActionPerformed
+
+    private void jRadioButtonNingunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNingunoActionPerformed
+        // TODO add your handling code here:
+         if (jRadioButtonAsendente.isSelected() || jRadioButtonDesendente.isSelected()){
+            jRadioButtonAsendente.setSelected(false);
+            jRadioButtonDesendente.setSelected(false);
+        }
+    }//GEN-LAST:event_jRadioButtonNingunoActionPerformed
+
+    private void jRadioButtonDesendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDesendenteActionPerformed
+        // TODO add your handling code here:
+           if (jRadioButtonAsendente.isSelected() || jRadioButtonNinguno.isSelected()){
+            jRadioButtonAsendente.setSelected(false);
+             jRadioButtonNinguno.setSelected(false);
+        }
+    }//GEN-LAST:event_jRadioButtonDesendenteActionPerformed
+
+     private void mostrarTabla(ArrayList<ArrayList<String>> registros) {
+        int filas = registros.size()-1;
+        int columnas = registros.get(0).size();
+
+        String cuerpo[][] = new String[filas][columnas];
+        String cabecera[] = new String[columnas];
+
+        //Cabecera de la tabla
+        for (int i = 0; i<columnas; i++){
+            cabecera[i] = registros.get(0).get(i);
+        }
+        //Cuerpo de la tabla
+        for (int i = 0; i<filas; i++)
+            for (int j = 0; j<columnas; j++)
+                cuerpo[i][j] = registros.get(i+1).get(j);
+
+        //Creacion de la tabla 
+        JTable table = new JTable(cuerpo, cabecera); 
+        table.setPreferredScrollableViewportSize(new Dimension(filas, columnas));
+
+        this.jScrollPane1.setViewportView(new JTable(cuerpo, cabecera));
+    }// fin 
     /**
      * @param args the command line arguments
      */
