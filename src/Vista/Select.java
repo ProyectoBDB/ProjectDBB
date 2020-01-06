@@ -33,7 +33,7 @@ public class Select extends javax.swing.JFrame {
     
     public Select() {
         initComponents();
-         attSeleccionados = new ArrayList();
+        attSeleccionados = new ArrayList();
         condSeleccionados = new ArrayList();
         funciones = new ArrayList();
         this.jButtonAgregarAtributos.setEnabled(false);
@@ -430,7 +430,7 @@ public class Select extends javax.swing.JFrame {
       * 
       * 
       */
-          ArrayList<String> nombretablas;
+        ArrayList<String> nombretablas;
          nombretablas = new ArrayList();
          nombretablas.add(jComboBoxTabla.getSelectedItem().toString());
          ArrayList<ArrayList<String>> registros;
