@@ -48,13 +48,16 @@ public class Edicion extends javax.swing.JFrame {
 
         jLabel3.setText("Año de publicacion");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jButtonModificar.setText("Modificar");
 
         jButtonAceptar.setText("Aceptar");
 
         jButtonAgregar.setText("Agregar");
+        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,6 +111,10 @@ public class Edicion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     /**
      * @param args the command line arguments

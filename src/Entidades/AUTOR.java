@@ -12,7 +12,11 @@ package Entidades;
 public class AUTOR {
      private String NOMBRE;
      private int ID_AUTOR;
-
+     
+     public AUTOR(String NOMBRE) {
+        this.NOMBRE = NOMBRE;
+    }
+     
     public AUTOR(String NOMBRE, int ID_AUTOR) {
         this.NOMBRE = NOMBRE;
         this.ID_AUTOR = ID_AUTOR;
@@ -34,9 +38,7 @@ public class AUTOR {
         this.NOMBRE = NOMBRE;
     }
 
-    public AUTOR(String NOMBRE) {
-        this.NOMBRE = NOMBRE;
-    }
+   
      
      
      

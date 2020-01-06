@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import Negocio.NEGOCIO_OBJETOS;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
@@ -30,7 +33,7 @@ public class Autor extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldNombre = new javax.swing.JTextField();
         jButtonAgregar = new javax.swing.JButton();
         jButtonModificar = new javax.swing.JButton();
         jButtonAceptar = new javax.swing.JButton();
@@ -45,6 +48,11 @@ public class Autor extends javax.swing.JFrame {
         jLabel2.setText("Nombre");
 
         jButtonAgregar.setText("Agregar");
+        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarActionPerformed(evt);
+            }
+        });
 
         jButtonModificar.setText("Modificar");
 
@@ -62,7 +70,7 @@ public class Autor extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(jButtonAgregar)
@@ -82,7 +90,7 @@ public class Autor extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAgregar)
@@ -93,6 +101,20 @@ public class Autor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
+        try{
+            String NOMBRE = this.jTextFieldNombre.getText();
+            String[] args = {"AUTOR",NOMBRE};
+            NEGOCIO_OBJETOS.getInstance().insertarRegistro(args);
+            JOptionPane.showMessageDialog(rootPane,"Se ha creado el autor satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso En la Creacion De Usuario", JOptionPane.ERROR_MESSAGE);
+        }
+  
+        
+    }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,6 +157,6 @@ public class Autor extends javax.swing.JFrame {
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 }

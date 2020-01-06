@@ -10,9 +10,14 @@ package Entidades;
  * @author danny
  */
 public class EDISION {
-     private int ID_EDISION;
-     private int ID_LIBRO;
+    private int ID_EDISION;
+    private int ID_LIBRO;
     private String TIPO;
+
+    public EDISION(int ID_LIBRO, String TIPO) {
+        this.ID_LIBRO = ID_LIBRO;
+        this.TIPO = TIPO;
+    }
 
     public EDISION(int ID_EDISION, int ID_LIBRO, String TIPO) {
         this.ID_EDISION = ID_EDISION;

@@ -5,7 +5,9 @@
  */
 package Vista;
 
+import Negocio.NEGOCIO_OBJETOS;
 import Vista.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,6 +49,11 @@ public class Categoria extends javax.swing.JFrame {
         jLabel2.setText("Nombre");
 
         jButtonAgregar.setText("Agregar");
+        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarActionPerformed(evt);
+            }
+        });
 
         jButtonModificar.setText("Modificar");
 
@@ -95,6 +102,18 @@ public class Categoria extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
+        try{
+            String NOMBRE = this.jTextFieldNombre.getText();
+            String[] args = {"CATEGORIA",NOMBRE};
+            NEGOCIO_OBJETOS.getInstance().insertarRegistro(args);
+            JOptionPane.showMessageDialog(rootPane,"Se ha creado la categoria satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso En la Creacion De Usuario", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     /**
      * @param args the command line arguments

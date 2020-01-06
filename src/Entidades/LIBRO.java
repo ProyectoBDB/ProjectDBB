@@ -14,6 +14,11 @@ public class LIBRO {
     private String ISBN;
     private String NOMBRE;
 
+    public LIBRO(String ISBN, String NOMBRE) {
+        this.ISBN = ISBN;
+        this.NOMBRE = NOMBRE;
+    }
+
     public LIBRO(int ID_LIBRO, String ISBN, String NOMBRE) {
         this.ID_LIBRO = ID_LIBRO;
         this.ISBN = ISBN;
