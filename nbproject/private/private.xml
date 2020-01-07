@@ -3,24 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/home/danny/NetBeansProjects/PBasesDeDatos/src/Test/TEST.java</file>
-            <file>file:/home/danny/NetBeansProjects/PBasesDeDatos/src/Vista/VentanaUsuario.java</file>
-            <file>file:/home/danny/NetBeansProjects/PBasesDeDatos/src/Data/OperacionesSQL.java</file>
-            <file>file:/home/danny/NetBeansProjects/PBasesDeDatos/src/Vista/Select.java</file>
-=======
-            <file>file:/C:/Users/Usuario/Documents/GitHub/ProjectDBB/src/Vista/PedirEjemplar.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/ProjectDBB/src/Vista/GestorBiblioteca.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/ProjectDBB/src/Vista/Select.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/ProjectDBB/src/Vista/Eliminar.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/ProjectDBB/src/Vista/Categoria.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/ProjectDBB/src/Vista/VistaPrincipal.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/ProjectDBB/src/Negocio/NEGOCIO_OBJETOS.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/ProjectDBB/src/Vista/Ejemplar.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/ProjectDBB/src/Vista/Autor.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/ProjectDBB/src/Vista/VentanaUsuario.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/ProjectDBB/src/Vista/Edicion.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/ProjectDBB/src/Vista/Libro.java</file>
->>>>>>> origin/master
         </group>
     </open-files>
 </project-private>
