@@ -93,6 +93,7 @@ public class OperacionesSQL {
      private static String[] getAtributosValores(Object o) throws Exception{
         String valores = "'";
         String atributos = "";
+        String str = "CATEGORIA AUTOR EDISION EJEMPLAR LIBRO";  
          System.out.println("ingresa a valores  ");
         try {
             //Atributos del objeto
@@ -115,7 +116,7 @@ public class OperacionesSQL {
                      //System.out.println(" campos  values: "+o.getClass().getDeclaredFields());
                     System.out.println(" campos  values: "+f.get(o));
                     if(i != o.getClass().getDeclaredFields().length){
-                        if (i==1){continue;}
+                        if (i==1 && str.contains(nombreClase(o))  ){continue;}
                         valores=valores + f.get(o) + "','";
                         System.out.println(" attr values fg  in : "+valores);
                     }else{
