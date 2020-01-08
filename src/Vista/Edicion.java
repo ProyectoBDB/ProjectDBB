@@ -25,9 +25,13 @@ public class Edicion extends javax.swing.JFrame {
     /**
      * Creates new form Edicion
      */
+    
+    
+   
     public Edicion() {
         try {
             initComponents();
+
             this.setLocationRelativeTo(null);
             registros = new ArrayList();
             nombretablas = new ArrayList();
@@ -40,6 +44,7 @@ public class Edicion extends javax.swing.JFrame {
            for(int i = 1; i<registros.size(); i++){
                  this.jComboBoxLibros.addItem(registros.get(i).get(1));
              }
+
         } catch (Exception ex) {
             Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
         }

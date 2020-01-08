@@ -21,10 +21,17 @@ public class TEST {
     
     public void modificar (){
         try {
-            String[] args = {"USUARIO","1","carlos","trigales","890"};
-            minegocio.ModificarRegistro(args);
+            String[] args = {"AUTOR","carlos"};
+            String[] argsc = {"CATEGORIA","carlos"};
+            String[] argse = {"EDISION","1","ingreso tipo"};
+            String[] argsl = {"LIBRO","0104301338","un nombre grande"};
+            //minegocio.insertarRegistro(args);
+            //minegocio.insertarRegistro(argsc);
+            minegocio.insertarRegistro(argse);
+             //minegocio.insertarRegistro(argsl);
+            //minegocio.ModificarRegistro(args);
             System.out.println("------------------------------");
-            minegocio.EliminarRegistro(args);
+           // minegocio.EliminarRegistro(args);
         } catch (Exception ex) {
             Logger.getLogger(TEST.class.getName()).log(Level.SEVERE, null, ex);
         }

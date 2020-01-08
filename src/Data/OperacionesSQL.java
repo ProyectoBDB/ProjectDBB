@@ -19,7 +19,7 @@ public class OperacionesSQL {
            System.out.println("familia capa desnuda ");
         String consulta = "INSERT INTO "+ nombreClase(obj)+ " " +
                 "(" + getAtributosValores(obj)[0] + ")" + " " +
-                "VALUES (" + getAtributosValores(obj)[1] + ")";
+                "VALUES (" +getSecuencias(obj)+" "+ getAtributosValores(obj)[1] + ")";
         System.out.println(consulta);
         return consulta;
     }
@@ -38,7 +38,56 @@ public class OperacionesSQL {
     }
      
    private static String nombreClase(Object o){
+       System.out.println(o.getClass().getSimpleName()+"    esty en la capa de datos     nombre de la clase    ");
         return o.getClass().getSimpleName();
+    }
+   
+    public static String getSecuencias(Object o)throws SQLException{
+        System.out.println(o.getClass().getSimpleName()+"       ESTOY EN LA CAPA DATOS GETSECUENCIAS+++++  nombre de la clase    ");
+         if (o.getClass().getSimpleName().equals("USUARIO")) {
+           return "";
+            //System.out.println ("Se procede a bajar el personaje 1 posición");
+
+        }
+        
+         else if (o.getClass().getSimpleName().equals("AUTOR")) {
+
+            System.out.println ("iNGRESA AL NEXT VAL DE AUTOR"+"  "+o.getClass().getSimpleName());
+            String cadena = "AUTOR_SEC.NEXTVAL ,";
+            return cadena;
+         }
+            
+ 
+
+        else if (o.getClass().getSimpleName().equals("CATEGORIA") ) {
+
+            //System.out.println ("Se procede a mover el personaje 1 posición a la izquierda");
+            String cadena = "CATEGORIA_SEC.NEXTVAL ,";
+            return cadena;
+
+        }
+
+        else if (o.getClass().getSimpleName().equals("EDISION")) {
+
+            System.out.println ("Los valores no son válidos");
+            String cadena = "EDICION_SEC.NEXTVAL ,";
+            return cadena;
+        }
+         else if (o.getClass().getSimpleName().equals("EJEMPLAR")) {
+
+            System.out.println ("Los valores no son válidos");
+            String cadena = "EJEMPLAR_SEC.NEXTVAL ,";
+            return cadena;
+
+        }
+         else if (o.getClass().getSimpleName().equals("LIBRO")) {
+
+            System.out.println ("Los valores no son válidos");
+            String cadena = "LIBRO_SEC.NEXTVAL ,";
+            return cadena;
+
+        }
+        return "";
     }
     
      private static String[] getAtributosValores(Object o) throws Exception{
@@ -66,6 +115,7 @@ public class OperacionesSQL {
                      //System.out.println(" campos  values: "+o.getClass().getDeclaredFields());
                     System.out.println(" campos  values: "+f.get(o));
                     if(i != o.getClass().getDeclaredFields().length){
+                        if (i==1){continue;}
                         valores=valores + f.get(o) + "','";
                         System.out.println(" attr values fg  in : "+valores);
                     }else{
@@ -177,7 +227,7 @@ public class OperacionesSQL {
                 + "WHERE "  + " TABLE_NAME = '"+nombreTabla+"'";
     }
    
-    
+   
      
        
 }

@@ -10,6 +10,7 @@ import Entidades.CONSULT;
 import Entidades.USUARIO;
 import Entidades.AUTOR;
 import Entidades.CATEGORIA;
+import Entidades.EDISION;
 import Entidades.LIBRO;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -65,10 +66,10 @@ public class NEGOCIO_OBJETOS {
     
      public void insertarRegistro(String[] args) throws SQLException, Exception{
         String tabla = (String) args[0];
-        System.out.println(""+args[1]);
-          System.out.println(""+args[2]);
-            System.out.println(""+args[3]);
-             System.out.println(""+args[4]);
+//        System.out.println(""+args[1]);
+//          System.out.println(""+args[2]);
+//            System.out.println(""+args[3]);
+//             System.out.println(""+args[4]);
         switch (tabla) {
             case "USUARIO":
                 USUARIO objusuario = new USUARIO(Integer.valueOf(args[1]), (String)args[2], (String)args[3],(String)args[4]);
@@ -79,6 +80,7 @@ public class NEGOCIO_OBJETOS {
             case "AUTOR":
                 // cambios realizados de autor
                 AUTOR objautor = new AUTOR((String)args[1]);
+                System.out.println("hola amigo "+objautor.getNOMBRE());
                 Operaciones.getInstance().insertarRegistro(objautor);
                // Director director = new Director((String)args[1], (String)args[2], (String)args[3]);
                 break;
@@ -90,6 +92,8 @@ public class NEGOCIO_OBJETOS {
                // DataBase.getInstance().insertarRegistro(director);
                 break;
             case "EDISION":
+                EDISION objedision = new EDISION(Integer.parseInt((String)args[1]),(String)args[2]);
+                Operaciones.getInstance().insertarRegistro(objedision);
                 //Pelicula pelicula = new Pelicula((String)args[1], (String)args[2], (String)args[3], (String)args[4], (String)args[5]);
                 //DataBase.getInstance().insertarRegistro(pelicula);
                 break;

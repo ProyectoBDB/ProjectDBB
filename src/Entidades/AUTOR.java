@@ -10,25 +10,17 @@ package Entidades;
  * @author danny
  */
 public class AUTOR {
+    private int ID_AUTOR;
      private String NOMBRE;
-     private int ID_AUTOR;
+     
      
      public AUTOR(String NOMBRE) {
         this.NOMBRE = NOMBRE;
     }
      
-    public AUTOR(String NOMBRE, int ID_AUTOR) {
-        this.NOMBRE = NOMBRE;
-        this.ID_AUTOR = ID_AUTOR;
-    }
+    
 
-    public int getID_AUTOR() {
-        return ID_AUTOR;
-    }
-
-    public void setID_AUTOR(int ID_AUTOR) {
-        this.ID_AUTOR = ID_AUTOR;
-    }
+  
 
     public String getNOMBRE() {
         return NOMBRE;

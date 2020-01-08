@@ -16,6 +16,12 @@ public class USUARIO {
     private String DIRECCION;
     private String TELEFONO;
 
+    public USUARIO(String NOMBRE, String DIRECCION, String TELEFONO) {
+        this.NOMBRE = NOMBRE;
+        this.DIRECCION = DIRECCION;
+        this.TELEFONO = TELEFONO;
+    }
+
     public USUARIO(int ID_USUARIO, String NOMBRE, String DIRECCION, String TELEFONO) {
         this.ID_USUARIO = ID_USUARIO;
         this.NOMBRE = NOMBRE;
