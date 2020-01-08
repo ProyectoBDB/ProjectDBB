@@ -6,7 +6,10 @@
 package Vista;
 
 import Negocio.NEGOCIO_OBJETOS;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -38,6 +41,7 @@ public class Ejemplar extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         buttonGroup1.add(jRadioButtonDisponible);
         buttonGroup1.add(jRadioButtonNoDisponible);
+        this.jRadioButtonDisponible.setSelected(true);
         try {
             registrolibros = new ArrayList();
             nombretablaslibros = new ArrayList();
@@ -50,8 +54,6 @@ public class Ejemplar extends javax.swing.JFrame {
             for(int i = 1; i<registrolibros.size(); i++){
                  this.jComboBoxLibro.addItem(registrolibros.get(i).get(1));
             }
-            
-            
             // Cargar los datos en el primer combo box
             
            //Cargar los datos en el segundo combo box
@@ -85,12 +87,12 @@ public class Ejemplar extends javax.swing.JFrame {
         jButtonModificar = new javax.swing.JButton();
         jButtonAceptar = new javax.swing.JButton();
         jButtonAgregar = new javax.swing.JButton();
-        jDateChooserfecha = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         jComboBoxLibro = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jRadioButtonDisponible = new javax.swing.JRadioButton();
         jRadioButtonNoDisponible = new javax.swing.JRadioButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -169,18 +171,21 @@ public class Ejemplar extends javax.swing.JFrame {
                                             .addComponent(jTextFieldUbicacion)
                                             .addComponent(jTextFieldNuemeroHojas)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jDateChooserfecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(43, 43, 43)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel2))
-                                        .addGap(33, 33, 33)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jComboBoxEdicion, 0, 142, Short.MAX_VALUE)
-                                            .addComponent(jComboBoxLibro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel6)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(43, 43, 43)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jLabel7)
+                                                    .addComponent(jLabel2))
+                                                .addGap(33, 33, 33)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jComboBoxEdicion, 0, 142, Short.MAX_VALUE)
+                                                    .addComponent(jComboBoxLibro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,7 +230,7 @@ public class Ejemplar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
-                            .addComponent(jDateChooserfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -280,12 +285,19 @@ public class Ejemplar extends javax.swing.JFrame {
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
         if(elemento_seleccionado1!=0 || elemento_seleccionado2!=0){
             try{
+           // Date fecha_seleccionada = jDateChooser_fecha_nacimiento_autor.getDate();
+            //DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            //String fecha_nacimiento_autor = df.format(fecha_seleccionada);
+            
+            Date fecha_compra = jDateChooser1.getDate();
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            String FECHA_COMPRA = df.format(fecha_compra);
             String ID_LIBRO = IdLibro;
             String ID_EDISION = IdEdicion;
             String NUMERO_HOJAS = this.jTextFieldNuemeroHojas.getText();
             String ESTADO_CONSERVACION = this.jTextFieldEstado.getText();
             String UBICACION = this.jTextFieldUbicacion.getText();
-            String FECHA_COMPRA = this.jDateChooserfecha.getDateFormatString();
+            //String FECHA_COMPRA = this.jDateChooser1;
             String ESTADO="";
             if(jRadioButtonDisponible.isSelected()){
                 ESTADO = "0";
@@ -293,20 +305,21 @@ public class Ejemplar extends javax.swing.JFrame {
             else if(jRadioButtonNoDisponible.isSelected()){
                 ESTADO = "1";
             }
-            else{
-                 JOptionPane.showMessageDialog(null, "Debe seleccionar un estado");
-            }
-            
             String[] args = {"EJEMPLAR",ID_EDISION,ID_LIBRO,NUMERO_HOJAS,ESTADO_CONSERVACION,UBICACION,FECHA_COMPRA,ESTADO};
             NEGOCIO_OBJETOS.getInstance().insertarRegistro(args);
             JOptionPane.showMessageDialog(rootPane,"Se ha creado el Ejemplar satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
             }
             catch (Exception ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso En la Creacion De Usuario", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso En la creacion del ejemplar", JOptionPane.ERROR_MESSAGE);
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Faltan campos por seleccionar");
+            if (elemento_seleccionado1==0){
+                JOptionPane.showMessageDialog(null, "Primero debe seleccionar un libro");
+            }
+            else if(elemento_seleccionado2==0){
+                JOptionPane.showMessageDialog(null, "Seleccione la edision del libro");
+            }
         }
     }//GEN-LAST:event_jButtonAgregarActionPerformed
 
@@ -352,7 +365,7 @@ public class Ejemplar extends javax.swing.JFrame {
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JComboBox<String> jComboBoxEdicion;
     private javax.swing.JComboBox<String> jComboBoxLibro;
-    private com.toedter.calendar.JDateChooser jDateChooserfecha;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

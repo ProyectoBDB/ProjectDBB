@@ -6,6 +6,9 @@
 package Vista;
 
 import Negocio.NEGOCIO_OBJETOS;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,13 +16,61 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class Libro extends javax.swing.JFrame {
-
+    // cargado del combo box categoria
+    ArrayList<ArrayList<String>> registroCategorias;
+    ArrayList<String> nombretablaCategoria;
+    ArrayList<String> attSeleccionadoCategoria;
+    int elemento_seleccionado1=0;
+    String IdCategoria="";
+    // cargado del combo box autor
+    ArrayList<ArrayList<String>> registroAutores;
+    ArrayList<String> nombretablaAutor;
+    ArrayList<String> attSeleccionadoAutor;
+    int elemento_seleccionado2=0;
+    String IdAutor="";
+    // obtencion de datos de el libro
+    ArrayList<ArrayList<String>> registroLibro;
+    ArrayList<String> nombretablaLibro;
+    ArrayList<String> attSeleccionadoLibro;
+    ArrayList<String> condicionesLibro;
+    String IdLibro="";
+    
     /**
      * Creates new form Libro
      */
     public Libro() {
         initComponents();
         this.setLocationRelativeTo(null);
+         try {
+            registroCategorias = new ArrayList();
+            nombretablaCategoria = new ArrayList();
+            attSeleccionadoCategoria = new ArrayList();
+                 
+            nombretablaCategoria.add("CATEGORIA");
+            attSeleccionadoCategoria.add("ID_CATEGORIA");
+            attSeleccionadoCategoria.add("NOMBRE");
+            registroCategorias = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablaCategoria, this.attSeleccionadoCategoria,null,null,null);
+            System.out.println(registroCategorias.toString());
+            for(int i = 1; i<registroCategorias.size(); i++){
+                 this.jComboBoxCategoria.addItem(registroCategorias.get(i).get(1));
+            }
+            
+            registroAutores = new ArrayList();
+            nombretablaAutor = new ArrayList();
+            attSeleccionadoAutor = new ArrayList();
+            nombretablaAutor.add("AUTOR");
+            attSeleccionadoAutor.add("ID_AUTOR");
+            attSeleccionadoAutor.add("NOMBRE");
+            registroAutores = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablaAutor, this.attSeleccionadoAutor,null,null,null);
+            System.out.println(registroAutores.toString());
+            for(int i = 1; i<registroAutores.size(); i++){
+                 this.jComboBoxAutor.addItem(registroAutores.get(i).get(1));
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     /**
@@ -39,6 +90,10 @@ public class Libro extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jComboBoxCategoria = new javax.swing.JComboBox<>();
+        jComboBoxAutor = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -62,53 +117,86 @@ public class Libro extends javax.swing.JFrame {
 
         jButton3.setText("Aceptar");
 
+        jLabel4.setText("Categoria");
+
+        jLabel5.setText("Autor");
+
+        jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCategoriaActionPerformed(evt);
+            }
+        });
+
+        jComboBoxAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxAutorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldIsbn, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(jTextFieldNombre))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(26, 26, 26)
-                .addComponent(jButton3)
-                .addGap(37, 37, 37))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldIsbn)
+                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(jComboBoxCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxAutor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(84, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(26, 26, 26)
+                        .addComponent(jButton3)))
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel2)
+                                .addGap(59, 59, 59)
+                                .addComponent(jLabel4))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jTextFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jComboBoxAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -118,14 +206,49 @@ public class Libro extends javax.swing.JFrame {
         try{
             String ISBN = this.jTextFieldIsbn.getText();
             String NOMBRE = this.jTextFieldNombre.getText();
-            String[] args = {"LIBRO",ISBN,NOMBRE};
+            String ID_CATEGORIA = IdCategoria;
+            String[] args = {"LIBRO",ISBN,NOMBRE,ID_CATEGORIA};
             NEGOCIO_OBJETOS.getInstance().insertarRegistro(args);
-            JOptionPane.showMessageDialog(rootPane,"Se ha creado el libro satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(rootPane,"Se ha creado el libro satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
+            // Agregacion en la tabla autor libro
+            registroLibro = new ArrayList();
+            nombretablaLibro = new ArrayList();
+            attSeleccionadoLibro = new ArrayList();
+            condicionesLibro = new ArrayList();
+            nombretablaLibro.add("LIBRO");
+            attSeleccionadoLibro.add("ID_LIBRO");
+            condicionesLibro.add("ISBN = '"+ISBN+"'");
+            registroLibro = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablaLibro, this.attSeleccionadoLibro,this.condicionesLibro,null,null);
+            IdLibro = registroLibro.get(1).get(0);
+            System.out.println("\n\n\n------------ ID del libro agregadooo actualmente------------------------\n");
+            System.out.println("id del libro: "+IdLibro);
+            // Obtencion del id del libro
+            /*String ID_AUTOR = IdAutor;
+            String ID_LIBRO = IdLibro;
+            String [] args1={"LIBRO_AUTOR",ID_AUTOR,ID_LIBRO};
+            NEGOCIO_OBJETOS.getInstance().insertarRegistro(args1);
+            JOptionPane.showMessageDialog(rootPane,"Se ha creado el libro satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);*/
         }
         catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso En la Creacion De Usuario", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso En la Creacion De el libro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
+        elemento_seleccionado1=jComboBoxCategoria.getSelectedIndex();
+       // elemento_jbox=(String) jComboBoxLibros.getSelectedItem();
+        IdCategoria=registroCategorias.get(elemento_seleccionado1+1 ).get(0);
+       // System.out.println("elemento seleccionado=  "+elemento_seleccionado);
+        System.out.println("ID del categoria: " + IdCategoria);
+    }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
+
+    private void jComboBoxAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAutorActionPerformed
+        elemento_seleccionado2=jComboBoxAutor.getSelectedIndex();
+       // elemento_jbox=(String) jComboBoxLibros.getSelectedItem();
+        IdAutor=registroAutores.get(elemento_seleccionado2+1 ).get(0);
+       // System.out.println("elemento seleccionado=  "+elemento_seleccionado);
+        System.out.println("ID del categoria: " + IdAutor);
+    }//GEN-LAST:event_jComboBoxAutorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,9 +289,13 @@ public class Libro extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBoxAutor;
+    private javax.swing.JComboBox<String> jComboBoxCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextFieldIsbn;
     private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
