@@ -21,8 +21,14 @@ public class TEST {
     
     public void modificar (){
         try {
-            String[] args = {"USUARIO","34","carlos","trigales","890"};
-            minegocio.insertarRegistro(args);
+            String[] args = {"AUTOR","carlos"};
+            String[] argsc = {"CATEGORIA","carlos"};
+            String[] argse = {"EDISION","1","ingreso tipo"};
+            String[] argsl = {"LIBRO","0104301338","un nombre grande"};
+            //minegocio.insertarRegistro(args);
+            //minegocio.insertarRegistro(argsc);
+            minegocio.insertarRegistro(argse);
+             //minegocio.insertarRegistro(argsl);
             //minegocio.ModificarRegistro(args);
             System.out.println("------------------------------");
            // minegocio.EliminarRegistro(args);
