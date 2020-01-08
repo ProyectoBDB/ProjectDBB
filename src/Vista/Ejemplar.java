@@ -5,18 +5,61 @@
  */
 package Vista;
 
+import Negocio.NEGOCIO_OBJETOS;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
  */
 public class Ejemplar extends javax.swing.JFrame {
-
+    
+    ArrayList<ArrayList<String>> registrolibros;
+    ArrayList<String> nombretablaslibros;
+    ArrayList<String> attSeleccionadoslibros;
+    int elemento_seleccionado1=0;
+    String IdLibro="";
+    
+    ArrayList<ArrayList<String>> registro2;
+    ArrayList<String> nombretablas2;
+    ArrayList<String> attSeleccionados2;
+    ArrayList<String> condiciones;
+    int elemento_seleccionado2=0;
+    String IdEdicion="";
+    
     /**
      * Creates new form Ejemplar
      */
     public Ejemplar() {
         initComponents();
         this.setLocationRelativeTo(null);
+        buttonGroup1.add(jRadioButtonDisponible);
+        buttonGroup1.add(jRadioButtonNoDisponible);
+        try {
+            registrolibros = new ArrayList();
+            nombretablaslibros = new ArrayList();
+            attSeleccionadoslibros = new ArrayList();
+            nombretablaslibros.add("LIBRO");
+            attSeleccionadoslibros.add("ID_LIBRO");
+            attSeleccionadoslibros.add("NOMBRE");
+            registrolibros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablaslibros, this.attSeleccionadoslibros,null,null,null);
+            System.out.println(registrolibros.toString());
+            for(int i = 1; i<registrolibros.size(); i++){
+                 this.jComboBoxLibro.addItem(registrolibros.get(i).get(1));
+            }
+            
+            
+            // Cargar los datos en el primer combo box
+            
+           //Cargar los datos en el segundo combo box
+           
+        } catch (Exception ex) {
+            Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -28,25 +71,26 @@ public class Ejemplar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxEdicion = new javax.swing.JComboBox<>();
         jTextFieldUbicacion = new javax.swing.JTextField();
         jTextFieldEstado = new javax.swing.JTextField();
         jTextFieldNuemeroHojas = new javax.swing.JTextField();
         jButtonModificar = new javax.swing.JButton();
         jButtonAceptar = new javax.swing.JButton();
         jButtonAgregar = new javax.swing.JButton();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jDateChooserfecha = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBoxLibro = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButtonDisponible = new javax.swing.JRadioButton();
+        jRadioButtonNoDisponible = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -65,23 +109,36 @@ public class Ejemplar extends javax.swing.JFrame {
 
         jLabel6.setText("Fecha de compra");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEdicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEdicionActionPerformed(evt);
+            }
+        });
 
         jButtonModificar.setText("Modificar");
 
         jButtonAceptar.setText("Aceptar");
 
         jButtonAgregar.setText("Agregar");
+        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Libro");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxLibroActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Estado");
 
-        jRadioButton1.setText("Disponible");
+        jRadioButtonDisponible.setText("Disponible");
 
-        jRadioButton2.setText("No Disponible");
+        jRadioButtonNoDisponible.setText("No Disponible");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,7 +171,7 @@ public class Ejemplar extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jDateChooserfecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(43, 43, 43)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -122,14 +179,14 @@ public class Ejemplar extends javax.swing.JFrame {
                                             .addComponent(jLabel2))
                                         .addGap(33, 33, 33)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jComboBox1, 0, 142, Short.MAX_VALUE)
-                                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                            .addComponent(jComboBoxEdicion, 0, 142, Short.MAX_VALUE)
+                                            .addComponent(jComboBoxLibro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton1)
+                                .addComponent(jRadioButtonDisponible)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton2))))
+                                .addComponent(jRadioButtonNoDisponible))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addComponent(jButtonAgregar)
@@ -145,14 +202,14 @@ public class Ejemplar extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBoxEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -168,12 +225,12 @@ public class Ejemplar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jDateChooserfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jRadioButtonDisponible)
+                    .addComponent(jRadioButtonNoDisponible))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAgregar)
@@ -184,6 +241,74 @@ public class Ejemplar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBoxLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLibroActionPerformed
+        elemento_seleccionado1=jComboBoxLibro.getSelectedIndex();
+        IdLibro=registrolibros.get(elemento_seleccionado1+1).get(0);
+        System.out.println("\n\n\n------------Id del libro-----------\n");
+        System.out.println("ID del libro: " + IdLibro);
+        jComboBoxEdicion.removeAllItems();
+        elemento_seleccionado2=0;
+        try {
+            registro2 = new ArrayList();
+            nombretablas2 = new ArrayList();
+            attSeleccionados2 = new ArrayList();
+            condiciones = new ArrayList();
+            nombretablas2.add("EDISION");
+            attSeleccionados2.add("ID_EDISION");
+            attSeleccionados2.add("ANIO");
+            System.out.println("------------------------ingreso aqui-------------------------");
+            System.out.println(IdLibro);
+            condiciones.add("ID_LIBRO = "+IdLibro);
+            registro2 = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablas2, this.attSeleccionados2,this.condiciones,null,null);
+            System.out.println(registro2.toString());
+            for(int i = 1; i<registro2.size(); i++){
+                 this.jComboBoxEdicion.addItem(registro2.get(i).get(1));
+             }
+        } 
+        catch (Exception ex) {
+            Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboBoxLibroActionPerformed
+
+    private void jComboBoxEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEdicionActionPerformed
+        elemento_seleccionado2=jComboBoxEdicion.getSelectedIndex();
+        IdEdicion=registro2.get(elemento_seleccionado2+1).get(0);
+        System.out.println("ID del Edicion: " + IdEdicion);
+    }//GEN-LAST:event_jComboBoxEdicionActionPerformed
+
+    private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
+        if(elemento_seleccionado1!=0 || elemento_seleccionado2!=0){
+            try{
+            String ID_LIBRO = IdLibro;
+            String ID_EDISION = IdEdicion;
+            String NUMERO_HOJAS = this.jTextFieldNuemeroHojas.getText();
+            String ESTADO_CONSERVACION = this.jTextFieldEstado.getText();
+            String UBICACION = this.jTextFieldUbicacion.getText();
+            String FECHA_COMPRA = this.jDateChooserfecha.getDateFormatString();
+            String ESTADO="";
+            if(jRadioButtonDisponible.isSelected()){
+                ESTADO = "0";
+            }
+            else if(jRadioButtonNoDisponible.isSelected()){
+                ESTADO = "1";
+            }
+            else{
+                 JOptionPane.showMessageDialog(null, "Debe seleccionar un estado");
+            }
+            
+            String[] args = {"EJEMPLAR",ID_EDISION,ID_LIBRO,NUMERO_HOJAS,ESTADO_CONSERVACION,UBICACION,FECHA_COMPRA,ESTADO};
+            NEGOCIO_OBJETOS.getInstance().insertarRegistro(args);
+            JOptionPane.showMessageDialog(rootPane,"Se ha creado el Ejemplar satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso En la Creacion De Usuario", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Faltan campos por seleccionar");
+        }
+    }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,12 +346,13 @@ public class Ejemplar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonAgregar;
     private javax.swing.JButton jButtonModificar;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JComboBox<String> jComboBoxEdicion;
+    private javax.swing.JComboBox<String> jComboBoxLibro;
+    private com.toedter.calendar.JDateChooser jDateChooserfecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -235,8 +361,8 @@ public class Ejemplar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButtonDisponible;
+    private javax.swing.JRadioButton jRadioButtonNoDisponible;
     private javax.swing.JTextField jTextFieldEstado;
     private javax.swing.JTextField jTextFieldNuemeroHojas;
     private javax.swing.JTextField jTextFieldUbicacion;

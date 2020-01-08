@@ -12,17 +12,17 @@ package Entidades;
 public class EDISION {
     private int ID_EDISION;
     private int ID_LIBRO;
-    private String TIPO;
+    private String ANIO;
 
     public EDISION(int ID_LIBRO, String TIPO) {
         this.ID_LIBRO = ID_LIBRO;
-        this.TIPO = TIPO;
+        this.ANIO = TIPO;
     }
 
     public EDISION(int ID_EDISION, int ID_LIBRO, String TIPO) {
         this.ID_EDISION = ID_EDISION;
         this.ID_LIBRO = ID_LIBRO;
-        this.TIPO = TIPO;
+        this.ANIO = TIPO;
     }
 
     public int getID_EDISION() {
@@ -41,12 +41,12 @@ public class EDISION {
         this.ID_LIBRO = ID_LIBRO;
     }
 
-    public String getTIPO() {
-        return TIPO;
+    public String getANIO() {
+        return ANIO;
     }
 
-    public void setTIPO(String TIPO) {
-        this.TIPO = TIPO;
+    public void setANIO(String ANIO) {
+        this.ANIO = ANIO;
     }
     
     

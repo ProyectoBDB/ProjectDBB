@@ -9,16 +9,19 @@ import Negocio.NEGOCIO_OBJETOS;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Usuario
  */
 public class Edicion extends javax.swing.JFrame {
-     ArrayList<ArrayList<String>> registros;
-    
+    ArrayList<ArrayList<String>> registros;
     ArrayList<String> nombretablas;
-     ArrayList<String> attSeleccionados;
+    ArrayList<String> attSeleccionados;
+    int elemento_seleccionado=0;
+    String Id="";
+            
     /**
      * Creates new form Edicion
      */
@@ -60,7 +63,7 @@ public class Edicion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jComboBoxLibros = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldPublicacion = new javax.swing.JTextField();
         jButtonModificar = new javax.swing.JButton();
         jButtonAceptar = new javax.swing.JButton();
         jButtonAgregar = new javax.swing.JButton();
@@ -76,6 +79,14 @@ public class Edicion extends javax.swing.JFrame {
 
         jLabel3.setText("Año de publicacion");
 
+        jComboBoxLibros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxLibrosMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jComboBoxLibrosMousePressed(evt);
+            }
+        });
         jComboBoxLibros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxLibrosActionPerformed(evt);
@@ -109,7 +120,7 @@ public class Edicion extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBoxLibros, 0, 151, Short.MAX_VALUE)
-                            .addComponent(jTextField1)))
+                            .addComponent(jTextFieldPublicacion)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addComponent(jButtonAgregar)
@@ -134,7 +145,7 @@ public class Edicion extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextFieldPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAgregar)
@@ -147,12 +158,43 @@ public class Edicion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
-        // TODO add your handling code here:
+        if(elemento_seleccionado!=0){
+            try{
+            String ANIO = this.jTextFieldPublicacion.getText();
+            String ID_LIBRO = Id;
+            String[] args = {"EDISION",ID_LIBRO,ANIO};
+            NEGOCIO_OBJETOS.getInstance().insertarRegistro(args);
+            JOptionPane.showMessageDialog(rootPane,"Se ha creado la Edicion satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso En la Creacion De Usuario", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "\"Primero debe seleccionar a que libro pertenece la edision");
+        }
+       
+        
+        
     }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     private void jComboBoxLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLibrosActionPerformed
-        // TODO add your handling code here:
+        //String elemento_jbox = "";
+        elemento_seleccionado=jComboBoxLibros.getSelectedIndex();
+       // elemento_jbox=(String) jComboBoxLibros.getSelectedItem();
+        Id=registros.get(elemento_seleccionado+1 ).get(0);
+       // System.out.println("elemento seleccionado=  "+elemento_seleccionado);
+        System.out.println("ID del libro: " + Id);
+       // System.out.println("elemento seleccionado: "+elemento_jbox);
     }//GEN-LAST:event_jComboBoxLibrosActionPerformed
+
+    private void jComboBoxLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxLibrosMouseClicked
+        
+    }//GEN-LAST:event_jComboBoxLibrosMouseClicked
+
+    private void jComboBoxLibrosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxLibrosMousePressed
+       
+    }//GEN-LAST:event_jComboBoxLibrosMousePressed
 
     /**
      * @param args the command line arguments
@@ -197,6 +239,6 @@ public class Edicion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldPublicacion;
     // End of variables declaration//GEN-END:variables
 }
