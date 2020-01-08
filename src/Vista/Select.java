@@ -92,8 +92,6 @@ public class Select extends javax.swing.JFrame {
         jList2 = new javax.swing.JList<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
         jButtonAgregarConsultas = new javax.swing.JButton();
         jButtonEliminarConsultas = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -113,6 +111,7 @@ public class Select extends javax.swing.JFrame {
         jComboBoxCondicion = new javax.swing.JComboBox<>();
         jScrollPane6 = new javax.swing.JScrollPane();
         listCondicionCon = new javax.swing.JList<>();
+        jScrollPaneMuestraTabla = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -176,10 +175,6 @@ public class Select extends javax.swing.JFrame {
 
         jLabel8.setText("Consultas");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane4.setViewportView(jTextArea2);
-
         jButtonAgregarConsultas.setText("Agregar");
         jButtonAgregarConsultas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +183,11 @@ public class Select extends javax.swing.JFrame {
         });
 
         jButtonEliminarConsultas.setText("Eliminar");
+        jButtonEliminarConsultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarConsultasActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Ordenar datos");
 
@@ -301,7 +301,7 @@ public class Select extends javax.swing.JFrame {
                                                 .addComponent(jLabel12)))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel9)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel10)
@@ -319,29 +319,32 @@ public class Select extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(39, 39, 39)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(18, 18, 18)
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(jButtonAgregarAtributos)
-                                                            .addComponent(jButtonEliminarAtributos)))
-                                                    .addComponent(jLabel6)))
+                                                .addComponent(jLabel6))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(23, 23, 23)
-                                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jButtonAgregarConsultas)
+                                                        .addGap(5, 5, 5)
+                                                        .addComponent(jButtonEliminarConsultas))
+                                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(22, 22, 22)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(35, 35, 35)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jButtonAgregarAtributos)
+                                                    .addComponent(jButtonEliminarAtributos)))
+                                            .addComponent(jLabel8))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel7)
-                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(139, 139, 139)
-                                        .addComponent(jButtonAgregarConsultas)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButtonEliminarConsultas)
-                                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(jScrollPaneMuestraTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(237, 237, 237)
@@ -395,7 +398,7 @@ public class Select extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -405,23 +408,25 @@ public class Select extends javax.swing.JFrame {
                                 .addGap(49, 49, 49)
                                 .addComponent(jButtonAgregarAtributos)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonEliminarAtributos))))
+                                .addComponent(jButtonEliminarAtributos)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAgregarConsultas)
-                    .addComponent(jButtonEliminarConsultas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonAgregarConsultas)
+                            .addComponent(jButtonEliminarConsultas))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9))
+                    .addComponent(jScrollPaneMuestraTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -616,9 +621,10 @@ public class Select extends javax.swing.JFrame {
     private void jButtonAgregarCondicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarCondicionesActionPerformed
         // TODO add your handling code here:
         jComboBoxCondicion.setEnabled(true);
+        String miatributo ="'"+jTextFieldValor.getText()+"'";
         jTextArea3.append(jComboBoxCondicion.getSelectedItem()+" "+jComboBoxAtributo.getSelectedItem()+""
-                +jComboBoxOperador.getSelectedItem()+jTextFieldValor.getText()+"\n");
-          this.condSeleccionados.add(this.jTextArea3.getText());
+                +jComboBoxOperador.getSelectedItem()+miatributo+"\n");
+         
         
         
     }//GEN-LAST:event_jButtonAgregarCondicionesActionPerformed
@@ -657,11 +663,32 @@ public class Select extends javax.swing.JFrame {
             }else{
              //condGenerada = nombre +" "+ this.condicionCondicion.getSelectedItem()
             //+ " '" + this.valorCondicion.getText() + "'";
-              //System.out.println(""+condGenerada);
+              System.out.println(""+this.jTextArea3.getText());
+               this.condSeleccionados.add(this.jTextArea3.getText());
             }
+            
+            this.condSeleccionados.add(condGenerada);
+            System.out.println("Entra a agrgar  "+this.condSeleccionados.toString());
+            DefaultListModel model = new DefaultListModel();
+            for(int i=0; i<condSeleccionados.size(); i++){
+                model.addElement(this.condSeleccionados.get(i));
+            }
+            this.listCondicionCon.setModel(model);
+            
         // condicion generada
     }//GEN-LAST:event_jButtonAgregarConsultasActionPerformed
     }
+    private void jButtonEliminarConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarConsultasActionPerformed
+        // TODO add your handling code here:
+        String nombre = this.listCondicionCon.getModel().getElementAt(this.listCondicionCon.getSelectedIndex());
+        this.condSeleccionados.remove(nombre);
+        DefaultListModel model = new DefaultListModel();
+        for(int i=0; i<condSeleccionados.size(); i++){
+            model.addElement(condSeleccionados.get(i));
+        }
+        this.listCondicionCon.setModel(model);
+    }//GEN-LAST:event_jButtonEliminarConsultasActionPerformed
+    
      private void mostrarTabla(ArrayList<ArrayList<String>> registros) {
         int filas = registros.size()-1;
         int columnas = registros.get(0).size();
@@ -682,7 +709,7 @@ public class Select extends javax.swing.JFrame {
         JTable table = new JTable(cuerpo, cabecera); 
         table.setPreferredScrollableViewportSize(new Dimension(filas, columnas));
 
-        this.jScrollPane1.setViewportView(new JTable(cuerpo, cabecera));
+        this.jScrollPaneMuestraTabla.setViewportView(new JTable(cuerpo, cabecera));
     }// fin 
     /**
      * @param args the command line arguments
@@ -754,13 +781,12 @@ public class Select extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonNinguno;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPaneMuestraTabla;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextFieldValor;
     private javax.swing.JList<String> listCondicionCon;
