@@ -10,6 +10,7 @@ import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author danny
@@ -230,5 +231,101 @@ public class OperacionesSQL {
    
    
      
+    
+//    //XD
+    public static String actualizarDatos(Object o) throws SQLException{ // usamos la misma clase que se uso para select
+        
+        CONSULT co = (CONSULT) o;
+        ArrayList <String> nombreTabla = co.getNombreTablas();
+        ArrayList<String> datosupdate =  co.getAtributos(); // datos a actualizar lo mando en atributos
+        ArrayList<String> condiciones =  co.getCondiciones(); /// condicion WHERE id=dato// clave primaria de la tabla
+        
+        String consulta;
+        consulta = "UPDATE ";
+        consulta = consulta + " " + nombreTabla.get(0)+ " SET ";
+        
+         // ver si es otro usario
+        
+        /*if(ConexionDB.getInstance().getUser().equalsIgnoreCase("adminsurvey")){
+            consulta = consulta + " " + nombreTabla+ " SET ";
+        } else {
+              consulta = consulta + mainadmin +nombreTabla+ " SET ";
+        }*/
+        
+       // atributos a actualizar
+        
+        if(datosupdate != null && !datosupdate.isEmpty()){
+            for(int i = 0; i<datosupdate.size(); i++){
+                if(i+1 != datosupdate.size())
+                    consulta = consulta + datosupdate.get(i) + ",";
+                else
+                    consulta = consulta + datosupdate.get(i);
+            }
+        }
+        else{
+            consulta = consulta + "  ";
+        }
+        
+        // condicion WHERE
        
+        if(condiciones!=null && !condiciones.isEmpty()){
+            consulta = consulta + " WHERE ";
+            for (String condicione : condiciones) {
+                consulta = consulta + condicione;
+            }
+        }
+        
+       
+        System.out.println(consulta);
+        return consulta;
+  
+        
+    }
+    
+    
+    
+    
+    public static String eliminarDatos(Object o) throws SQLException{ // usamos la misma clase que se uso para select
+        
+        CONSULT co = (CONSULT) o;
+        ArrayList <String> nombreTabla = co.getNombreTablas();
+        ArrayList<String> datosupdate =  co.getAtributos(); // datos a actualizar lo mando en atributos
+        ArrayList<String> condiciones =  co.getCondiciones(); /// condicion WHERE id=dato// clave primaria de la tabla
+        
+        String consulta;
+        consulta = "DELETE FROM";
+        consulta = consulta + " " + nombreTabla.get(0);
+        
+        
+         if(datosupdate != null && !datosupdate.isEmpty()){
+            for(int i = 0; i<datosupdate.size(); i++){
+                if(i+1 != datosupdate.size())
+                    consulta = consulta + datosupdate.get(i) + ",";
+                else
+                    consulta = consulta + datosupdate.get(i);
+            }
+        }
+        else{
+            consulta = consulta + "  ";
+        }
+        
+        // condicion WHERE
+       
+        if(condiciones!=null && !condiciones.isEmpty()){
+            consulta = consulta + " WHERE ";
+            for (String condicione : condiciones) {
+                consulta = consulta + condicione;
+            }
+        }
+        
+       
+        System.out.println(consulta);
+        return consulta;
+  
+    }
+    
+    
+    
+//    
+//       
 }

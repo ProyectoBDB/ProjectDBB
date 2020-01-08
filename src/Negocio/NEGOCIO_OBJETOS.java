@@ -59,10 +59,7 @@ public class NEGOCIO_OBJETOS {
             o.setCondiciones(condiciones);
         if(orderBy!=null)
             o.setOrderBy(orderBy);
-        return Operaciones.getInstance().realizarConsulta(o);
-      
-        
-        
+        return Operaciones.getInstance().realizarConsulta(o);  
        
     }
     
@@ -210,5 +207,31 @@ public class NEGOCIO_OBJETOS {
         return Operaciones.getInstance().realizarConsulta(o);
     }
      
+      
+      
+    // XD  
+    public void actualizarCampos(ArrayList<String> nombreTabla, ArrayList<String> atributos, ArrayList<String> condiciones)throws SQLException, Exception{
+       
+       CONSULT c = new CONSULT(nombreTabla);
+       if(atributos!=null)
+            c.setAtributos(atributos);
+        if(condiciones!=null)
+            c.setCondiciones(condiciones);
+        
+        Operaciones.getInstance().ActualizarDatos(c);
+       
+   }
+    
+    public void eliminar(ArrayList<String> nombreTabla, ArrayList<String> atributos, ArrayList<String> condiciones)throws SQLException, Exception{
+       
+       CONSULT c = new CONSULT(nombreTabla);
+       if(atributos!=null)
+            c.setAtributos(atributos);
+        if(condiciones!=null)
+            c.setCondiciones(condiciones);
+        
+        Operaciones.getInstance().EliminarDatos(c);
+       
+   }
      
 }

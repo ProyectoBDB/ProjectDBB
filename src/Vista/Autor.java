@@ -55,6 +55,11 @@ public class Autor extends javax.swing.JFrame {
         });
 
         jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
 
         jButtonAceptar.setText("Aceptar");
 
@@ -115,6 +120,10 @@ public class Autor extends javax.swing.JFrame {
   
         
     }//GEN-LAST:event_jButtonAgregarActionPerformed
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        
+    }//GEN-LAST:event_jButtonModificarActionPerformed
 
     /**
      * @param args the command line arguments

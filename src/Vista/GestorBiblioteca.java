@@ -71,6 +71,11 @@ public class GestorBiblioteca extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
         jButtonMostrarLibros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/libros.png"))); // NOI18N
+        jButtonMostrarLibros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarLibrosActionPerformed(evt);
+            }
+        });
 
         jButtonMostrarAutores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/autores.png"))); // NOI18N
 
@@ -439,6 +444,10 @@ public class GestorBiblioteca extends javax.swing.JFrame {
     private void jButtonDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevolverActionPerformed
         new PedirEjemplar().setVisible(true);
     }//GEN-LAST:event_jButtonDevolverActionPerformed
+
+    private void jButtonMostrarLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarLibrosActionPerformed
+        new Update().setVisible(true);
+    }//GEN-LAST:event_jButtonMostrarLibrosActionPerformed
 
     /**
      * @param args the command line arguments

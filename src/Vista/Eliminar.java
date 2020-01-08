@@ -5,18 +5,39 @@
  */
 package Vista;
 
+import Negocio.NEGOCIO_OBJETOS;
+import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
 /**
  *
  * @author Usuario
  */
 public class Eliminar extends javax.swing.JFrame {
-
+    
+    ArrayList<String> nombresTabla;
+    ArrayList<ArrayList<String>> registros;
+    ArrayList<String> wherecondicion;
+    String identificador="";
     /**
      * Creates new form EliminarLibro
      */
     public Eliminar() {
-        initComponents();
-        this.setLocationRelativeTo(null);
+         try {
+             initComponents();
+             this.setLocationRelativeTo(null);
+             ArrayList<String> nombres = NEGOCIO_OBJETOS.getInstance().getNombresTablas();
+             for(int i = 0; i<nombres.size();i++){
+                 this.jComboBoxTablas.addItem(nombres.get(i));
+             }
+         } catch (Exception ex) {
+             Logger.getLogger(Eliminar.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
 
     /**
@@ -28,14 +49,23 @@ public class Eliminar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane = new javax.swing.JScrollPane();
         jButtonEliminar = new javax.swing.JButton();
         jButtonCerrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBoxTablas = new javax.swing.JComboBox<>();
+        jLabelIdentificador = new javax.swing.JLabel();
+        jTextFieldCondicion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
 
         jButtonCerrar.setText("Cerrar");
         jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -44,31 +74,62 @@ public class Eliminar extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Tablas");
+
+        jComboBoxTablas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTablasActionPerformed(evt);
+            }
+        });
+
+        jLabelIdentificador.setText("ID del objeto a eliminar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(254, 254, 254)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonEliminar)
                 .addGap(34, 34, 34)
                 .addComponent(jButtonCerrar)
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addGap(249, 249, 249))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBoxTablas, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabelIdentificador)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBoxTablas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelIdentificador)
+                    .addComponent(jTextFieldCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEliminar)
                     .addComponent(jButtonCerrar))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -77,6 +138,110 @@ public class Eliminar extends javax.swing.JFrame {
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButtonCerrarActionPerformed
+
+    public void cargarDatosTablas(ArrayList<ArrayList<String>> registros){
+        
+        int filas = registros.size()-1;
+        int columnas = registros.get(0).size();
+
+        String cuerpo[][] = new String[filas][columnas];
+        String cabecera[] = new String[columnas];
+
+        //Cabecera de la tabla
+        for (int i = 0; i<columnas; i++){
+            cabecera[i] = registros.get(0).get(i);
+        }
+        //Cuerpo de la tabla
+        for (int i = 0; i<filas; i++)
+            for (int j = 0; j<columnas; j++)
+                cuerpo[i][j] = registros.get(i+1).get(j);
+
+        //Creacion de la tabla 
+        JTable table = new JTable(cuerpo, cabecera); 
+        table.setPreferredScrollableViewportSize(new Dimension(filas, columnas));
+        jScrollPane.setViewportView(new JTable(cuerpo, cabecera));
+    }
+    
+    private void jComboBoxTablasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTablasActionPerformed
+        this.nombresTabla = new ArrayList();
+        nombresTabla.add(this.jComboBoxTablas.getSelectedItem().toString());
+        if(!this.jComboBoxTablas.getSelectedItem().toString().isEmpty()){
+            try {
+                //try {
+                registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombresTabla, null, null, null, null);
+                this.cargarDatosTablas(registros);
+                System.out.println("entro aqui");
+                // }
+            } catch (Exception ex) {
+                Logger.getLogger(Update.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        }
+        
+          try {
+            
+//          int cont = 0;
+          
+         // String nombreTabla = combo_tablas.getSelectedItem().toString();
+          ArrayList<ArrayList<String>> atributos = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombresTabla, null, null, null);
+//          int columnas = atributos.get(0).size();
+//          String cabecera[] = new String[columnas];
+          identificador = atributos.get(0).get(0);
+          jLabelIdentificador.setText(identificador + ": ");
+//          for (int i = 0; i<columnas; i++){
+//            cabecera[i] = atributos.get(0).get(i);
+//            
+//          }
+//          //Crear un objeto DefaultListModel
+//          DefaultListModel listModel = new DefaultListModel();
+//          //Recorrer el contenido del ArrayList
+//          
+//            
+//          for(int i=0; i<cabecera.length; i++) {
+//              //Añadir cada elemento del ArrayList en el modelo de la lista
+//              if(cabecera[i].contains("ID_") || cabecera[i].contains("CEDULA") /*|| cabecera[i].contains("CLAVE")*/){
+//                  System.out.println("atributos omitidos "+cabecera[i]);// no vale el ! 
+//                  
+//              } else {
+//                  
+//                   listModel.add(cont, cabecera[i]);
+//                   cont++;
+//              }
+//           
+//          }
+//          //Asociar el modelo de lista al JList
+//          lista_atributos_tabla.setModel(listModel);
+           
+      }
+
+
+      catch (Exception ex ) {
+           System.out.println("lanzo la execption");
+              JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso", JOptionPane.ERROR_MESSAGE);
+
+      }
+
+        
+    }//GEN-LAST:event_jComboBoxTablasActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        String condicion = "";
+        wherecondicion = new ArrayList<>();
+      
+        condicion = identificador+"="+jTextFieldCondicion.getText();
+        wherecondicion.add(condicion);
+        System.out.println(condicion);
+        try {
+            
+            NEGOCIO_OBJETOS.getInstance().eliminar(nombresTabla, null, wherecondicion);
+            JOptionPane.showMessageDialog(rootPane, "Se ha actualizado correctamente");
+            jTextFieldCondicion.setText("");
+           ///
+        } catch (Exception ex) {
+             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso", JOptionPane.ERROR_MESSAGE);
+            
+        }
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,6 +282,10 @@ public class Eliminar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JButton jButtonEliminar;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jComboBoxTablas;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelIdentificador;
+    private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JTextField jTextFieldCondicion;
     // End of variables declaration//GEN-END:variables
 }
