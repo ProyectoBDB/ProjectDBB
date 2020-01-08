@@ -13,10 +13,12 @@ public class LIBRO {
     private int ID_LIBRO;
     private String ISBN;
     private String NOMBRE;
+    private int ID_CATEGORIA;
 
-    public LIBRO(String ISBN, String NOMBRE) {
+    public LIBRO(String ISBN, String NOMBRE, int ID_CATEGORIA) {
         this.ISBN = ISBN;
         this.NOMBRE = NOMBRE;
+        this.ID_CATEGORIA = ID_CATEGORIA;
     }
 
     public LIBRO(int ID_LIBRO, String ISBN, String NOMBRE) {
@@ -49,7 +51,13 @@ public class LIBRO {
         this.NOMBRE = NOMBRE;
     }
 
-   
+    public void setID_CATEGORIA(int ID_CATEGORIA) {
+        this.ID_CATEGORIA = ID_CATEGORIA;
+    }
+
+    public int getID_CATEGORIA() {
+        return ID_CATEGORIA;
+    }
     
     
     

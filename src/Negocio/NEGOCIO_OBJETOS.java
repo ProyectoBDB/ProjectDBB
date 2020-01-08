@@ -11,7 +11,9 @@ import Entidades.USUARIO;
 import Entidades.AUTOR;
 import Entidades.CATEGORIA;
 import Entidades.EDISION;
+import Entidades.EJEMPLAR;
 import Entidades.LIBRO;
+import Entidades.LIBRO_AUTOR;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -97,17 +99,28 @@ public class NEGOCIO_OBJETOS {
                 //Pelicula pelicula = new Pelicula((String)args[1], (String)args[2], (String)args[3], (String)args[4], (String)args[5]);
                 //DataBase.getInstance().insertarRegistro(pelicula);
                 break;
-            case "EMPLAR":
+            case "EJEMPLAR":
+                //int ID_EDISION, int ID_LIBRO, int NUMERO_HOJAS, String ESTADO_CONSERVACION, String UBICACION, String FECHA_COMPRA, String ESTADO)
+                EJEMPLAR objemplar = new EJEMPLAR(Integer.parseInt((String)args[1]),Integer.parseInt((String)args[2]),Integer.parseInt((String)args[3]),(String)args[4],(String)args[5],(String)args[6],Integer.parseInt((String)args[7]));
+                Operaciones.getInstance().insertarRegistro(objemplar);
                 //Personaje produccion = new Personaje((String)args[1], (String)args[2], (String)args[3], (String)args[4]);
                 //DataBase.getInstance().insertarRegistro(produccion);
                 break;
             case "LIBRO":
                 // cambios realizados de libro 
-                LIBRO objlibro = new LIBRO((String)args[1],(String)args[2]);
+                LIBRO objlibro = new LIBRO((String)args[1],(String)args[2],Integer.parseInt(args[3]));
                 Operaciones.getInstance().insertarRegistro(objlibro);
                 //Personaje produccion = new Personaje((String)args[1], (String)args[2], (String)args[3], (String)args[4]);
                 //DataBase.getInstance().insertarRegistro(produccion);
                 break;
+            case "LIBRO_AUTOR":
+                // cambios realizados de libro 
+                LIBRO_AUTOR objLibroAutor = new LIBRO_AUTOR(Integer.parseInt(args[1]),Integer.parseInt(args[2]));
+                Operaciones.getInstance().insertarRegistro(objLibroAutor);
+                //Personaje produccion = new Personaje((String)args[1], (String)args[2], (String)args[3], (String)args[4]);
+                //DataBase.getInstance().insertarRegistro(produccion);
+                break;    
+            
             default:
                 break;
         }
