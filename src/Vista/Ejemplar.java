@@ -42,6 +42,7 @@ public class Ejemplar extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButtonDisponible);
         buttonGroup1.add(jRadioButtonNoDisponible);
         this.jRadioButtonDisponible.setSelected(true);
+        
         try {
             registrolibros = new ArrayList();
             nombretablaslibros = new ArrayList();

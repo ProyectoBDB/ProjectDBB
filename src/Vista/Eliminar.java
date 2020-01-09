@@ -136,7 +136,7 @@ public class Eliminar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
-        System.exit(0);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
     public void cargarDatosTablas(ArrayList<ArrayList<String>> registros){

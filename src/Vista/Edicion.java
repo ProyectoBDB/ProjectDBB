@@ -41,9 +41,9 @@ public class Edicion extends javax.swing.JFrame {
             attSeleccionados.add("NOMBRE");
             registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablas, this.attSeleccionados,null,null,null);
             System.out.println(registros.toString());
-           for(int i = 1; i<registros.size(); i++){
+            for(int i = 1; i<registros.size(); i++){
                  this.jComboBoxLibros.addItem(registros.get(i).get(1));
-             }
+            }
 
         } catch (Exception ex) {
             Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);

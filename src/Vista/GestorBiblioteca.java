@@ -5,18 +5,32 @@
  */
 package Vista;
 
+import Negocio.NEGOCIO_OBJETOS;
+import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+
 /**
  *
  * @author Usuario
  */
 public class GestorBiblioteca extends javax.swing.JFrame {
-
+    
+     ArrayList<String> nombresTabla;
+     ArrayList<ArrayList<String>> registros;
     /**
      * Creates new form VentanaPrincipal
      */
     public GestorBiblioteca() {
         initComponents();
         this.setLocationRelativeTo(null);
+        jButtonMostrarLibros.setToolTipText("Mostar Libros");
+        jButtonMostrarUsuarios.setToolTipText("Mostrar Usuarios");
+        jButtonMostrarEditorial.setToolTipText("Mostrar Ediciones");
+        jButtonMostrarCategorias.setToolTipText("Mostrar Categorias");
+        jButtonMostrarAutores.setToolTipText("Mostrar Autores");
     }
 
     /**
@@ -46,7 +60,6 @@ public class GestorBiblioteca extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jButtonEdicion = new javax.swing.JButton();
         jButtonAutores = new javax.swing.JButton();
-        jButtonEditorial = new javax.swing.JButton();
         jButtonCategoria = new javax.swing.JButton();
         jButtonUsuario = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -78,12 +91,32 @@ public class GestorBiblioteca extends javax.swing.JFrame {
         });
 
         jButtonMostrarAutores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/autores.png"))); // NOI18N
+        jButtonMostrarAutores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarAutoresActionPerformed(evt);
+            }
+        });
 
         jButtonMostrarEditorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/editorial.png"))); // NOI18N
+        jButtonMostrarEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarEditorialActionPerformed(evt);
+            }
+        });
 
         jButtonMostrarCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/categoria.png"))); // NOI18N
+        jButtonMostrarCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarCategoriasActionPerformed(evt);
+            }
+        });
 
         jButtonMostrarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/usuario.png"))); // NOI18N
+        jButtonMostrarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarUsuariosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -209,18 +242,6 @@ public class GestorBiblioteca extends javax.swing.JFrame {
             }
         });
 
-        jButtonEditorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/editorial - copia.png"))); // NOI18N
-        jButtonEditorial.setText("<html><p>Editorial</p></html>");
-        jButtonEditorial.setToolTipText("");
-        jButtonEditorial.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonEditorial.setIconTextGap(5);
-        jButtonEditorial.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonEditorial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditorialActionPerformed(evt);
-            }
-        });
-
         jButtonCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/categoria original.png"))); // NOI18N
         jButtonCategoria.setText("<html><p>Categorias</p></html>");
         jButtonCategoria.setToolTipText("");
@@ -266,8 +287,6 @@ public class GestorBiblioteca extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAutores, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,8 +299,6 @@ public class GestorBiblioteca extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButtonUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                    .addComponent(jButtonCategoria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                    .addComponent(jButtonEditorial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                     .addComponent(jButtonAutores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                     .addComponent(jButtonAgregarLibro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                     .addComponent(jButtonPedir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, Short.MAX_VALUE)
@@ -290,9 +307,8 @@ public class GestorBiblioteca extends javax.swing.JFrame {
                     .addComponent(jButtonDevolver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, Short.MAX_VALUE)
                     .addComponent(jButtonEliminarLibro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
                 .addGap(2, 2, 2))
+            .addComponent(jButtonCategoria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
         );
-
-        jButtonEditorial.getAccessibleContext().setAccessibleName("<html><p>/n/n</p><p>Editorial</p></html>");
 
         jMenu1.setText("Archivo ");
 
@@ -368,7 +384,7 @@ public class GestorBiblioteca extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,6 +401,31 @@ public class GestorBiblioteca extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void cargarDatosTablas(ArrayList<ArrayList<String>> registros){
+        
+        int filas = registros.size()-1;
+        int columnas = registros.get(0).size();
+
+        String cuerpo[][] = new String[filas][columnas];
+        String cabecera[] = new String[columnas];
+
+        //Cabecera de la tabla
+        for (int i = 0; i<columnas; i++){
+            cabecera[i] = registros.get(0).get(i);
+        }
+        //Cuerpo de la tabla
+        for (int i = 0; i<filas; i++)
+            for (int j = 0; j<columnas; j++)
+                cuerpo[i][j] = registros.get(i+1).get(j);
+
+        //Creacion de la tabla 
+        JTable table = new JTable(cuerpo, cabecera); 
+        table.setPreferredScrollableViewportSize(new Dimension(filas, columnas));
+        jScrollPane1.setViewportView(new JTable(cuerpo, cabecera));
+        
+
+    }
+    
     private void jButtonAgregarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarLibroActionPerformed
         new Ejemplar().setVisible(true);
     }//GEN-LAST:event_jButtonAgregarLibroActionPerformed
@@ -408,10 +449,6 @@ public class GestorBiblioteca extends javax.swing.JFrame {
     private void jButtonEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEdicionActionPerformed
         new Edicion().setVisible(true);
     }//GEN-LAST:event_jButtonEdicionActionPerformed
-
-    private void jButtonEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditorialActionPerformed
-        new Edicion().setVisible(true);
-    }//GEN-LAST:event_jButtonEditorialActionPerformed
 
     private void jButtonCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCategoriaActionPerformed
         new Categoria().setVisible(true);
@@ -446,8 +483,71 @@ public class GestorBiblioteca extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDevolverActionPerformed
 
     private void jButtonMostrarLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarLibrosActionPerformed
-        new Update().setVisible(true);
+        this.nombresTabla = new ArrayList();
+        nombresTabla.add("LIBRO");
+        try {
+            //try {
+            registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombresTabla, null, null, null, null);
+            this.cargarDatosTablas(registros);
+            // }
+        } catch (Exception ex) {
+            Logger.getLogger(Update.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_jButtonMostrarLibrosActionPerformed
+
+    private void jButtonMostrarAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarAutoresActionPerformed
+        this.nombresTabla = new ArrayList();
+        nombresTabla.add("AUTOR");
+        try {
+            //try {
+            registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombresTabla, null, null, null, null);
+            this.cargarDatosTablas(registros);
+            // }
+        } catch (Exception ex) {
+            Logger.getLogger(Update.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonMostrarAutoresActionPerformed
+
+    private void jButtonMostrarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarEditorialActionPerformed
+        this.nombresTabla = new ArrayList();
+        nombresTabla.add("EDISION");
+        try {
+            //try {
+            registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombresTabla, null, null, null, null);
+            this.cargarDatosTablas(registros);
+            // }
+        } catch (Exception ex) {
+            Logger.getLogger(Update.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonMostrarEditorialActionPerformed
+
+    private void jButtonMostrarCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarCategoriasActionPerformed
+        this.nombresTabla = new ArrayList();
+        nombresTabla.add("CATEGORIA");
+        try {
+            //try {
+            registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombresTabla, null, null, null, null);
+            this.cargarDatosTablas(registros);
+            // }
+        } catch (Exception ex) {
+            Logger.getLogger(Update.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonMostrarCategoriasActionPerformed
+
+    private void jButtonMostrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarUsuariosActionPerformed
+        this.nombresTabla = new ArrayList();
+        nombresTabla.add("USUARIO");
+        try {
+            //try {
+            registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombresTabla, null, null, null, null);
+            this.cargarDatosTablas(registros);
+            // }
+        } catch (Exception ex) {
+            Logger.getLogger(Update.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonMostrarUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -492,7 +592,6 @@ public class GestorBiblioteca extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCategoria;
     private javax.swing.JButton jButtonDevolver;
     private javax.swing.JButton jButtonEdicion;
-    private javax.swing.JButton jButtonEditorial;
     private javax.swing.JButton jButtonEliminarLibro;
     private javax.swing.JButton jButtonMostrarAutores;
     private javax.swing.JButton jButtonMostrarCategorias;

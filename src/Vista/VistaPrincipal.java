@@ -32,6 +32,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuBarSelect = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemModificar = new javax.swing.JMenuItem();
+        jMenuItemEliminar = new javax.swing.JMenuItem();
+        jMenuItemMostrar = new javax.swing.JMenuItem();
         jMenuBiblioteca = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
 
@@ -48,6 +51,30 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem1);
+
+        jMenuItemModificar.setText("Modificar");
+        jMenuItemModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemModificarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemModificar);
+
+        jMenuItemEliminar.setText("Eliminar");
+        jMenuItemEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEliminarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemEliminar);
+
+        jMenuItemMostrar.setText("Mostrar");
+        jMenuItemMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMostrarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemMostrar);
 
         jMenuBarSelect.add(jMenu1);
 
@@ -86,6 +113,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
        new GestorBiblioteca().setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItemModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModificarActionPerformed
+        new Update().setVisible(true);
+    }//GEN-LAST:event_jMenuItemModificarActionPerformed
+
+    private void jMenuItemEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEliminarActionPerformed
+        new Eliminar().setVisible(true);
+    }//GEN-LAST:event_jMenuItemEliminarActionPerformed
+
+    private void jMenuItemMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMostrarActionPerformed
+        new MostrarTablas().setVisible(true);
+    }//GEN-LAST:event_jMenuItemMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,5 +168,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuBiblioteca;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItemEliminar;
+    private javax.swing.JMenuItem jMenuItemModificar;
+    private javax.swing.JMenuItem jMenuItemMostrar;
     // End of variables declaration//GEN-END:variables
 }
