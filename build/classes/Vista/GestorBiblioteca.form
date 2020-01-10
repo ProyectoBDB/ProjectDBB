@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
@@ -116,7 +116,7 @@
               <Component id="jPanel1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Component id="jPanel3" alignment="0" max="-2" attributes="0"/>
+          <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -182,6 +182,9 @@
               <Image iconType="3" name="/Vista/libros.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMostrarLibrosActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonMostrarAutores">
           <Properties>
@@ -189,6 +192,9 @@
               <Image iconType="3" name="/Vista/autores.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMostrarAutoresActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonMostrarEditorial">
           <Properties>
@@ -196,6 +202,9 @@
               <Image iconType="3" name="/Vista/editorial.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMostrarEditorialActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonMostrarCategorias">
           <Properties>
@@ -203,6 +212,9 @@
               <Image iconType="3" name="/Vista/categoria.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMostrarCategoriasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonMostrarUsuarios">
           <Properties>
@@ -210,6 +222,9 @@
               <Image iconType="3" name="/Vista/usuario.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMostrarUsuariosActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -272,8 +287,6 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonAutores" min="-2" pref="110" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButtonEditorial" min="-2" pref="110" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonCategoria" min="-2" pref="110" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonUsuario" min="-2" pref="110" max="-2" attributes="0"/>
@@ -288,8 +301,6 @@
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jButtonUsuario" alignment="0" pref="130" max="32767" attributes="0"/>
-                      <Component id="jButtonCategoria" alignment="0" pref="130" max="32767" attributes="0"/>
-                      <Component id="jButtonEditorial" alignment="0" pref="130" max="32767" attributes="0"/>
                       <Component id="jButtonAutores" alignment="0" pref="130" max="32767" attributes="0"/>
                       <Component id="jButtonAgregarLibro" alignment="0" pref="130" max="32767" attributes="0"/>
                       <Component id="jButtonPedir" alignment="0" pref="130" max="32767" attributes="0"/>
@@ -300,6 +311,7 @@
                   </Group>
                   <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
               </Group>
+              <Component id="jButtonCategoria" alignment="1" pref="132" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -404,24 +416,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAutoresActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButtonEditorial">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Vista/editorial - copia.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Editorial&lt;/p&gt;&lt;/html&gt;"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="iconTextGap" type="int" value="5"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;/n/n&lt;/p&gt;&lt;p&gt;Editorial&lt;/p&gt;&lt;/html&gt;"/>
-          </AccessibilityProperties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEditorialActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonCategoria">

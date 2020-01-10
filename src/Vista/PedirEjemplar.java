@@ -5,18 +5,72 @@
  */
 package Vista;
 
+import Negocio.NEGOCIO_OBJETOS;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
  */
 public class PedirEjemplar extends javax.swing.JFrame {
-
+    
+    ArrayList<ArrayList<String>> registroUsuario;
+    ArrayList<String> nombretablaUsuario;
+    ArrayList<String> attSeleccionadoUsuario;
+    ArrayList<String> condicioneUsuario;
+    
+    //Libros
+    ArrayList<ArrayList<String>> registrolibros;
+    ArrayList<String> nombretablaslibros;
+    ArrayList<String> attSeleccionadoslibros;
+    int elemento_seleccionado1=0;
+    String IdLibro="";
+    
+    //Ediciones
+    ArrayList<ArrayList<String>> registro2;
+    ArrayList<String> nombretablas2;
+    ArrayList<String> attSeleccionados2;
+    ArrayList<String> condiciones;
+    int elemento_seleccionado2=0;
+    String IdEdicion="";
+    
+    //Ejemplar
+    ArrayList<ArrayList<String>> registroEemplar;
+    ArrayList<String> nombretablaEjemplar;
+    ArrayList<String> attSeleccionadoEjemplar;
+    ArrayList<String> condicionesEjemplar;
+    int elemento_seleccionado3=0;
+    String IdEjemplar="";
+    
     /**
      * Creates new form PedirEjemplar
      */
     public PedirEjemplar() {
         initComponents();
         this.setLocationRelativeTo(null);
+        jTextFieldNombre.setEnabled(false);
+        try {
+            registrolibros = new ArrayList();
+            nombretablaslibros = new ArrayList();
+            attSeleccionadoslibros = new ArrayList();
+            nombretablaslibros.add("LIBRO");
+            attSeleccionadoslibros.add("ID_LIBRO");
+            attSeleccionadoslibros.add("NOMBRE");
+            registrolibros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablaslibros, this.attSeleccionadoslibros,null,null,null);
+            System.out.println(registrolibros.toString());
+            for(int i = 1; i<registrolibros.size(); i++){
+                 this.jComboBoxLibro.addItem(registrolibros.get(i).get(1));
+            }
+            // Cargar los datos en el primer combo box
+            
+           //Cargar los datos en el segundo combo box
+           
+        } catch (Exception ex) {
+            Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -82,18 +136,30 @@ public class PedirEjemplar extends javax.swing.JFrame {
 
         jLabel10.setText("Ejemplar");
 
-        jComboBoxLibro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxLibroActionPerformed(evt);
             }
         });
 
-        jComboBoxEdicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEdicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEdicionActionPerformed(evt);
+            }
+        });
 
-        jComboBoxEjemplar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEjemplar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEjemplarActionPerformed(evt);
+            }
+        });
 
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,9 +204,7 @@ public class PedirEjemplar extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel7)))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -212,8 +276,97 @@ public class PedirEjemplar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLibroActionPerformed
-        // TODO add your handling code here:
+       /* elemento_seleccionado1=jComboBoxLibro.getSelectedIndex();
+        IdLibro=registrolibros.get(elemento_seleccionado1+1).get(0);
+        System.out.println("\n\n\n------------Id del libro-----------\n");
+        System.out.println("ID del libro: " + IdLibro);
+        jComboBoxEdicion.removeAllItems();
+        elemento_seleccionado2=0;
+        try {
+            registro2 = new ArrayList();
+            nombretablas2 = new ArrayList();
+            attSeleccionados2 = new ArrayList();
+            condiciones = new ArrayList();
+            nombretablas2.add("EDISION");
+            attSeleccionados2.add("ID_EDISION");
+            attSeleccionados2.add("ANIO");
+            System.out.println("------------------------ingreso aqui-------------------------");
+            System.out.println(IdLibro);
+            condiciones.add("ID_LIBRO = "+IdLibro);
+            registro2 = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablas2, this.attSeleccionados2,this.condiciones,null,null);
+            System.out.println(registro2.toString());
+            for(int i = 1; i<registro2.size(); i++){
+                 this.jComboBoxEdicion.addItem(registro2.get(i).get(1));
+             }
+        } 
+        catch (Exception ex) {
+            Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        */
     }//GEN-LAST:event_jComboBoxLibroActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        try {
+            String cedula = jTextFieldCedula.getText();
+            registroUsuario = new ArrayList();
+            nombretablaUsuario = new ArrayList();
+            attSeleccionadoUsuario = new ArrayList();
+            condicioneUsuario = new ArrayList();
+            nombretablaUsuario.add("USUARIO");
+            attSeleccionadoUsuario.add("ID_USUARIO");
+            attSeleccionadoUsuario.add("NOMBRE");
+            condicioneUsuario.add("ID_USUARIO = '"+cedula+"'");
+            registroUsuario = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablaUsuario, this.attSeleccionadoUsuario,condicioneUsuario,null,null);
+            System.out.println("Resultado obtenido:---------------");
+            System.out.println(registroUsuario.size());
+            if(registroUsuario.size()==1){
+                JOptionPane.showMessageDialog(null, "El usuario no esta registrado");
+            }
+            else{
+                String nombre=registroUsuario.get(1).get(1);
+                this.jTextFieldNombre.setText(nombre);
+                System.out.println("nobre del usuario: "+nombre);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(PedirEjemplar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jComboBoxEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEdicionActionPerformed
+        /*elemento_seleccionado2=jComboBoxEdicion.getSelectedIndex();
+        IdEdicion=registro2.get(elemento_seleccionado2+1).get(0);
+        System.out.println("ID del Edicion: " + IdEdicion);
+        elemento_seleccionado3=0;
+        try {
+            registroEemplar = new ArrayList();
+            nombretablaEjemplar = new ArrayList();
+            attSeleccionadoEjemplar = new ArrayList();
+            condicionesEjemplar = new ArrayList();
+            nombretablaEjemplar.add("EJEMPLAR");
+            attSeleccionadoEjemplar.add("ID_EJEMPLAR");
+            System.out.println("------------------------ingreso aqui-------------------------");
+            System.out.println(IdEjemplar);
+            condicionesEjemplar.add("ID_EDISION = '"+IdEdicion+"'");
+            registro2 = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablas2, this.attSeleccionados2,this.condicionesEjemplar,null,null);
+            System.out.println(registro2.toString());
+            for(int i = 1; i<registro2.size(); i++){
+                 this.jComboBoxEdicion.addItem(registro2.get(i).get(1));
+             }
+        } 
+        catch (Exception ex) {
+            Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
+    }//GEN-LAST:event_jComboBoxEdicionActionPerformed
+
+    private void jComboBoxEjemplarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEjemplarActionPerformed
+        // obtencion del id de ejemplar
+        
+        
+    }//GEN-LAST:event_jComboBoxEjemplarActionPerformed
 
     /**
      * @param args the command line arguments

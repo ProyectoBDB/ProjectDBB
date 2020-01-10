@@ -164,4 +164,57 @@ public class Operaciones {
         System.out.println(" entra al metodo getAtributos ");
         return consultarBD(consulta);
     }
+      
+      
+      
+      // XD
+      public void ActualizarDatos(Object obj) throws Exception{
+       
+       
+          Statement sentencia = null;
+        
+        try {
+            
+           String consulta = OperacionesSQL.actualizarDatos(obj);
+          
+          // Conexion.getInstance().ConectarDB();
+           sentencia = Conexion.getConnection().createStatement();
+           sentencia.executeUpdate(consulta);
+           
+            
+        } catch (SQLException e){
+            System.out.println(e);
+            
+            throw new Exception (e.getMessage());
+        }finally {
+            Conexion.getInstance().desconexion();
+        }
+        
+       
+   }
+      
+      
+      public void EliminarDatos(Object obj) throws Exception{
+       
+       
+          Statement sentencia = null;
+        
+        try {
+            
+           String consulta = OperacionesSQL.eliminarDatos(obj);
+          
+          // Conexion.getInstance().ConectarDB();
+           sentencia = Conexion.getConnection().createStatement();
+           sentencia.executeUpdate(consulta);
+           
+            
+        } catch (SQLException e){
+            System.out.println(e);
+            
+            throw new Exception (e.getMessage());
+        }finally {
+            Conexion.getInstance().desconexion();
+        }
+    }
+      
 }

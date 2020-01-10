@@ -222,12 +222,13 @@ public class Libro extends javax.swing.JFrame {
             IdLibro = registroLibro.get(1).get(0);
             System.out.println("\n\n\n------------ ID del libro agregadooo actualmente------------------------\n");
             System.out.println("id del libro: "+IdLibro);
+            System.out.println("id autor: "+IdAutor);
             // Obtencion del id del libro
-            /*String ID_AUTOR = IdAutor;
+            String ID_AUTOR = IdAutor;
             String ID_LIBRO = IdLibro;
-            String [] args1={"LIBRO_AUTOR",ID_AUTOR,ID_LIBRO};
+            String [] args1={"LIBRO_AUTOR",ID_LIBRO,ID_AUTOR};
             NEGOCIO_OBJETOS.getInstance().insertarRegistro(args1);
-            JOptionPane.showMessageDialog(rootPane,"Se ha creado el libro satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);*/
+            JOptionPane.showMessageDialog(rootPane,"Se ha creado el libro satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso En la Creacion De el libro", JOptionPane.ERROR_MESSAGE);
