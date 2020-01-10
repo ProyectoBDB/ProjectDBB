@@ -64,6 +64,22 @@ public class NEGOCIO_OBJETOS {
        
     }
     
+     public Object obtenerRegistrosJoin(ArrayList<String> Tabla, ArrayList<String> atributos, ArrayList<String> condiciones, ArrayList<String> Funciones, ArrayList<String> orderBy) throws SQLException, Exception{
+        System.out.println(" ingresa a nogocio objetos ");
+        CONSULT o = new CONSULT(Tabla);
+        if(atributos!=null)
+            o.setAtributos(atributos);
+        if(condiciones!=null)
+            o.setCondiciones(condiciones);
+        if(orderBy!=null)
+            o.setOrderBy(orderBy);
+        return Operaciones.getInstance().realizarConsultaJoin(o);
+      
+        
+        
+       
+    }
+    
      public void insertarRegistro(String[] args) throws SQLException, Exception{
         String tabla = (String) args[0];
 //        System.out.println(""+args[1]);
