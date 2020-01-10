@@ -34,6 +34,14 @@ public class Operaciones {
         return datos;
     }
     
+     public Object realizarConsultaJoin(CONSULT cons) throws Exception {
+        System.out.println("realizar  consulta en Datos Operaciones "+cons);
+        String consulta = OperacionesSQL.getRegistrosConsultaJoin(cons);
+        ArrayList<ArrayList<String>> datos;
+        datos = (ArrayList<ArrayList<String>>) consultarBD(consulta);
+        return datos;
+    }
+    
      private Object consultarBD(String consulta) throws Exception {
         Statement stmt = null;
         ArrayList<ArrayList<String>> resultado = new ArrayList<>();

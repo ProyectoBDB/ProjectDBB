@@ -29,12 +29,14 @@ public class Select extends javax.swing.JFrame {
     
      ArrayList<String> attSeleccionados;
     ArrayList<String> condSeleccionados;
+    ArrayList<String> condSeleccionados1;
     ArrayList <String> funciones;
     
     public Select() {
         initComponents();
         attSeleccionados = new ArrayList();
         condSeleccionados = new ArrayList();
+        condSeleccionados1 = new ArrayList();
         funciones = new ArrayList();
         this.jButtonAgregarAtributos.setEnabled(false);
         this.jButtonEliminarAtributos.setEnabled(false);
@@ -80,7 +82,6 @@ public class Select extends javax.swing.JFrame {
         jComboBoxOperador = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldValor = new javax.swing.JTextField();
-        jRadioButtonContar = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jSeparator2 = new javax.swing.JSeparator();
@@ -112,6 +113,7 @@ public class Select extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         listCondicionCon = new javax.swing.JList<>();
         jScrollPaneMuestraTabla = new javax.swing.JScrollPane();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -132,22 +134,15 @@ public class Select extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("4. Atributo condicional");
+        jLabel3.setText("3. Atributo condicional");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jLabel4.setText("5. Operador");
+        jLabel4.setText("4. Operador");
 
         jComboBoxOperador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "=", "<", ">", "LIKE" }));
 
-        jLabel5.setText("6. Valor");
-
-        jRadioButtonContar.setText("3. Contar");
-        jRadioButtonContar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonContarActionPerformed(evt);
-            }
-        });
+        jLabel5.setText("5. Valor");
 
         jScrollPane1.setViewportView(jList1);
 
@@ -240,7 +235,7 @@ public class Select extends javax.swing.JFrame {
 
         jLabel12.setText("Condiciones de la consulta");
 
-        jLabel13.setText("7. Condicion");
+        jLabel13.setText("6. Condicion");
 
         jComboBoxCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "AND", "OR" }));
         jComboBoxCondicion.addActionListener(new java.awt.event.ActionListener() {
@@ -250,6 +245,13 @@ public class Select extends javax.swing.JFrame {
         });
 
         jScrollPane6.setViewportView(listCondicionCon);
+
+        jButton1.setText("REMOVER");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -261,13 +263,11 @@ public class Select extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jComboBoxOperacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBoxTabla, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jRadioButtonContar))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jComboBoxOperacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxTabla, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(56, 56, 56)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -292,13 +292,13 @@ public class Select extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(34, 34, 34)
                                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel12)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(77, 77, 77)
-                                                .addComponent(jButtonAgregarCondiciones))
-                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jButtonAgregarCondiciones)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel12)))
+                                                .addComponent(jButton1)))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -360,21 +360,13 @@ public class Select extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(5, 5, 5)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
-                        .addComponent(jButtonAgregarCondiciones))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButtonContar))
+                        .addComponent(jComboBoxTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
@@ -393,8 +385,16 @@ public class Select extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel13)
                                 .addComponent(jComboBoxCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(5, 5, 5)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonAgregarCondiciones)
+                            .addComponent(jButton1))))
+                .addGap(3, 3, 3)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,10 +445,6 @@ public class Select extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButtonContarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonContarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonContarActionPerformed
-
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         // TODO add your handling code here:
          /**
@@ -461,7 +457,7 @@ public class Select extends javax.swing.JFrame {
          nombretablas = new ArrayList();
          nombretablas.add(jComboBoxTabla.getSelectedItem().toString());
          ArrayList<ArrayList<String>> registros;
-       if(nombretablas.isEmpty() || this.jTextFieldValor.getText().length()==0){
+       if(nombretablas.isEmpty()  || this.jTextArea3.getText().length()==0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado ninguna atributos", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
         else{
@@ -591,7 +587,7 @@ public class Select extends javax.swing.JFrame {
             }
             else{
                
-            }// fin else
+            }// fin else hasta aqui copiar 
     }//GEN-LAST:event_jComboBoxTablaActionPerformed
 
     private void jRadioButtonAsendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAsendenteActionPerformed
@@ -620,12 +616,23 @@ public class Select extends javax.swing.JFrame {
 
     private void jButtonAgregarCondicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarCondicionesActionPerformed
         // TODO add your handling code here:
-        jComboBoxCondicion.setEnabled(true);
+        if(this.jTextFieldValor.getText().length()==0 ||  jComboBoxAtributo.getSelectedItem().equals("Ningún atributo")){
+            
+              JOptionPane.showMessageDialog(rootPane, "Campos Vacios", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }else{
+            
+              
+               jComboBoxCondicion.setEnabled(true);
         String miatributo ="'"+jTextFieldValor.getText()+"'";
         jTextArea3.append(jComboBoxCondicion.getSelectedItem()+" "+jComboBoxAtributo.getSelectedItem()+""
-                +jComboBoxOperador.getSelectedItem()+miatributo+"\n");
+                +jComboBoxOperador.getSelectedItem()+miatributo+"  ");
          
-        
+         jButtonAgregarAtributos.setEnabled(true);
+         jButtonEliminarAtributos.setEnabled(true);
+         this.condSeleccionados.add(jComboBoxCondicion.getSelectedItem()+" "+jComboBoxAtributo.getSelectedItem()+""+jComboBoxOperador.getSelectedItem()+miatributo);
+         jTextFieldValor.setText("");
+        }
+       
         
     }//GEN-LAST:event_jButtonAgregarCondicionesActionPerformed
 
@@ -642,52 +649,61 @@ public class Select extends javax.swing.JFrame {
     private void jButtonAgregarConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarConsultasActionPerformed
         // TODO add your handling code here:
         String nombre = this.jComboBoxAtributo.getSelectedItem().toString();
-        if(this.condSeleccionados.contains(nombre)){
-            JOptionPane.showMessageDialog(rootPane, "Ese atributo ya se ha seleccionado", "Aviso", JOptionPane.ERROR_MESSAGE);
-        }
-        else if(this.jComboBoxOperador.getSelectedItem().toString().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Se debe escoger un condicional", "Aviso", JOptionPane.ERROR_MESSAGE);
-        }
-        else if(this.jTextFieldValor.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Se debe especificar un valor para la condicion", "Aviso", JOptionPane.ERROR_MESSAGE);
-        }
-        else if(this.jComboBoxAtributo.getSelectedItem().equals("Ningún atributo")){
-            JOptionPane.showMessageDialog(rootPane, "Se debe escoger un atributo", "Aviso", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+//        if(this.condSeleccionados.contains(nombre)){
+//            JOptionPane.showMessageDialog(rootPane, "Ese atributo ya se ha seleccionado", "Aviso", JOptionPane.ERROR_MESSAGE);
+//        }
+//        else if(this.jComboBoxOperador.getSelectedItem().toString().isEmpty()){
+//            JOptionPane.showMessageDialog(rootPane, "Se debe escoger un condicional", "Aviso", JOptionPane.ERROR_MESSAGE);
+//        }
+//        else if(this.jTextFieldValor.getText().isEmpty()){
+//            JOptionPane.showMessageDialog(rootPane, "Se debe especificar un valor para la condicion", "Aviso", JOptionPane.ERROR_MESSAGE);
+//        }
+//        else if(this.jComboBoxAtributo.getSelectedItem().equals("Ningún atributo")){
+//            JOptionPane.showMessageDialog(rootPane, "Se debe escoger un atributo", "Aviso", JOptionPane.ERROR_MESSAGE);
+//        }
+        //else{
             String condGenerada="";
             if(this.jComboBoxOperador.getSelectedItem().equals("LIKE")){
                 condGenerada = nombre +" "+ this.jComboBoxOperador.getSelectedItem()
             + " '" + this.jTextFieldValor.getText() +"%"+ "'";
-                System.out.println(""+condGenerada);
-            }else{
+                System.out.println(""+condGenerada);}
+          //  }else{
              //condGenerada = nombre +" "+ this.condicionCondicion.getSelectedItem()
             //+ " '" + this.valorCondicion.getText() + "'";
               System.out.println(""+this.jTextArea3.getText());
-               this.condSeleccionados.add(this.jTextArea3.getText());
-            }
+               this.condSeleccionados1.add("SELECCIONAR "+this.attSeleccionados+" DONDE "+this.jTextArea3.getText());
+           // }
             
-            this.condSeleccionados.add(condGenerada);
+           //this.condSeleccionados.add(condGenerada);
             System.out.println("Entra a agrgar  "+this.condSeleccionados.toString());
             DefaultListModel model = new DefaultListModel();
-            for(int i=0; i<condSeleccionados.size(); i++){
-                model.addElement(this.condSeleccionados.get(i));
+            for(int i=0; i<condSeleccionados1.size(); i++){
+                model.addElement(this.condSeleccionados1.get(i));
             }
             this.listCondicionCon.setModel(model);
             
         // condicion generada
     }//GEN-LAST:event_jButtonAgregarConsultasActionPerformed
-    }
+    
     private void jButtonEliminarConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarConsultasActionPerformed
         // TODO add your handling code here:
         String nombre = this.listCondicionCon.getModel().getElementAt(this.listCondicionCon.getSelectedIndex());
-        this.condSeleccionados.remove(nombre);
+       if(this.condSeleccionados1.size()!=0){
+            this.condSeleccionados1.remove(nombre);
         DefaultListModel model = new DefaultListModel();
-        for(int i=0; i<condSeleccionados.size(); i++){
-            model.addElement(condSeleccionados.get(i));
+        for(int i=0; i<condSeleccionados1.size(); i++){
+            model.addElement(condSeleccionados1.get(i));
         }
         this.listCondicionCon.setModel(model);
+       }
+       
     }//GEN-LAST:event_jButtonEliminarConsultasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.jTextArea3.setText("");
+        this.condSeleccionados.clear();
+    }//GEN-LAST:event_jButton1ActionPerformed
     
      private void mostrarTabla(ArrayList<ArrayList<String>> registros) {
         int filas = registros.size()-1;
@@ -747,6 +763,7 @@ public class Select extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonAgregarAtributos;
     private javax.swing.JButton jButtonAgregarCondiciones;
@@ -776,7 +793,6 @@ public class Select extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JRadioButton jRadioButtonAsendente;
-    private javax.swing.JRadioButton jRadioButtonContar;
     private javax.swing.JRadioButton jRadioButtonDesendente;
     private javax.swing.JRadioButton jRadioButtonNinguno;
     private javax.swing.JScrollPane jScrollPane1;

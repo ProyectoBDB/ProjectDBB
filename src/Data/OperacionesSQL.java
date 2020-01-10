@@ -190,6 +190,8 @@ public class OperacionesSQL {
         }else{
             consulta = consulta + "*";
         }
+        
+       
         System.out.println(consulta);
          consulta = consulta + " FROM " + nombreTabla.get(0);
         if(condiciones!=null && !condiciones.isEmpty()){
@@ -228,7 +230,84 @@ public class OperacionesSQL {
                 + "WHERE "  + " TABLE_NAME = '"+nombreTabla+"'";
     }
    
-   
+   static String getRegistrosConsultaJoin(CONSULT o) {
+        
+        // System.out.println("ingresa en getRegistrosConsulta   pura  "+o+"   varlo de atributos"+atributos);
+         String consulta;
+        ArrayList<String> nombreTabla = o.getNombreTablas();
+        ArrayList<String> columnas = o.getAtributos();
+        ArrayList<String> condiciones = o.getCondiciones();
+        ArrayList<String> orderBy = o.getOrderBy();
+        
+        
+        consulta = "SELECT ";
+       
+           //System.out.println("SQL"+columnas.toString());
+           System.out.println("frontera 1");
+        if(columnas != null && !columnas.isEmpty()){
+            for(int i = 0; i<columnas.size(); i++){
+                if(i+1 != columnas.size())
+                    consulta = consulta + columnas.get(i) + ",";
+                else
+                    consulta = consulta + columnas.get(i);
+            }
+        }else{
+            consulta = consulta + "*";
+        }
+        
+       
+        System.out.println(consulta);
+         consulta = consulta + " FROM " + nombreTabla.get(0);
+         
+         //------------------------------------------------------------------------------------------------------------------------
+         
+       
+        
+        if (nombreTabla.size()==2){
+             if(condiciones!=null && !condiciones.isEmpty()){
+               consulta = consulta + " INNER JOIN " + nombreTabla.get(1)+" ON ";
+            for (String condicione : condiciones) {
+                 
+                 consulta = consulta + condicione;
+            }
+        }
+            
+        }
+        int i=0;
+        if (nombreTabla.size()==3){
+             if(condiciones!=null && !condiciones.isEmpty()){
+               consulta = consulta + " INNER JOIN " + nombreTabla.get(1)+" ON ";
+            for (String condicione : condiciones) {
+                 
+                 consulta = consulta + condicione;
+                 i++;
+                 if(i==2){
+                     continue;
+                 }
+                consulta = consulta + " INNER JOIN " + nombreTabla.get(2)+" ON ";
+            }
+        }
+            
+        }
+        
+          
+       
+        //consulta = consulta + " FROM " + nombreTabla;
+//           if(orderBy!=null && !orderBy.isEmpty()){
+//            consulta = consulta + " ORDER BY " + orderBy.get(0) + " " + orderBy.get(1);
+//        }
+        
+
+        //consulta = consulta + ";";
+        System.out.println(consulta);
+        
+       
+        
+        
+        //consulta = consulta + ";";
+        System.out.println(consulta);
+        return consulta;
+    }//fin
      
        
 }
