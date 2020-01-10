@@ -64,7 +64,6 @@ public class Edicion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jComboBoxLibros = new javax.swing.JComboBox<>();
         jTextFieldPublicacion = new javax.swing.JTextField();
-        jButtonModificar = new javax.swing.JButton();
         jButtonAceptar = new javax.swing.JButton();
         jButtonAgregar = new javax.swing.JButton();
 
@@ -93,9 +92,12 @@ public class Edicion extends javax.swing.JFrame {
             }
         });
 
-        jButtonModificar.setText("Modificar");
-
-        jButtonAceptar.setText("Aceptar");
+        jButtonAceptar.setText("Cerrar");
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarActionPerformed(evt);
+            }
+        });
 
         jButtonAgregar.setText("Agregar");
         jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -122,10 +124,8 @@ public class Edicion extends javax.swing.JFrame {
                             .addComponent(jComboBoxLibros, 0, 151, Short.MAX_VALUE)
                             .addComponent(jTextFieldPublicacion)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
+                        .addGap(200, 200, 200)
                         .addComponent(jButtonAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonAceptar)))
                 .addContainerGap(50, Short.MAX_VALUE))
@@ -149,7 +149,6 @@ public class Edicion extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAgregar)
-                    .addComponent(jButtonModificar)
                     .addComponent(jButtonAceptar))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
@@ -196,6 +195,10 @@ public class Edicion extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jComboBoxLibrosMousePressed
 
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -234,7 +237,6 @@ public class Edicion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonAgregar;
-    private javax.swing.JButton jButtonModificar;
     private javax.swing.JComboBox<String> jComboBoxLibros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -6,7 +6,10 @@
 package Vista;
 
 import Negocio.NEGOCIO_OBJETOS;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -38,12 +41,20 @@ public class PedirEjemplar extends javax.swing.JFrame {
     String IdEdicion="";
     
     //Ejemplar
-    ArrayList<ArrayList<String>> registroEemplar;
-    ArrayList<String> nombretablaEjemplar;
-    ArrayList<String> attSeleccionadoEjemplar;
-    ArrayList<String> condicionesEjemplar;
+    ArrayList<ArrayList<String>> registros3;
+    ArrayList<String> nombretablas3;
+    ArrayList<String> attSeleccionados3;
+    ArrayList<String> condiciones3;
     int elemento_seleccionado3=0;
     String IdEjemplar="";
+    
+    //modificar ejemplar
+    ArrayList<ArrayList<String>> registroEjemplar;
+    ArrayList<String> nombretablaEjemplar;
+    ArrayList<String> condicioneEjemplar;
+    ArrayList<String> wherecondicioneEjemplar;
+    
+    
     
     /**
      * Creates new form PedirEjemplar
@@ -52,6 +63,9 @@ public class PedirEjemplar extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         jTextFieldNombre.setEnabled(false);
+        this.buttonGroup1.add(jRadioButtonDisponible);
+        this.buttonGroup1.add(jRadioButtonNoDisponible);
+        this.jRadioButtonNoDisponible.setSelected(true);
         try {
             registrolibros = new ArrayList();
             nombretablaslibros = new ArrayList();
@@ -71,6 +85,9 @@ public class PedirEjemplar extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        //registroEjemplar = new ArrayList();
+        
     }
 
     /**
@@ -82,6 +99,7 @@ public class PedirEjemplar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldCedula = new javax.swing.JTextField();
@@ -96,7 +114,6 @@ public class PedirEjemplar extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jRadioButtonDisponible = new javax.swing.JRadioButton();
         jRadioButtonNoDisponible = new javax.swing.JRadioButton();
-        jButtoBuscar = new javax.swing.JButton();
         jButtonAceptar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -126,9 +143,12 @@ public class PedirEjemplar extends javax.swing.JFrame {
 
         jRadioButtonNoDisponible.setText("No disponible");
 
-        jButtoBuscar.setText("Buscar");
-
         jButtonAceptar.setText("Aceptar");
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Libro");
 
@@ -142,6 +162,11 @@ public class PedirEjemplar extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxEdicion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxEdicionMouseClicked(evt);
+            }
+        });
         jComboBoxEdicion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxEdicionActionPerformed(evt);
@@ -186,7 +211,7 @@ public class PedirEjemplar extends javax.swing.JFrame {
                 .addComponent(jButtonBuscar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(122, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,8 +241,6 @@ public class PedirEjemplar extends javax.swing.JFrame {
                                         .addComponent(jRadioButtonNoDisponible)))))
                         .addGap(48, 48, 48))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtoBuscar)
-                        .addGap(16, 16, 16)
                         .addComponent(jButtonAceptar)
                         .addContainerGap())))
         );
@@ -266,9 +289,7 @@ public class PedirEjemplar extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jRadioButtonNoDisponible))
                 .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtoBuscar)
-                    .addComponent(jButtonAceptar))
+                .addComponent(jButtonAceptar)
                 .addContainerGap())
         );
 
@@ -276,7 +297,7 @@ public class PedirEjemplar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLibroActionPerformed
-       /* elemento_seleccionado1=jComboBoxLibro.getSelectedIndex();
+        elemento_seleccionado1=jComboBoxLibro.getSelectedIndex();
         IdLibro=registrolibros.get(elemento_seleccionado1+1).get(0);
         System.out.println("\n\n\n------------Id del libro-----------\n");
         System.out.println("ID del libro: " + IdLibro);
@@ -292,7 +313,7 @@ public class PedirEjemplar extends javax.swing.JFrame {
             attSeleccionados2.add("ANIO");
             System.out.println("------------------------ingreso aqui-------------------------");
             System.out.println(IdLibro);
-            condiciones.add("ID_LIBRO = "+IdLibro);
+            condiciones.add("ID_LIBRO = '"+IdLibro+"'");
             registro2 = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablas2, this.attSeleccionados2,this.condiciones,null,null);
             System.out.println(registro2.toString());
             for(int i = 1; i<registro2.size(); i++){
@@ -304,7 +325,7 @@ public class PedirEjemplar extends javax.swing.JFrame {
         }
         
         
-        */
+        
     }//GEN-LAST:event_jComboBoxLibroActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
@@ -336,37 +357,114 @@ public class PedirEjemplar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jComboBoxEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEdicionActionPerformed
-        /*elemento_seleccionado2=jComboBoxEdicion.getSelectedIndex();
-        IdEdicion=registro2.get(elemento_seleccionado2+1).get(0);
-        System.out.println("ID del Edicion: " + IdEdicion);
-        elemento_seleccionado3=0;
-        try {
-            registroEemplar = new ArrayList();
-            nombretablaEjemplar = new ArrayList();
-            attSeleccionadoEjemplar = new ArrayList();
-            condicionesEjemplar = new ArrayList();
-            nombretablaEjemplar.add("EJEMPLAR");
-            attSeleccionadoEjemplar.add("ID_EJEMPLAR");
-            System.out.println("------------------------ingreso aqui-------------------------");
-            System.out.println(IdEjemplar);
-            condicionesEjemplar.add("ID_EDISION = '"+IdEdicion+"'");
-            registro2 = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablas2, this.attSeleccionados2,this.condicionesEjemplar,null,null);
-            System.out.println(registro2.toString());
-            for(int i = 1; i<registro2.size(); i++){
-                 this.jComboBoxEdicion.addItem(registro2.get(i).get(1));
-             }
-        } 
-        catch (Exception ex) {
-            Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
+//        elemento_seleccionado2=(jComboBoxEdicion.getSelectedIndex())+1;
+//        System.out.println("*************************** ELemento seleccionado: "+elemento_seleccionado2);
+//        IdEdicion=registro2.get(elemento_seleccionado2).get(0);
+//        elemento_seleccionado3=0;
+//        this.jComboBoxEjemplar.removeAllItems();
+//        System.out.println("id de la edision:"+IdEdicion);
+//        try{
+//            registros3 = new ArrayList();
+//            nombretablas3 = new ArrayList();
+//            attSeleccionados3 = new ArrayList();
+//            condiciones3 = new ArrayList();
+//            nombretablas3.add("EJEMPLAR");
+//            attSeleccionados3.add("ID_EJEMPLAR");
+//            System.out.println("**********************************************************************");
+//            condiciones3.add("ID_EDISION = '"+ IdEdicion+ "' and ID_LIBRO= '"+IdLibro+"'");
+//            registros3 = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablas3, this.attSeleccionados3,this.condiciones3,null,null);
+//            
+//            System.out.println("los registros//"+registros3);
+//            for(int i = 1; i<registros3.size(); i++){
+//                 this.jComboBoxEjemplar.addItem(registros3.get(i).get(0));
+//            }
+//        }
+//        catch (Exception ex) {
+//            Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_jComboBoxEdicionActionPerformed
 
     private void jComboBoxEjemplarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEjemplarActionPerformed
         // obtencion del id de ejemplar
-        
+        elemento_seleccionado3 = jComboBoxEjemplar.getSelectedIndex();
+        IdEjemplar=registros3.get(elemento_seleccionado3+1).get(0);
+        System.out.println("Id Ejemplar: "+IdEjemplar);
         
     }//GEN-LAST:event_jComboBoxEjemplarActionPerformed
+
+    private void jComboBoxEdicionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxEdicionMouseClicked
+        //evento mous clicked del combo edision
+        elemento_seleccionado2=(jComboBoxEdicion.getSelectedIndex())+1;
+        System.out.println("*************************** ELemento seleccionado: "+elemento_seleccionado2);
+        IdEdicion=registro2.get(elemento_seleccionado2).get(0);
+        elemento_seleccionado3=0;
+        this.jComboBoxEjemplar.removeAllItems();
+        System.out.println("id de la edision:"+IdEdicion);
+        try{
+            registros3 = new ArrayList();
+            nombretablas3 = new ArrayList();
+            attSeleccionados3 = new ArrayList();
+            condiciones3 = new ArrayList();
+            nombretablas3.add("EJEMPLAR");
+            attSeleccionados3.add("ID_EJEMPLAR");
+            System.out.println("**********************************************************************");
+            condiciones3.add("ID_EDISION = '"+ IdEdicion+ "' and ID_LIBRO= '"+IdLibro+"' and ESTADO!= '1'");
+            registros3 = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablas3, this.attSeleccionados3,this.condiciones3,null,null);
+            
+            System.out.println("los registros//"+registros3);
+            for(int i = 1; i<registros3.size(); i++){
+                 this.jComboBoxEjemplar.addItem(registros3.get(i).get(0));
+            }
+            
+        }
+        catch (Exception ex) {
+            Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jComboBoxEdicionMouseClicked
+
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
+        try {
+            Date fecha_prestamo = jDateChooserPrestamo.getDate();
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            String FECHA_PRESTAMO = df.format(fecha_prestamo);
+            String ID_USUARIO = this.jTextFieldCedula.getText();
+            String ID_LIBRO = IdLibro;
+            String ID_EDISION=IdEdicion;
+            String ID_EJEMPLAR=IdEjemplar;
+            String ESTADO = "0";
+            String NUMERO_DIAS_PRESTAMO = jTextFieldDiasPrestamo.getText();
+            String FECHA_DEVOLUCION = "";
+            //int ID_USUARIO, int ID_EJEMPLAR, int ID_EDISION, int ID_LIBRO, String ESTADO, int NUMERO_DIAS_PRESTAMO, String FECHA_PRESTAMO, String FECHA_DEVOLIUCION
+            String[] args = {"PEDIR_EJEMPLAR",ID_USUARIO,ID_EJEMPLAR,ID_EDISION,ID_LIBRO,ESTADO,NUMERO_DIAS_PRESTAMO,FECHA_PRESTAMO,FECHA_DEVOLUCION};
+            NEGOCIO_OBJETOS.getInstance().insertarRegistro(args);
+            JOptionPane.showMessageDialog(rootPane,"Se ha creado el Ejemplar satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            Logger.getLogger(PedirEjemplar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        nombretablaEjemplar = new ArrayList();
+        condicioneEjemplar = new ArrayList();
+        wherecondicioneEjemplar = new ArrayList();
+        nombretablaEjemplar.add("EJEMPLAR");
+        condicioneEjemplar.add("ESTADO = '1'");
+        wherecondicioneEjemplar.add("ID_EJEMPLAR= '"+IdEjemplar+"' AND ID_LIBRO= '"+IdLibro+"' AND ID_EDISION= '"+IdEdicion+"'");
+        
+        try {
+            
+            NEGOCIO_OBJETOS.getInstance().actualizarCampos(nombretablaEjemplar, condicioneEjemplar, wherecondicioneEjemplar);
+            JOptionPane.showMessageDialog(rootPane, "Se ha actualizado correctamente");
+            
+           ///
+        } catch (Exception ex) {
+             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso", JOptionPane.ERROR_MESSAGE);
+            
+        }
+        
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -404,7 +502,7 @@ public class PedirEjemplar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtoBuscar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JComboBox<String> jComboBoxEdicion;

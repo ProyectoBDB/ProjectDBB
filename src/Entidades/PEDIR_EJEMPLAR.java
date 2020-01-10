@@ -17,8 +17,10 @@ public class PEDIR_EJEMPLAR {
     private String ESTADO;
     private int  NUMERO_DIAS_PRESTAMO;
     private String FECHA_PRESTAMO;
+    
+    private String FECHA_DEVOLUCION;
 
-    public PEDIR_EJEMPLAR(int ID_USUARIO, int ID_EJEMPLAR, int ID_EDISION, int ID_LIBRO, String ESTADO, int NUMERO_DIAS_PRESTAMO, String FECHA_PRESTAMO) {
+     public PEDIR_EJEMPLAR(int ID_USUARIO, int ID_EJEMPLAR, int ID_EDISION, int ID_LIBRO, String ESTADO, int NUMERO_DIAS_PRESTAMO, String FECHA_PRESTAMO, String FECHA_DEVOLUCION) {
         this.ID_USUARIO = ID_USUARIO;
         this.ID_EJEMPLAR = ID_EJEMPLAR;
         this.ID_EDISION = ID_EDISION;
@@ -26,6 +28,7 @@ public class PEDIR_EJEMPLAR {
         this.ESTADO = ESTADO;
         this.NUMERO_DIAS_PRESTAMO = NUMERO_DIAS_PRESTAMO;
         this.FECHA_PRESTAMO = FECHA_PRESTAMO;
+        this.FECHA_DEVOLUCION = FECHA_DEVOLUCION;
     }
 
     public int getID_USUARIO() {

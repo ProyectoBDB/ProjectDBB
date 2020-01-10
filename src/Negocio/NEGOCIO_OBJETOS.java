@@ -14,6 +14,7 @@ import Entidades.EDISION;
 import Entidades.EJEMPLAR;
 import Entidades.LIBRO;
 import Entidades.LIBRO_AUTOR;
+import Entidades.PEDIR_EJEMPLAR;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -116,8 +117,12 @@ public class NEGOCIO_OBJETOS {
                 Operaciones.getInstance().insertarRegistro(objLibroAutor);
                 //Personaje produccion = new Personaje((String)args[1], (String)args[2], (String)args[3], (String)args[4]);
                 //DataBase.getInstance().insertarRegistro(produccion);
-                break;    
+                break;  
             
+            case "PEDIR_EJEMPLAR":
+                
+                PEDIR_EJEMPLAR objPerdirEjemplar = new PEDIR_EJEMPLAR(Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]),(String)(args[5]),Integer.parseInt(args[6]) ,(String)args[7], (String)args[8]);
+                Operaciones.getInstance().insertarRegistro(objPerdirEjemplar);
             default:
                 break;
         }
