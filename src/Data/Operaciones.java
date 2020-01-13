@@ -86,13 +86,14 @@ public class Operaciones {
              System.out.println(""+consulta);
             stmt = Conexion.getConnection().createStatement();
             stmt.executeUpdate(consulta);
+            Conexion.getConnection().commit();
         } catch (SQLException ex) {
+              Conexion.getConnection().rollback();
             throw new Exception(ex.getMessage());
         } finally {
             Conexion.getInstance().desconexion();
         }
-    }
-    
+    } 
      public void ModificarRegistro(Object o) throws Exception {
         
         Statement stmt = null;
@@ -101,7 +102,9 @@ public class Operaciones {
            
             stmt = Conexion.getConnection().createStatement();
             stmt.executeUpdate(consulta);
+            Conexion.getConnection().commit();
         } catch (SQLException ex) {
+            Conexion.getConnection().rollback();
             throw new Exception(ex.getMessage());
         } finally {
             Conexion.getInstance().desconexion();
@@ -115,7 +118,9 @@ public class Operaciones {
             String consulta = OperacionesSQL.eliminarRegistro(o);
             stmt = Conexion.getConnection().createStatement();
             stmt.executeUpdate(consulta);
+            Conexion.getConnection().commit();
         } catch (SQLException ex) {
+             Conexion.getConnection().rollback();
             throw new Exception(ex.getMessage());
         } finally {
             Conexion.getInstance().desconexion();

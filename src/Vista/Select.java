@@ -616,10 +616,19 @@ public class Select extends javax.swing.JFrame {
 
     private void jButtonAgregarCondicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarCondicionesActionPerformed
         // TODO add your handling code here:
-        if(this.jTextFieldValor.getText().length()==0 ||  jComboBoxAtributo.getSelectedItem().equals("Ningún atributo")){
+         if(this.jTextFieldValor.getText().length()==0 ||  jComboBoxAtributo.getSelectedItem().equals("Ningún atributo")){
             
               JOptionPane.showMessageDialog(rootPane, "Campos Vacios", "Aviso", JOptionPane.ERROR_MESSAGE);
         }else{
+         if(this.jComboBoxOperador.getSelectedItem().equals("LIKE")){
+             String name = jComboBoxCondicion.getSelectedItem()+" "+this. jComboBoxAtributo.getSelectedItem()+"  "+ this.jComboBoxOperador.getSelectedItem() + "  '" + this.jTextFieldValor.getText() +"%"+ "' ";
+             this.condSeleccionados.add(name);
+             jTextArea3.append(name);
+             //System.out.println(""+condGenerada);
+              jButtonAgregarAtributos.setEnabled(true);
+         jButtonEliminarAtributos.setEnabled(true);
+          jTextFieldValor.setText("");
+         } else if(!this.jComboBoxOperador.getSelectedItem().equals("LIKE")){
             
               
                jComboBoxCondicion.setEnabled(true);
@@ -633,7 +642,7 @@ public class Select extends javax.swing.JFrame {
          jTextFieldValor.setText("");
         }
        
-        
+         }
     }//GEN-LAST:event_jButtonAgregarCondicionesActionPerformed
 
     private void jComboBoxCondicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCondicionActionPerformed

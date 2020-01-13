@@ -48,8 +48,6 @@ public class VentanaUsuario extends javax.swing.JFrame {
         TELEFONO = new javax.swing.JTextField();
         ID_USUARIO = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
-        btnCrear = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -83,20 +81,6 @@ public class VentanaUsuario extends javax.swing.JFrame {
             }
         });
 
-        btnCrear.setText("CREAR");
-        btnCrear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearActionPerformed(evt);
-            }
-        });
-
-        btnModificar.setText("MODIFICAR");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/usuario original.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -119,19 +103,12 @@ public class VentanaUsuario extends javax.swing.JFrame {
                             .addComponent(DIRECCION, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                             .addComponent(NOMBRE, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ID_USUARIO, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TELEFONO))
-                        .addContainerGap(37, Short.MAX_VALUE))
+                            .addComponent(TELEFONO)))
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(btnAceptar)
-                .addGap(18, 18, 18)
-                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnModificar)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(52, 52, 52)
+                        .addComponent(btnAceptar)))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,9 +127,7 @@ public class VentanaUsuario extends javax.swing.JFrame {
                             .addComponent(NOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel3))
+                            .addComponent(jLabel3)
                             .addComponent(DIRECCION, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,12 +137,9 @@ public class VentanaUsuario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
                         .addGap(31, 31, 31)))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptar)
-                    .addComponent(btnCrear)
-                    .addComponent(btnModificar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnAceptar)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -195,30 +167,27 @@ public class VentanaUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso En la Creacion De Usuario", JOptionPane.ERROR_MESSAGE);
         }
         
-         try {
-            String nombreTabla ="USUARIO" ;
-            
-               //registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombreTabla);
-               // this.mostrarTabla(registros);
-              VentanaDatosUsuario objventana = new VentanaDatosUsuario();
-              objventana.setVisible(true);
-            
-                //this.boxResultado.setVisible(false);
-            
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso para presentar en las tablas ", JOptionPane.ERROR_MESSAGE);
-            //this.boxResultado.setVisible(false);
-        }//fin try 
+//         try {
+//            String nombreTabla ="USUARIO" ;
+//            
+//               //registros = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombreTabla);
+//               // this.mostrarTabla(registros);
+//              VentanaDatosUsuario objventana = new VentanaDatosUsuario();
+//              objventana.setVisible(true);
+//            
+//                //this.boxResultado.setVisible(false);
+//            
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso para presentar en las tablas ", JOptionPane.ERROR_MESSAGE);
+//            //this.boxResultado.setVisible(false);
+//        }//fin try 
+ 
+           this.ID_USUARIO.setText("");
+            this.NOMBRE.setText("");
+            this.DIRECCION.setText("");
+            this.TELEFONO.setText("");
       
     }//GEN-LAST:event_btnAceptarActionPerformed
-
-    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCrearActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnModificarActionPerformed
 
    /* public void mostrarTabla(ArrayList<ArrayList<String>> registros){
         int filas = registros.size()-1;
@@ -285,8 +254,6 @@ public class VentanaUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField NOMBRE;
     private javax.swing.JTextField TELEFONO;
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnCrear;
-    private javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
