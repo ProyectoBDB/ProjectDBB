@@ -437,6 +437,7 @@ public class Update extends javax.swing.JFrame {
        //  this.condicionAtributos.removeAllItems();
         
         String nombre = this.lista_atributos_tabla.getModel().getElementAt(this.lista_atributos_tabla.getSelectedIndex());
+        
         if(!this.attSeleccionados.contains(nombre) ){
             this.attSeleccionados.add(nombre);
             DefaultListModel model = new DefaultListModel();

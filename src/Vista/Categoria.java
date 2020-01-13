@@ -36,7 +36,6 @@ public class Categoria extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
         jButtonAgregar = new javax.swing.JButton();
-        jButtonModificar = new javax.swing.JButton();
         jButtonAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -55,9 +54,12 @@ public class Categoria extends javax.swing.JFrame {
             }
         });
 
-        jButtonModificar.setText("Modificar");
-
-        jButtonAceptar.setText("Aceptar");
+        jButtonAceptar.setText("Cerrar");
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,10 +75,8 @@ public class Categoria extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(123, 123, 123)
                         .addComponent(jButtonAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonAceptar)))
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -97,7 +97,6 @@ public class Categoria extends javax.swing.JFrame {
                         .addGap(50, 50, 50)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAgregar)
-                    .addComponent(jButtonModificar)
                     .addComponent(jButtonAceptar))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -116,6 +115,10 @@ public class Categoria extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso En la Creacion De Usuario", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAgregarActionPerformed
+
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,7 +159,6 @@ public class Categoria extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonAgregar;
-    private javax.swing.JButton jButtonModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextFieldNombre;
