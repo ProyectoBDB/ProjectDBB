@@ -59,10 +59,26 @@ public class NEGOCIO_OBJETOS {
             o.setAtributos(atributos);
         if(condiciones!=null)
             o.setCondiciones(condiciones);
+         if(Funciones!=null)
+            o.setFunciones(Funciones);
         if(orderBy!=null)
             o.setOrderBy(orderBy);
         return Operaciones.getInstance().realizarConsulta(o);  
        
+    }
+    
+    public Object obtenerRegistrosC(ArrayList<String> nombreTabla, ArrayList<String> atributos, ArrayList<String> condiciones, ArrayList<String> Funciones, ArrayList<String> orderBy) throws SQLException, Exception{
+        CONSULT o = new CONSULT(nombreTabla);
+        if(atributos!=null)
+            o.setAtributos(atributos);
+        if(condiciones!=null)
+            o.setCondiciones(condiciones);
+        if(Funciones!=null)
+            o.setFunciones(Funciones);
+        if(orderBy!=null)
+            o.setOrderBy(orderBy);
+        System.err.println(""+o.toString());
+        return Operaciones.getInstance().realizarConsulta(o);
     }
     
      public Object obtenerRegistrosJoin(ArrayList<String> Tabla, ArrayList<String> atributos, ArrayList<String> condiciones, ArrayList<String> Funciones, ArrayList<String> orderBy) throws SQLException, Exception{

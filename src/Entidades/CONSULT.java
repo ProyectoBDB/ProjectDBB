@@ -17,14 +17,34 @@ public class CONSULT {
     private ArrayList<String> atributos;
     private ArrayList<String> condiciones;
     private ArrayList<String> orderBy;
+     private ArrayList<String> funciones;
+
+    public ArrayList<String> getFunciones() {
+        return funciones;
+    }
+
+    public void setFunciones(ArrayList<String> funciones) {
+        this.funciones = funciones;
+    }
 
     public CONSULT(ArrayList<String> Tablas){
         this.atributos = new ArrayList();
         this.condiciones = new ArrayList();
+        this.funciones = new ArrayList();
         this.orderBy = new ArrayList();
          this.NombreTablas = new ArrayList();
         this.NombreTablas = Tablas;
     }
+    
+//    public CONSULT(ArrayList<String> Tablas,ArrayList<String> funciones){
+//        this.atributos = new ArrayList();
+//        this.condiciones = new ArrayList();
+//        this.funciones = new ArrayList();
+//         this.funciones = funciones;
+//        this.orderBy = new ArrayList();
+//         this.NombreTablas = new ArrayList();
+//        this.NombreTablas = Tablas;
+//    }
     
      public ArrayList<String> getNombreTablas() {
         return NombreTablas;

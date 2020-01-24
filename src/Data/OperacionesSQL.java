@@ -175,6 +175,7 @@ public class OperacionesSQL {
         ArrayList<String> nombreTabla = o.getNombreTablas();
         ArrayList<String> columnas = o.getAtributos();
         ArrayList<String> condiciones = o.getCondiciones();
+         ArrayList<String> funciones = o.getFunciones();
         ArrayList<String> orderBy = o.getOrderBy();
         
         
@@ -189,7 +190,18 @@ public class OperacionesSQL {
                 else
                     consulta = consulta + columnas.get(i);
             }
-        }else{
+        }
+        
+        if(funciones != null && !funciones.isEmpty()){
+             for(int i = 0; i<funciones.size(); i++){
+                if(i+1 != funciones.size())
+                    consulta = consulta + funciones.get(i) + ",";
+                else
+                    consulta = consulta +""+"COUNT"+"("+ funciones.get(i)+")";
+            }
+        }
+        
+        if((columnas == null && columnas.isEmpty()) && (funciones == null && funciones.isEmpty())){
             consulta = consulta + "*";
         }
         
