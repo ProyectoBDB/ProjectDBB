@@ -338,18 +338,31 @@ public class PedirEjemplar extends javax.swing.JFrame {
             nombretablaUsuario.add("USUARIO");
             attSeleccionadoUsuario.add("ID_USUARIO");
             attSeleccionadoUsuario.add("NOMBRE");
+            // se agrega la bandera a la lista de atributos obtenidos
+            attSeleccionadoUsuario.add("BANDERA");
             condicioneUsuario.add("ID_USUARIO = '"+cedula+"'");
+            //condicioneUsuario.add("ID_USUARIO = '"+cedula+"'"+" and BANDERA=''");
             registroUsuario = (ArrayList<ArrayList<String>>) NEGOCIO_OBJETOS.getInstance().obtenerRegistros(nombretablaUsuario, this.attSeleccionadoUsuario,condicioneUsuario,null,null);
             System.out.println("Resultado obtenido:---------------");
             System.out.println(registroUsuario.size());
-            if(registroUsuario.size()==1){
-                JOptionPane.showMessageDialog(null, "El usuario no esta registrado");
+            //se obtiene el valor de la bandera
+            String bandera =registroUsuario.get(1).get(2);
+            // se compara si no hay nada en la bandera en caso de no haber nada en la bandera se presta el libro 
+            if(bandera.equalsIgnoreCase("")){
+                if(registroUsuario.size()==1){
+                    JOptionPane.showMessageDialog(null, "El usuario no esta registrado");
+                }
+                else{
+                    String nombre=registroUsuario.get(1).get(1);
+                    this.jTextFieldNombre.setText(nombre);
+                    System.out.println("nobre del usuario: "+nombre);
+                }
             }
+            // caso contrario se muestra el mensaje de la bandera
             else{
-                String nombre=registroUsuario.get(1).get(1);
-                this.jTextFieldNombre.setText(nombre);
-                System.out.println("nobre del usuario: "+nombre);
+                JOptionPane.showMessageDialog(null, bandera);
             }
+            
         } catch (Exception ex) {
             Logger.getLogger(PedirEjemplar.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -440,9 +453,10 @@ public class PedirEjemplar extends javax.swing.JFrame {
             String NUMERO_DIAS_PRESTAMO = jTextFieldDiasPrestamo.getText();
             String FECHA_DEVOLUCION = "";
             //int ID_USUARIO, int ID_EJEMPLAR, int ID_EDISION, int ID_LIBRO, String ESTADO, int NUMERO_DIAS_PRESTAMO, String FECHA_PRESTAMO, String FECHA_DEVOLIUCION
+            
             String[] args = {"PEDIR_EJEMPLAR",ID_USUARIO,ID_EJEMPLAR,ID_EDISION,ID_LIBRO,ESTADO,NUMERO_DIAS_PRESTAMO,FECHA_PRESTAMO,FECHA_DEVOLUCION};
             NEGOCIO_OBJETOS.getInstance().insertarRegistro(args);
-            JOptionPane.showMessageDialog(rootPane,"Se ha creado el Ejemplar satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane,"Se ha creado registrado el prestamo satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             Logger.getLogger(PedirEjemplar.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -15,19 +15,25 @@ public class USUARIO {
     private String NOMBRE;
     private String DIRECCION;
     private String TELEFONO;
+    private String BANDERA;
 
-    public USUARIO(String NOMBRE, String DIRECCION, String TELEFONO) {
+  
+
+    public USUARIO(String NOMBRE, String DIRECCION, String TELEFONO, String BANDERA) {
         this.NOMBRE = NOMBRE;
         this.DIRECCION = DIRECCION;
         this.TELEFONO = TELEFONO;
+        this.BANDERA = BANDERA;
     }
 
-    public USUARIO(int ID_USUARIO, String NOMBRE, String DIRECCION, String TELEFONO) {
+      public USUARIO(int ID_USUARIO, String NOMBRE, String DIRECCION, String TELEFONO, String BANDERA) {
         this.ID_USUARIO = ID_USUARIO;
         this.NOMBRE = NOMBRE;
         this.DIRECCION = DIRECCION;
         this.TELEFONO = TELEFONO;
+        this.BANDERA = BANDERA;
     }
+    
 
     public int getID_USUARIO() {
         return ID_USUARIO;
@@ -61,6 +67,12 @@ public class USUARIO {
         this.TELEFONO = TELEFONO;
     }
     
-    
+    public String getBANDERA() {
+        return BANDERA;
+    }
+
+    public void setBANDERA(String BANDERA) {
+        this.BANDERA = BANDERA;
+    }
     
 }

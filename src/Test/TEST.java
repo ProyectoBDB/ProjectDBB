@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class TEST {
     
-    USUARIO miusuario = new USUARIO(1,"carlos","trigales","890");
+    USUARIO miusuario = new USUARIO(1,"carlos","trigales","890","");
     NEGOCIO_OBJETOS minegocio = new NEGOCIO_OBJETOS();
     
     public void modificar (){

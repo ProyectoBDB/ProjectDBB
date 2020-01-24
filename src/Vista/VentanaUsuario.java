@@ -188,7 +188,8 @@ public class VentanaUsuario extends javax.swing.JFrame {
             String NOMBRE =this.NOMBRE.getText();
             String DIRECCION =this.DIRECCION.getText();
             String TELEFONO =this.TELEFONO.getText();
-            String[] args = {"USUARIO",ID_USUARIO,NOMBRE,DIRECCION,TELEFONO};
+            String BANDERA="";
+            String[] args = {"USUARIO",ID_USUARIO,NOMBRE,DIRECCION,TELEFONO,BANDERA};
             NEGOCIO_OBJETOS.getInstance().insertarRegistro(args);
             JOptionPane.showMessageDialog(rootPane,"Se ha creado el usuario satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
