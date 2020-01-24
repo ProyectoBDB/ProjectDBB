@@ -46,8 +46,8 @@ public class Operaciones {
         Statement stmt = null;
         ArrayList<ArrayList<String>> resultado = new ArrayList<>();
         try{
-            Conexion.getInstance().getConnection();
-            stmt = Conexion.getConnection().createStatement();
+            Conexion.getInstance().establecerConexion();
+            stmt = Conexion.getInstance().getConexion().createStatement();
             ResultSet respuesta = stmt.executeQuery(consulta);
            // System.out.println("gggggg"+respuesta.getMetaData().getColumnCount());
             //Cabecera
@@ -69,12 +69,12 @@ public class Operaciones {
                     //System.out.println("===========");
                 resultado.add(columna);
             }
-            System.out.println("==========="+resultado);
+            System.out.println("==========="+resultado+"esto es :)");
             return resultado;
         } catch (SQLException ex) {
             throw new Exception(ex.getMessage());
         } finally {
-            Conexion.getInstance().desconexion();
+            Conexion.getInstance().finalizarConexion(stmt);
         }
     }
     public void insertarRegistro(Object o) throws Exception {
@@ -84,14 +84,15 @@ public class Operaciones {
             System.out.println("llega a data familia");
             String consulta = OperacionesSQL.insertarRegistro(o);    
              System.out.println(""+consulta);
-            stmt = Conexion.getConnection().createStatement();
+             Conexion.getInstance().establecerConexion();
+            stmt = Conexion.getInstance().getConexion().createStatement();
             stmt.executeUpdate(consulta);
-            Conexion.getConnection().commit();
+            Conexion.getInstance().getConexion().commit();
         } catch (SQLException ex) {
-              Conexion.getConnection().rollback();
+              Conexion.getInstance().getConexion().rollback();
             throw new Exception(ex.getMessage());
         } finally {
-            Conexion.getInstance().desconexion();
+            Conexion.getInstance().finalizarConexion(stmt);
         }
     } 
      public void ModificarRegistro(Object o) throws Exception {
@@ -99,15 +100,15 @@ public class Operaciones {
         Statement stmt = null;
         try {
             String consulta = OperacionesSQL.modificarRegistro(o);    
-           
-            stmt = Conexion.getConnection().createStatement();
+           Conexion.getInstance().establecerConexion();
+            stmt = Conexion.getInstance().getConexion().createStatement();
             stmt.executeUpdate(consulta);
-            Conexion.getConnection().commit();
+            Conexion.getInstance().getConexion().commit();
         } catch (SQLException ex) {
-            Conexion.getConnection().rollback();
+            Conexion.getInstance().getConexion().rollback();
             throw new Exception(ex.getMessage());
         } finally {
-            Conexion.getInstance().desconexion();
+            Conexion.getInstance().finalizarConexion(stmt);
         }
     }
     
@@ -116,14 +117,15 @@ public class Operaciones {
         try {
             //Conexion.getInstance().establecerConexion();
             String consulta = OperacionesSQL.eliminarRegistro(o);
-            stmt = Conexion.getConnection().createStatement();
+            Conexion.getInstance().establecerConexion();
+            stmt = Conexion.getInstance().getConexion().createStatement();
             stmt.executeUpdate(consulta);
-            Conexion.getConnection().commit();
+            Conexion.getInstance().getConexion().commit();
         } catch (SQLException ex) {
-             Conexion.getConnection().rollback();
+             Conexion.getInstance().getConexion().rollback();
             throw new Exception(ex.getMessage());
         } finally {
-            Conexion.getInstance().desconexion();
+            Conexion.getInstance().finalizarConexion(stmt);
         }
     }
     /*Se establece la conexion a la BD para luego modificar un registro segun el 
@@ -182,8 +184,8 @@ public class Operaciones {
             
            String consulta = OperacionesSQL.actualizarDatos(obj);
           
-          // Conexion.getInstance().ConectarDB();
-           sentencia = Conexion.getConnection().createStatement();
+          Conexion.getInstance().establecerConexion();
+           sentencia = Conexion.getInstance().getConexion().createStatement();
            sentencia.executeUpdate(consulta);
            
             
@@ -192,7 +194,7 @@ public class Operaciones {
             
             throw new Exception (e.getMessage());
         }finally {
-            Conexion.getInstance().desconexion();
+            Conexion.getInstance().finalizarConexion(sentencia);
         }
         
        
@@ -207,9 +209,9 @@ public class Operaciones {
         try {
             
            String consulta = OperacionesSQL.eliminarDatos(obj);
-          
-          // Conexion.getInstance().ConectarDB();
-           sentencia = Conexion.getConnection().createStatement();
+          Conexion.getInstance().establecerConexion();
+          Conexion.getInstance().establecerConexion();
+           sentencia = Conexion.getInstance().getConexion().createStatement();
            sentencia.executeUpdate(consulta);
            
             
@@ -218,8 +220,110 @@ public class Operaciones {
             
             throw new Exception (e.getMessage());
         }finally {
-            Conexion.getInstance().desconexion();
+            Conexion.getInstance().finalizarConexion(sentencia);
         }
     }
+      
+      
+      public void registrarUsuario(Object o) throws Exception{
+        Statement stmt = null;
+        try {
+            String consulta = OperacionesSQL.crearUsuario(o);
+            Conexion.getInstance().establecerConexion();
+            Conexion.getInstance().getConexion();
+            stmt = Conexion.getInstance().getConexion().createStatement();
+            stmt.executeUpdate(consulta);
+        } catch (SQLException ex) {
+            throw new Exception(ex.getMessage());
+        } finally {
+            Conexion.getInstance().finalizarConexion(stmt);
+        }
+    }
+      
+      public Object getUsuariosSQL() throws Exception{
+        String consulta = OperacionesSQL.getUsuariosSQL();
+        return consultarBD(consulta);
+    }
+      
+    
+   public Object obtenerPrivilegios(String nombreUsuario) throws SQLException, Exception{
+        String consulta = OperacionesSQL.getPrivilegios(nombreUsuario);
+        ArrayList<ArrayList<String>> comandos = (ArrayList<ArrayList<String>>) this.consultarBD(consulta);
+        System.out.println(comandos+" \n  en obtener privilegios");
+        ArrayList<String> privilegios = new ArrayList();
+        for(int i=1; i<comandos.size();i++){
+            String comando = comandos.get(i).get(0);
+            String privilegio = "";
+            for(int j = 6; j<comando.indexOf("ON")-1;j++)
+                privilegio=privilegio+comando.charAt(j);
+            if("ALL PRIVILEGES, SELECT, INSERT, UPDATE, DELETE".contains(privilegio)){
+                String total = "";
+                for(int j = 6; j<comando.indexOf("TO")-1;j++)
+                    total=total+comando.charAt(j);
+                privilegios.add(total);
+            }
+        }
+        return privilegios;
+    }
+   
+   public void asignarTodosPrivilegios(Object o) throws Exception{
+        Statement stmt = null;
+        try {
+            String consulta = OperacionesSQL.asignarTodosPrivilegios((String) o);
+            System.out.println(consulta);
+            Conexion.getInstance().establecerConexion();
+            Conexion.getInstance().getConexion();
+            stmt = Conexion.getInstance().getConexion().createStatement();
+            stmt.executeUpdate(consulta);
+        } catch (SQLException ex) {
+            throw new Exception(ex.getMessage());
+        } finally {
+            Conexion.getInstance().finalizarConexion(stmt);
+        }
+    }
+   
+   public void asignarPrivilegiosConn(Object o) throws Exception{
+        Statement stmt = null;
+        try {
+            String consulta = OperacionesSQL.asignarPermisoParaConn((String) o);
+            System.out.println(consulta);
+            Conexion.getInstance().establecerConexion();
+            stmt = Conexion.getInstance().getConexion().createStatement();
+            stmt.executeUpdate(consulta);
+        } catch (SQLException ex) {
+            throw new Exception(ex.getMessage());
+        } finally {
+            Conexion.getInstance().finalizarConexion(stmt);
+        }
+    }
+   
+    public void agregarPrivilegio(Object o) throws Exception{
+        Statement stmt = null;
+        try {
+            String consulta = OperacionesSQL.agregarPrivilegio(o);
+            Conexion.getInstance().establecerConexion();
+            stmt = Conexion.getInstance().getConexion().createStatement();
+            stmt.executeUpdate(consulta);
+        } catch (SQLException ex) {
+            throw new Exception(ex.getMessage());
+        } finally {
+            Conexion.getInstance().finalizarConexion(stmt);
+        }
+    }
+    
+    public void removerPrivilegio(Object o) throws Exception{
+        Statement stmt = null;
+        try {
+            String consulta = OperacionesSQL.removerPrivilegio(o);
+            Conexion.getInstance().establecerConexion();
+            stmt = Conexion.getInstance().getConexion().createStatement();
+            stmt.executeUpdate(consulta);
+        } catch (SQLException ex) {
+            throw new Exception(ex.getMessage());
+        } finally {
+            Conexion.getInstance().finalizarConexion(stmt);
+        }
+    }
+      
       
 }

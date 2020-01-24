@@ -35,6 +35,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuItemModificar = new javax.swing.JMenuItem();
         jMenuItemEliminar = new javax.swing.JMenuItem();
         jMenuItemMostrar = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuBiblioteca = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
 
@@ -75,6 +77,22 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItemMostrar);
+
+        jMenuItem3.setText("Permisos");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem4.setText("Admin BD");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
 
         jMenuBarSelect.add(jMenu1);
 
@@ -126,6 +144,17 @@ public class VistaPrincipal extends javax.swing.JFrame {
         new MostrarTablas().setVisible(true);
     }//GEN-LAST:event_jMenuItemMostrarActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        new AdministrarPermisosGestor().setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        
+        new VentanaCrearUsuarioGestor().setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -168,6 +197,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuBiblioteca;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItemEliminar;
     private javax.swing.JMenuItem jMenuItemModificar;
     private javax.swing.JMenuItem jMenuItemMostrar;

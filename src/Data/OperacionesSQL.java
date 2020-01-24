@@ -6,6 +6,7 @@
 package Data;
 
 import Entidades.CONSULT;
+import Entidades.USUARIO_SESION;
 import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -403,7 +404,58 @@ public class OperacionesSQL {
   
     }
     
+   static String crearUsuario(Object o) {
+        USUARIO_SESION u = (USUARIO_SESION) o;
+        String DTS = "Data";
+         String DTST = "TEMP";
+        String consulta = "CREATE USER "+u.getUsername()+ " "
+                + " IDENTIFIED BY  "+u.getPassword()+" ACCOUNT UNLOCK " ;
+        System.out.println(""+consulta);
+        return consulta;
+    }  
+   
+   public static String getUsuariosSQL(){
+       System.out.println("estoy en la capa de datos en getUsuariosSQL");
+        return "SELECT * FROM ALL_USERS " +
+"where username not in('QS_CB','PERFSTAT','QS_ADM','PM','SH','HR','OE','ODM_MTR','WKPROXY','ANONYMOUS','OWNER','SYS','SYSTEM','SCOTT','SYSMAN','XDB','DBSNMP','EXFSYS','OLAPSYS','MDSYS','WMSYS','WKSYS','DMSYS','ODM','EXFSYS','CTXSYS','LBACSYS','ORDPLUGINS','SQLTXPLAIN','OUTLN','TSMSYS','XS$NULL','TOAD','STREAM','SPATIAL_CSW_ADMIN','SPATIAL_WFS_ADMIN','SI_INFORMTN_SCHEMA','QS','QS_CBADM','QS_CS','QS_ES','QS_OS','QS_WS','PA_AWR_USER','OWBSYS_AUDIT','OWBSYS','ORDSYS','ORDDATA','ORACLE_OCM','MGMT_VIEW','MDDATA','FLOWS_FILES','FLASHBACK','AWRUSER','APPQOSSYS')\n" +
+"AND username not like 'APEX%'";
+    }
+   
+   
+   public static String getPrivilegios(String nombreUsuario) throws SQLException{
+        //String consulta = "SELECT PRIVILEGE FROM  dba_sys_privs  wHERE  GRANTEE '"+ nombreUsuario +"'@'localhost';";
+         String consulta = "SELECT PRIVILEGE FROM "+" sys.dba_sys_privs " +" WHERE GRANTEE = " + "'"+ nombreUsuario+"'";
+         System.err.println(consulta);
+       // SELECT PRIVILEGE FROM  dba_sys_privs  WHERE GRANTEE = 'JOSE';
+        return consulta;
+    }
+   
+    public static String asignarTodosPrivilegios(String usuario) throws SQLException{
+        String consulta = "GRANT ALL PRIVILEGES " + "TO "+ usuario;
+        return consulta;
+    }
     
+    public static String asignarPermisoParaConn(String usuario) throws SQLException{
+        String consulta = "GRANT CONNECT  " + "TO  "+ usuario;
+        return consulta;
+    }
+    
+    public static String agregarPrivilegio(Object o) throws SQLException{
+        ArrayList<String> args = (ArrayList<String>)o;
+        String consulta = "GRANT "+ args.get(1) +" ON  "
+                + " "+ args.get(2) +" TO  " + args.get(0) ;
+        return consulta;
+    }
+    
+    public static String removerPrivilegio(Object o) throws SQLException{
+        ArrayList<String> args = (ArrayList<String>)o;
+        String consulta = "REVOKE "+ args.get(1) + " FROM '" + args.get(0) +"";
+        return consulta;
+    }
+   
+   
+   
+   
     
 //    
 //       

@@ -15,6 +15,7 @@ import Entidades.EJEMPLAR;
 import Entidades.LIBRO;
 import Entidades.LIBRO_AUTOR;
 import Entidades.PEDIR_EJEMPLAR;
+import Entidades.USUARIO_SESION;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -254,5 +255,38 @@ public class NEGOCIO_OBJETOS {
         Operaciones.getInstance().EliminarDatos(c);
        
    }
+    
+     public void registrarUsuarioSQL(String username, String password) throws SQLException, Exception{
+        Operaciones.getInstance().registrarUsuario(new USUARIO_SESION(username,password));
+    }
+     
+      public Object getPrivilegios (Object o) throws SQLException, Exception{
+        return Operaciones.getInstance().obtenerPrivilegios((String) o);
+    }
+     
+     public ArrayList<String> getUsuariosSQL() throws SQLException, Exception {
+        ArrayList<String> nombres = new ArrayList();
+        ArrayList<ArrayList<String>> resultado = (ArrayList<ArrayList<String>>) Operaciones.getInstance().getUsuariosSQL();
+        for(int i = 1; i<resultado.size(); i++){
+            nombres.add(resultado.get(i).get(0));
+        }
+        return nombres;
+    }
+     
+    public void asignarTodosPrivilegios (Object o) throws SQLException, Exception{
+        Operaciones.getInstance().asignarTodosPrivilegios((String) o);
+    }
+    
+     public void agregarPrivilegio(Object o) throws SQLException, Exception{
+        Operaciones.getInstance().agregarPrivilegio(o);
+    }
+     
+     public void agregarPrivilegioConn(Object o) throws SQLException, Exception{
+        Operaciones.getInstance().asignarPrivilegiosConn(o);
+    }
+     
+     public void removerPrivilegio(Object o) throws SQLException, Exception{
+        Operaciones.getInstance().removerPrivilegio(o);
+    }
      
 }

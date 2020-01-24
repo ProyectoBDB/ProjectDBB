@@ -5,9 +5,12 @@
  */
 package Data;
 
+import Entidades.USUARIO_SESION;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,9 +19,14 @@ import javax.swing.JOptionPane;
  */
 public class Conexion {
     
-     private static Connection conn = null;
-    private static String login = "SUPERVISOR";
-    private static String clave = "123";
+     private  Connection conn = null;
+     
+     private static String login;
+     private static String clave ;     
+    //private static String login = "SUPERVISOR";
+    //private static String clave = "123";
+    
+    //datos de la base 
     private static String url = "jdbc:oracle:thin:@localhost:1521:XE";
     public static String nombreBaseDD = "ProyectoBases";
     
@@ -30,22 +38,32 @@ public class Conexion {
         }
         return instance;
     }
-      public static Connection getConnection() {
-        try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            conn = DriverManager.getConnection(url, login, clave);
+   
+//     public void establecerConexion() throws SQLException{
+//        conexion = DriverManager.getConnection(getMySQLURL(), getLogin());
+//    }
+   
+    public void establecerConexion() throws SQLException, ClassNotFoundException{
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection(url, USUARIO_SESION.getInstance().getUsername(), USUARIO_SESION.getInstance().getPassword());
             conn.setAutoCommit(false);
-            if (conn != null) {
-                System.out.println("Conexion Exitosa");
-            } else {
-                System.out.println("Conexion Fallida");
-            }
-        } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "Conexion Erronea" + e.getMessage());
-
-        }
-        return conn;
     }
+    
+    
+    // establece la conexion
+//      public  void  getConnection() throws SQLException,Exception {
+//    
+//            
+//            
+//           
+//    }
+    
+      public void probarConexion() throws SQLException, Exception{
+          Class.forName("oracle.jdbc.driver.OracleDriver");
+        conn = DriverManager.getConnection(url, USUARIO_SESION.getInstance().getUsername(), USUARIO_SESION.getInstance().getPassword());
+        this.finalizarConexion(null);
+    }
+      
       
        public void desconexion() {
         try {
@@ -54,14 +72,29 @@ public class Conexion {
             System.out.println("Error al desconectar " + e.getMessage());
         }
     }
+       
+       public void finalizarConexion(Statement stmt) throws Exception{
+         try {
+            if (stmt != null)
+                stmt.close();
+            if(this.conn!=null)
+                this.conn.close();
+        } catch (SQLException ex) {
+             throw new Exception(ex.getMessage());
+        }
+     }
 
-    public static void main(String[] args) {
-        Conexion c = new Conexion();
-        c.getConnection();
-    }
+//    public static void main(String[] args) {
+//        Conexion c = new Conexion();
+//        c.getConnection();
+//    }
     
     public String getNombreBD() {
         return nombreBaseDD;
+    }
+    
+    public Connection getConexion() {
+        return conn;
     }
     
 }
