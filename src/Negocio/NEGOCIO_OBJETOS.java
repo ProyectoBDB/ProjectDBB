@@ -89,7 +89,7 @@ public class NEGOCIO_OBJETOS {
 //             System.out.println(""+args[4]);
         switch (tabla) {
             case "USUARIO":
-                USUARIO objusuario = new USUARIO(Integer.valueOf(args[1]), (String)args[2], (String)args[3],(String)args[4],(String)args[5]);
+                USUARIO objusuario = new USUARIO(args[1], (String)args[2], (String)args[3],(String)args[4],(String)args[5]);
                  System.out.println("hola amigo "+objusuario.getDIRECCION());
                   System.out.println("hola amigo "+objusuario.getID_USUARIO());
                 Operaciones.getInstance().insertarRegistro(objusuario);
@@ -150,7 +150,7 @@ public class NEGOCIO_OBJETOS {
         switch (tabla) {
             case "USUARIO":
                 System.out.println(args);
-                USUARIO objusuario = new USUARIO(Integer.valueOf((String)args[1]), (String)args[2], (String)args[3],(String)args[4],(String)args[4]);
+                USUARIO objusuario = new USUARIO((String)args[1], (String)args[2], (String)args[3],(String)args[4],(String)args[4]);
                 Operaciones.getInstance().ModificarRegistro(objusuario);
                 break;
             case "AUTOR":
@@ -184,7 +184,7 @@ public class NEGOCIO_OBJETOS {
         switch (tabla) {
             case "USUARIO":
                 System.out.println(args);
-                USUARIO objusuario = new USUARIO(Integer.valueOf((String)args[1]), (String)args[2], (String)args[3],(String)args[4],(String)args[5]);
+                USUARIO objusuario = new USUARIO((String)args[1], (String)args[2], (String)args[3],(String)args[4],(String)args[5]);
                 Operaciones.getInstance().elimiarRegistro(objusuario);
                 break;
             case "AUTOR":
@@ -289,5 +289,11 @@ public class NEGOCIO_OBJETOS {
      public void removerPrivilegio(Object o) throws SQLException, Exception{
         Operaciones.getInstance().removerPrivilegio(o);
     }
+     
+   public int callprocedure(String proces, String user ) throws SQLException, Exception{
+     
+       
+       return Operaciones.getInstance().callStoredProcedure(proces, user);
+   }  
 
 }

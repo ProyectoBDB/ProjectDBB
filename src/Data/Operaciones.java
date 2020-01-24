@@ -6,9 +6,11 @@
 package Data;
 
 import Entidades.CONSULT;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 
 /**
@@ -325,5 +327,49 @@ public class Operaciones {
         }
     }
       
+    public int callStoredProcedure(String proc, String user) throws Exception, SQLException{
+          
+       int resultado = 0;
+       String consulta = OperacionesSQL.callStoredProcedure(proc);
+       System.out.println(consulta);
+       
+       
+        CallableStatement cstmt = null;
+       
+        Conexion.getInstance().establecerConexion();
       
+       
+       if(proc.equalsIgnoreCase("validarCed")){
+           cstmt = Conexion.getInstance().getConexion().prepareCall(consulta);
+           
+           cstmt.registerOutParameter(2, Types.NUMERIC);
+           cstmt.setString(1, user);
+         
+           cstmt.execute();
+           
+           resultado = cstmt.getInt(2);
+           
+      } else if (proc.equalsIgnoreCase("dato_numerico")){
+            cstmt = Conexion.getInstance().getConexion().prepareCall(consulta);
+           cstmt.registerOutParameter(2, Types.NUMERIC);
+           cstmt.setString(1, user);
+           cstmt.execute();
+           resultado = cstmt.getInt(2);
+       }else if (proc.equalsIgnoreCase("dato_cadena")){
+            cstmt = Conexion.getInstance().getConexion().prepareCall(consulta);
+           cstmt.registerOutParameter(2, Types.NUMERIC);
+           cstmt.setString(1, user);
+           cstmt.execute();
+           resultado = cstmt.getInt(2);
+       }
+       
+       
+       //cstmt.close();
+      
+      return resultado;
+       
+       
+   }
+        
+    
 }

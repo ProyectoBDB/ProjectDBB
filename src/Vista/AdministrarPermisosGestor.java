@@ -29,7 +29,7 @@ public class AdministrarPermisosGestor extends javax.swing.JFrame {
     public AdministrarPermisosGestor() {
          try {
              initComponents();
-             NEGOCIO_SESIONES.getInstance().IniciarSesion("SUPERVISOR", "123");
+             //NEGOCIO_SESIONES.getInstance().IniciarSesion("SUPERVISOR", "123");
              this.listaTablas.setVisible(false);
              this.Tabla.addItem("");
              ArrayList<String> nombres  = NEGOCIO_OBJETOS.getInstance().getUsuariosSQL();

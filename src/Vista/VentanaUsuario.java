@@ -7,6 +7,7 @@ package Vista;
 
 import Data.Operaciones;
 import Negocio.NEGOCIO_OBJETOS;
+import Negocio.NEGOCIO_SESIONES;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,8 +27,16 @@ public class VentanaUsuario extends javax.swing.JFrame {
    public static  ArrayList<ArrayList<String>> registros;
     public VentanaUsuario() {
         initComponents();
+        
+        //borrar hasta
+       try {
+           //NEGOCIO_SESIONES.getInstance().IniciarSesion("SUPERVISOR", "123");
+       } catch (Exception ex) {
+           Logger.getLogger(VentanaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+       }
         this.setLocationRelativeTo(null);
     }
+    //aqui
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -137,7 +146,6 @@ public class VentanaUsuario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
                         .addGap(31, 31, 31)))
-                .addGap(18, 18, 18)
                 .addComponent(btnAceptar)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
@@ -156,15 +164,66 @@ public class VentanaUsuario extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         try {
             // TODO add your handling code here:
-            String ID_USUARIO =this.ID_USUARIO.getText();
-            String NOMBRE =this.NOMBRE.getText();
-            String DIRECCION =this.DIRECCION.getText();
-            String TELEFONO =this.TELEFONO.getText();
+            String ID_USUARIO ;
+           String NOMBRE ;
+           String DIRECCION ;
+            String TELEFONO ;
             String BANDERA="";
-            String[] args = {"USUARIO",ID_USUARIO,NOMBRE,DIRECCION,TELEFONO,BANDERA};
-            NEGOCIO_OBJETOS.getInstance().insertarRegistro(args);
+           
+            
+            if(NEGOCIO_OBJETOS.getInstance().callprocedure("validarCed", this.ID_USUARIO.getText())==0
+                    && NEGOCIO_OBJETOS.getInstance().callprocedure("dato_cadena", this.NOMBRE.getText())==0
+                    && NEGOCIO_OBJETOS.getInstance().callprocedure("dato_cadena", this.DIRECCION.getText())==0
+                    && NEGOCIO_OBJETOS.getInstance().callprocedure("dato_numerico", this.TELEFONO.getText())==0){
+          
+            ID_USUARIO =this.ID_USUARIO.getText();
+            NOMBRE =this.NOMBRE.getText();
+            DIRECCION =this.DIRECCION.getText();
+            TELEFONO =this.TELEFONO.getText();
+            String args[]={ ID_USUARIO,NOMBRE,DIRECCION,TELEFONO,BANDERA};
+             NEGOCIO_OBJETOS.getInstance().insertarRegistro(args);
             JOptionPane.showMessageDialog(rootPane,"Se ha creado el usuario satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception ex) {
+        } else if (NEGOCIO_OBJETOS.getInstance().callprocedure("validarCed", this.ID_USUARIO.getText())==1){
+                 JOptionPane.showMessageDialog(rootPane, "Ingrese la cedula correcta ");
+             }else if (NEGOCIO_OBJETOS.getInstance().callprocedure("dato_cadena", this.NOMBRE.getText())==1){
+                 JOptionPane.showMessageDialog(rootPane, "Ingrese el nombre correcta ");
+             }else if (NEGOCIO_OBJETOS.getInstance().callprocedure("dato_cadena", this.DIRECCION.getText())==1){
+                 JOptionPane.showMessageDialog(rootPane, "Ingrese direccion  correcta ");
+             }else if (NEGOCIO_OBJETOS.getInstance().callprocedure("dato_numerico", this.TELEFONO.getText())==1){
+                 JOptionPane.showMessageDialog(rootPane, "Ingrese dtelefono  correctao");
+             }
+            
+//            if(NEGOCIO_OBJETOS.getInstance().callprocedure("dato_cadena", this.NOMBRE.getText())==0){
+//           // NEGOCIO_OBJETOS.getInstance().insertarRegistro(args);
+//            NOMBRE =this.NOMBRE.getText();
+//            JOptionPane.showMessageDialog(rootPane,"Se ha creado el usuario satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
+//        } else if (NEGOCIO_OBJETOS.getInstance().callprocedure("dato_cadena", this.NOMBRE.getText())==1){
+//                 JOptionPane.showMessageDialog(rootPane, "el dato  es incorrecto");
+//             }
+//            
+//             if(NEGOCIO_OBJETOS.getInstance().callprocedure("dato_cadena", this.DIRECCION.getText())==0){
+//           // NEGOCIO_OBJETOS.getInstance().insertarRegistro(args);
+//             DIRECCION =this.DIRECCION.getText();
+//            JOptionPane.showMessageDialog(rootPane,"Se ha creado el usuario satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
+//        } else if (NEGOCIO_OBJETOS.getInstance().callprocedure("dato_cadena", this.NOMBRE.getText())==1){
+//                 JOptionPane.showMessageDialog(rootPane, "el dato  es incorrecto");
+//             }
+//            
+//             if(NEGOCIO_OBJETOS.getInstance().callprocedure("dato_numerico", this.TELEFONO.getText())==0){
+//           // NEGOCIO_OBJETOS.getInstance().insertarRegistro(args);
+//            TELEFONO =this.TELEFONO.getText();
+//            JOptionPane.showMessageDialog(rootPane,"Se ha creado el usuario satisfactoriamente.","Enhorabuena",JOptionPane.INFORMATION_MESSAGE);
+//        } else if (NEGOCIO_OBJETOS.getInstance().callprocedure("dato_cadena",this.TELEFONO.getText())==1){
+//                 JOptionPane.showMessageDialog(rootPane, "el dato  es incorrecto");
+//             }
+//             
+//             if ( ID_USUARIO.equals("")) {
+//                
+//            } else {
+//            }
+//            
+        }
+            catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Aviso En la Creacion De Usuario", JOptionPane.ERROR_MESSAGE);
         }
         

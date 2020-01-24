@@ -11,7 +11,7 @@ package Entidades;
  */
 public class USUARIO {
     
-    private int ID_USUARIO;
+    private String ID_USUARIO;
     private String NOMBRE;
     private String DIRECCION;
     private String TELEFONO;
@@ -26,7 +26,7 @@ public class USUARIO {
         this.BANDERA = BANDERA;
     }
 
-      public USUARIO(int ID_USUARIO, String NOMBRE, String DIRECCION, String TELEFONO, String BANDERA) {
+      public USUARIO(String ID_USUARIO, String NOMBRE, String DIRECCION, String TELEFONO, String BANDERA) {
         this.ID_USUARIO = ID_USUARIO;
         this.NOMBRE = NOMBRE;
         this.DIRECCION = DIRECCION;
@@ -35,11 +35,11 @@ public class USUARIO {
     }
     
 
-    public int getID_USUARIO() {
+    public String getID_USUARIO() {
         return ID_USUARIO;
     }
 
-    public void setID_USUARIO(int ID_USUARIO) {
+    public void setID_USUARIO(String ID_USUARIO) {
         this.ID_USUARIO = ID_USUARIO;
     }
 

@@ -453,7 +453,19 @@ public class OperacionesSQL {
         return consulta;
     }
    
-   
+    public static String callStoredProcedure(String proces){
+        
+        if (proces.equalsIgnoreCase("validarCed")){
+            return "{call "+proces + "(?,?)}";
+        } else if(proces.equalsIgnoreCase("dato_numerico")){
+            return "{call "+proces + "(?,?)}";
+        } else if(proces.equalsIgnoreCase("dato_cadena")){
+            return "{call "+proces + "(?,?)}";
+        }
+        
+        return "";
+        
+    }
    
    
     
